@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Femmé — Command Centre</title>
+<style>
+:root {
+  --bg: #f8f7f5; --surface: #fff; --text: #0f0e0d; --muted: #6b6862; --subtle: #b0aca6;
+  --border: #e8e4de; --bl: #f0ece6; --accent: #c8a96e; --accent-s: #faf3e8;
+  --green: #16a34a; --green-s: #f0fdf4; --amber: #d97706; --amber-s: #fffbeb;
+  --red: #dc2626; --red-s: #fef2f2; --blue: #2563eb; --blue-s: #eff6ff;
+  --nav-h: 54px; --r: 10px; --r-sm: 6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-height:100vh;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);height:var(--nav-h);display:flex;align-items:center;padding:0 24px;gap:4px;}
+.nav-brand{font-size:11px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:#fff;margin-right:16px;}
+.nav-tab{padding:6px 14px;border-radius:20px;border:none;background:transparent;color:rgba(255,255,255,.45);cursor:pointer;font-size:12px;font-weight:600;transition:all .12s;white-space:nowrap;text-decoration:none;}
+.nav-tab:hover{background:rgba(255,255,255,.1);color:#fff;}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
+.nav-sync{font-size:11px;color:rgba(255,255,255,.3);}
+.nav-date{font-size:11px;color:rgba(255,255,255,.3);}
+
+/* PAGES */
+.page{display:none;padding-top:calc(var(--nav-h) + 28px);min-height:auto;}
+.page.active{display:block;}
+.nav-tab.active{background:rgba(255,255,255,.18);color:#fff;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px 80px;}
+
+/* SECTION HEADERS */
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;margin-top:28px;}
+.sh:first-child{margin-top:0;}
+.sh-title{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--subtle);}
+.sh-right{font-size:11px;color:var(--subtle);}
+
+/* METRIC STRIP */
+.metric-strip{display:flex;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:20px;}
+.metric-cell{flex:1;padding:14px 18px;border-right:1px solid var(--bl);}
+.metric-cell:last-child{border-right:none;}
+.mc-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--subtle);margin-bottom:4px;}
+.mc-val{font-size:22px;font-weight:900;letter-spacing:-.02em;}
+.mc-val.green{color:var(--green);}
+.mc-val.amber{color:var(--amber);}
+.mc-val.red{color:var(--red);}
+.mc-delta{font-size:11px;font-weight:600;margin-top:2px;}
+.mc-delta.up{color:var(--red);}
+.mc-delta.down{color:var(--green);}
+.mc-delta.neutral{color:var(--subtle);}
+
+/* READ CARD */
+.read-card{background:var(--text);border-radius:var(--r);padding:18px 22px;margin-bottom:20px;display:flex;gap:16px;align-items:flex-start;}
+.read-avatar{width:36px;height:36px;border-radius:50%;background:var(--accent);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff;overflow:hidden;}
+.read-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.read-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-bottom:5px;}
+.read-text{font-size:13px;color:rgba(255,255,255,.85);line-height:1.6;}
+.read-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.read-action{font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);border:none;cursor:default;}
+.read-action.urgent{background:rgba(220,38,38,.3);color:#fca5a5;}
+.read-action.good{background:rgba(22,163,74,.25);color:#86efac;}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;}
+.card-title{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--subtle);margin-bottom:14px;}
+
+/* CREATIVE TABLE */
+.creative-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bl);}
+.creative-row:last-child{border-bottom:none;}
+.cr-name{flex:1;font-size:13px;font-weight:600;color:var(--text);}
+.cr-metric{font-size:12px;font-weight:700;width:70px;text-align:right;}
+.cr-metric.red{color:var(--red);}
+.cr-metric.amber{color:var(--amber);}
+.cr-metric.green{color:var(--green);}
+.cr-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap;}
+.tag-pause{background:var(--red-s);color:var(--red);}
+.tag-watch{background:var(--amber-s);color:var(--amber);}
+.tag-scale{background:var(--green-s);color:var(--green);}
+.tag-test{background:var(--blue-s);color:var(--blue);}
+
+/* CLARITY METRICS */
+.clarity-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.cm-box{background:var(--bg);border-radius:var(--r-sm);padding:12px 14px;}
+.cm-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--subtle);margin-bottom:4px;}
+.cm-val{font-size:20px;font-weight:900;letter-spacing:-.01em;}
+.cm-val.red{color:var(--red);}
+.cm-val.amber{color:var(--amber);}
+.cm-val.green{color:var(--green);}
+.cm-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+
+/* PAGE LIST */
+.page-row{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bl);font-size:12px;}
+.page-row:last-child{border-bottom:none;}
+.pr-url{color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-right:8px;}
+.pr-count{font-weight:700;color:var(--text);white-space:nowrap;}
+
+/* CLARITY CONNECT */
+.clarity-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 18px;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.clarity-dot{width:8px;height:8px;border-radius:50%;background:var(--subtle);flex-shrink:0;}
+.clarity-dot.on{background:var(--green);}
+.clarity-bar-label{font-size:13px;font-weight:600;}
+.clarity-bar-sub{font-size:11px;color:var(--muted);}
+.clarity-bar-right{margin-left:auto;display:flex;gap:8px;align-items:center;}
+.c-btn{font-size:12px;font-weight:600;cursor:pointer;border:none;background:none;color:var(--accent);padding:4px 0;}
+.c-btn:hover{text-decoration:underline;}
+.c-btn.primary{background:var(--text);color:#fff;padding:6px 14px;border-radius:var(--r-sm);font-weight:700;}
+.c-btn.primary:hover{background:#333;text-decoration:none;}
+.clarity-setup{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;margin-bottom:20px;display:none;}
+.clarity-setup.open{display:block;}
+.clarity-setup-title{font-size:13px;font-weight:700;margin-bottom:4px;}
+.clarity-setup-sub{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5;}
+.cs-field label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);display:block;margin-bottom:5px;}
+.cs-field input{width:100%;border:1px solid var(--border);border-radius:var(--r-sm);padding:8px 11px;font-size:13px;color:var(--text);background:var(--bg);outline:none;font-family:inherit;}
+.cs-field input:focus{border-color:var(--accent);}
+.form-acts{display:flex;gap:8px;margin-top:12px;}
+
+/* BRIEF CARDS */
+.brief-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--r);margin-bottom:14px;overflow:hidden;}
+.brief-card.filming{border-left-color:var(--amber);}
+.brief-card.done{border-left-color:var(--green);opacity:.6;}
+.brief-top{padding:20px 22px 16px;}
+.brief-num-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.brief-num{font-size:10px;font-weight:900;letter-spacing:.1em;color:var(--accent);background:var(--accent-s);border-radius:4px;padding:2px 8px;}
+.brief-status{font-size:10px;font-weight:700;padding:2px 10px;border-radius:20px;}
+.bs-todo{background:var(--bl);color:var(--muted);}
+.bs-filming{background:var(--amber-s);color:var(--amber);}
+.bs-done{background:var(--green-s);color:var(--green);}
+.brief-title{font-size:16px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px;line-height:1.3;}
+.brief-why{font-size:12.5px;color:var(--muted);line-height:1.55;padding:10px 13px;background:var(--bg);border-radius:var(--r-sm);border-left:2px solid var(--accent);}
+.brief-sections{border-top:1px solid var(--bl);}
+.section{border-bottom:1px solid var(--bl);}
+.section:last-child{border-bottom:none;}
+.sec-toggle{width:100%;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;background:none;border:none;cursor:pointer;font-size:12px;font-weight:700;color:var(--muted);text-align:left;transition:background .1s;}
+.sec-toggle:hover{background:var(--bg);}
+.sec-toggle .arr{font-size:10px;transition:transform .2s;color:var(--subtle);}
+.sec-toggle.open .arr{transform:rotate(180deg);}
+.sec-body{display:none;padding:0 22px 16px;}
+.sec-body.open{display:block;}
+.cap-field{margin-bottom:10px;}
+.cap-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--subtle);margin-bottom:5px;}
+.cap-text{font-size:13px;color:var(--text);line-height:1.6;background:var(--bg);border:1px solid var(--bl);border-radius:var(--r-sm);padding:10px 12px;white-space:pre-wrap;}
+.copy-btn{margin-top:5px;font-size:11px;font-weight:700;color:var(--accent);background:none;border:none;cursor:pointer;padding:0;}
+.copy-btn:hover{text-decoration:underline;}
+.script-lines{display:flex;flex-direction:column;gap:2px;}
+.sl{font-size:13px;padding:4px 0;border-bottom:1px solid var(--bl);line-height:1.55;}
+.sl:last-child{border-bottom:none;}
+.sl-d{color:var(--muted);font-style:italic;font-size:12px;}
+.sl-s{font-weight:600;color:var(--text);}
+.sl-o{color:var(--blue);font-weight:600;font-size:12px;}
+.sl-tag{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--subtle);padding-top:6px;display:block;}
+.visual-item{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--bl);}
+.visual-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.visual-shot{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:3px;}
+.visual-desc{font-size:13px;color:var(--text);line-height:1.5;}
+.brief-footer{padding:12px 22px;border-top:1px solid var(--bl);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.inspo-link{font-size:12px;font-weight:700;color:var(--blue);text-decoration:none;margin-left:auto;}
+.inspo-link:hover{text-decoration:underline;}
+
+/* BUTTONS */
+.btn{font-size:12px;font-weight:700;padding:7px 15px;border-radius:var(--r-sm);cursor:pointer;border:none;transition:all .12s;white-space:nowrap;}
+.btn-primary{background:var(--text);color:#fff;}
+.btn-primary:hover{background:#333;}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}
+.btn-ghost:hover{background:var(--bg);color:var(--text);}
+.btn-done{background:var(--green-s);color:var(--green);border:1px solid #bbf7d0;}
+.btn-done:hover{background:var(--green);color:#fff;}
+
+/* CRO */
+.cro-list{display:flex;flex-direction:column;gap:8px;}
+.cro-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:all .15s;}
+.cro-card:hover{box-shadow:0 1px 8px rgba(0,0,0,.05);}
+.cro-card.done-card{opacity:.35;pointer-events:none;}
+.cro-main{padding:14px 18px;display:flex;gap:12px;align-items:flex-start;}
+.cro-cb-wrap{padding-top:2px;flex-shrink:0;}
+.cro-cb{width:18px;height:18px;border-radius:4px;border:1.5px solid var(--border);appearance:none;cursor:pointer;position:relative;transition:all .15s;}
+.cro-cb:hover{border-color:var(--green);}
+.cro-cb:checked{background:var(--green);border-color:var(--green);}
+.cro-cb:checked::after{content:'✓';position:absolute;top:-1px;left:2px;font-size:12px;color:#fff;font-weight:800;}
+.cro-body{flex:1;}
+.cro-head{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap;}
+.cro-title{font-size:13.5px;font-weight:700;color:var(--text);}
+.pill{display:inline-flex;align-items:center;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap;}
+.pill-p1{background:var(--red-s);color:var(--red);}
+.pill-p2{background:var(--amber-s);color:var(--amber);}
+.pill-p3{background:var(--bl);color:var(--muted);}
+.cro-where{font-size:11px;color:var(--muted);font-family:'SF Mono','Monaco',monospace;background:var(--bg);border:1px solid var(--bl);border-radius:4px;padding:1px 7px;display:inline-block;margin-bottom:4px;}
+.cro-why{font-size:12.5px;color:var(--muted);line-height:1.5;}
+.cro-expand-btn{background:transparent;border:none;color:var(--accent);font-size:11px;font-weight:600;cursor:pointer;padding:0;margin-top:6px;display:inline-flex;align-items:center;gap:4px;}
+.cro-expand-btn:hover{text-decoration:underline;}
+.cro-copy-block{display:none;border-top:1px solid var(--bl);padding:12px 18px 12px 48px;}
+.cro-copy-block.open{display:block;}
+.cro-copy-row{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;}
+.cro-copy{background:var(--bg);border:1px solid var(--bl);border-radius:var(--r-sm);padding:8px 10px;font-size:12px;line-height:1.5;white-space:pre-wrap;}
+.cro-copy.old{border-left:3px solid var(--red);color:var(--muted);text-decoration:line-through;}
+.cro-copy.new{border-left:3px solid var(--green);font-weight:600;}
+.cro-arrow{font-size:18px;color:var(--green);text-align:center;}
+.done-section{margin-top:24px;}
+.done-toggle{font-size:12px;color:var(--subtle);cursor:pointer;padding:6px 0;border:none;background:none;display:flex;align-items:center;gap:6px;}
+.done-toggle:hover{color:var(--muted);}
+.done-list{display:flex;flex-direction:column;gap:4px;margin-top:8px;}
+.done-entry{background:var(--surface);border:1px solid var(--bl);border-radius:var(--r-sm);padding:8px 12px;display:flex;align-items:center;gap:8px;opacity:.45;}
+.done-entry-title{font-size:12px;color:var(--muted);text-decoration:line-through;flex:1;}
+.done-entry-date{font-size:10px;color:var(--subtle);white-space:nowrap;}
+.btn-restore{background:transparent;color:var(--accent);border:none;font-size:11px;font-weight:600;cursor:pointer;padding:0;}
+.btn-restore:hover{text-decoration:underline;}
+
+/* CREATIVE LAB */
+.lab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+.lab-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.lab-card-top{padding:16px 18px 12px;}
+.lab-ad-name{font-size:13px;font-weight:800;color:var(--text);margin-bottom:10px;line-height:1.3;}
+.lab-hook{background:var(--bg);border-left:3px solid var(--accent);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:8px 12px;margin-bottom:12px;}
+.lab-hook-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin-bottom:3px;}
+.lab-hook-text{font-size:12.5px;font-style:italic;color:var(--text);line-height:1.5;}
+.lab-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.lab-pill{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;background:var(--bl);color:var(--muted);}
+.lab-pill.tof{background:var(--blue-s);color:var(--blue);}
+.lab-pill.mof{background:var(--accent-s);color:var(--accent);}
+.lab-pill.bof{background:var(--green-s);color:var(--green);}
+.lab-metrics{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--bl);border-bottom:1px solid var(--bl);}
+.lab-metric{padding:10px 12px;text-align:center;border-right:1px solid var(--bl);}
+.lab-metric:last-child{border-right:none;}
+.lab-metric-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--subtle);margin-bottom:3px;}
+.lab-metric-val{font-size:16px;font-weight:900;letter-spacing:-.01em;}
+.lab-metric-val.red{color:var(--red);}
+.lab-metric-val.amber{color:var(--amber);}
+.lab-metric-val.green{color:var(--green);}
+.lab-read{padding:10px 18px 14px;display:flex;gap:8px;align-items:flex-start;}
+.lab-read-icon{font-size:10px;font-weight:900;color:var(--accent);margin-top:2px;flex-shrink:0;}
+.lab-read-text{font-size:12px;color:var(--muted);line-height:1.55;}
+.lab-status-bar{padding:8px 18px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--bl);}
+.lab-status-bar .cr-tag{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;}
+
+/* HOOK BANK */
+.hook-bank{margin-top:32px;}
+.hook-bank-title{font-size:14px;font-weight:800;color:var(--text);margin-bottom:4px;}
+.hook-bank-sub{font-size:11px;color:var(--subtle);margin-bottom:16px;}
+.hook-bank-grid{display:flex;flex-direction:column;gap:8px;}
+.hb-row{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 16px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;}
+.hb-hook{font-size:12.5px;font-style:italic;color:var(--text);line-height:1.5;border-left:3px solid var(--green);padding-left:10px;margin-bottom:6px;}
+.hb-meta{display:flex;flex-wrap:wrap;gap:6px;}
+.hb-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--bl);color:var(--muted);}
+.hb-ctr{font-size:18px;font-weight:900;color:var(--green);text-align:right;white-space:nowrap;}
+.hb-ctr-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--subtle);text-align:right;}
+
+/* LOADING */
+.loading{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--subtle);padding:16px 0;}
+.spinner{width:14px;height:14px;border:2px solid var(--bl);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+@media(max-width:700px){
+  .two-col{grid-template-columns:1fr;}
+  .metric-strip{flex-wrap:wrap;}
+  .metric-cell{min-width:45%;}
+  .clarity-grid{grid-template-columns:1fr 1fr;}
+  .cro-copy-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Femmé</span>
+  <button class="nav-tab active" onclick="showPage('pulse',this)">Pulse</button>
+  <button class="nav-tab" onclick="showPage('lab',this)">Creative Lab</button>
+  <button class="nav-tab" onclick="showPage('brief',this)">Creative Brief</button>
+  <button class="nav-tab" onclick="showPage('site',this)">Site Fixes</button>
+  <div class="nav-right">
+    <span class="nav-sync" id="nav-sync">—</span>
+    <span class="nav-date" id="nav-date"></span>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     PULSE
+══════════════════════════════════════ -->
+<div class="page active" id="page-pulse">
+<div class="wrap">
+
+  <!-- METRIC STRIP -->
+  <div class="metric-strip" id="metric-strip">
+    <div class="metric-cell">
+      <div class="mc-label">CPA (21 Apr)</div>
+      <div class="mc-val green" id="m-cpa">$27.67</div>
+      <div class="mc-delta down" id="m-cpa-d">↓ vs 3d avg $39.53</div>
+    </div>
+    <div class="metric-cell">
+      <div class="mc-label">ROAS</div>
+      <div class="mc-val amber" id="m-roas">2.29x</div>
+      <div class="mc-delta up" id="m-roas-d">Target 5x</div>
+    </div>
+    <div class="metric-cell">
+      <div class="mc-label">CVR</div>
+      <div class="mc-val red" id="m-cvr">1.62%</div>
+      <div class="mc-delta up" id="m-cvr-d">Target 2.5%+</div>
+    </div>
+    <div class="metric-cell">
+      <div class="mc-label">Spend</div>
+      <div class="mc-val amber" id="m-spend">$135.02</div>
+      <div class="mc-delta neutral" id="m-spend-d">6 purchases</div>
+    </div>
+    <div class="metric-cell">
+      <div class="mc-label">Net Profit</div>
+      <div class="mc-val red" id="m-profit">-$13.65</div>
+      <div class="mc-delta up" id="m-profit-d">Losing money</div>
+    </div>
+  </div>
+
+  <!-- CLAUDIO'S READ -->
+  <div class="read-card">
+    <div class="read-avatar">
+      <img src="claudio_icon.png" onerror="this.style.display='none';this.parentElement.textContent='C'">
+    </div>
+    <div style="flex:1">
+      <div class="read-label">Claudio's read — 21 Apr 2026</div>
+      <div class="read-text" id="read-text">Creative fatigue is the main driver here. CPA tripled in 3 days — "Come Make a Pad" is done and needs to be paused today. The good news: "Tampon Shedding 2026" has a 46% hold rate and 1.75% CTR on minimal spend — that's the one to push budget into. "Pad Burns Irritation" is stopping the scroll but not converting — that's a landing page problem, not a creative problem. Three new briefs are ready to film. Get those live this week and the numbers will move.</div>
+      <div class="read-actions">
+        <span class="read-action urgent">Pause: Come Make a Pad</span>
+        <span class="read-action good">Scale: Tampon Shedding 2026</span>
+        <span class="read-action urgent">Fix landing page CVR</span>
+        <span class="read-action">Film 3 new briefs</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWO COL: CREATIVES + CLARITY -->
+  <div class="two-col">
+
+    <!-- RUNNING CREATIVES -->
+    <div class="card">
+      <div class="card-title">Running Creatives — 20 Apr</div>
+      <div class="creative-row">
+        <div class="cr-name">Come Make a Pad + Green Screen</div>
+        <div class="cr-metric red">$46.61</div>
+        <span class="cr-tag tag-pause">Pause</span>
+      </div>
+      <div class="creative-row">
+        <div class="cr-name">Pad Burns Irritation</div>
+        <div class="cr-metric amber">0 conv</div>
+        <span class="cr-tag tag-watch">Fix page</span>
+      </div>
+      <div class="creative-row">
+        <div class="cr-name">Tampon Shedding 2026</div>
+        <div class="cr-metric green">1.75% CTR</div>
+        <span class="cr-tag tag-scale">Scale</span>
+      </div>
+      <div class="creative-row">
+        <div class="cr-name">Inside Your Pads</div>
+        <div class="cr-metric red">0.32% CTR</div>
+        <span class="cr-tag tag-test">Testing</span>
+      </div>
+      <div class="creative-row">
+        <div class="cr-name">Bleach Inside Your Pad</div>
+        <div class="cr-metric amber">0 clicks</div>
+        <span class="cr-tag tag-test">Testing</span>
+      </div>
+    </div>
+
+    <!-- CLARITY -->
+    <div class="card" id="clarity-card">
+      <div class="card-title">Clarity — Last 7 Days <span id="clarity-updated" style="font-weight:500;color:var(--subtle);text-transform:none;letter-spacing:0"></span></div>
+      <div id="clarity-content">
+        <div class="loading"><div class="spinner"></div>Loading Clarity data…</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CLARITY CONNECT (shown if no token) -->
+  <div id="clarity-connect-bar" style="display:none">
+    <div class="clarity-bar">
+      <div class="clarity-dot" id="c-dot"></div>
+      <div>
+        <div class="clarity-bar-label" id="c-label">Clarity not connected</div>
+        <div class="clarity-bar-sub" id="c-sub">Connect to load live session data</div>
+      </div>
+      <div class="clarity-bar-right">
+        <button class="c-btn primary" onclick="toggleClaritySetup()">Connect Clarity</button>
+      </div>
+    </div>
+    <div class="clarity-setup" id="clarity-setup">
+      <div class="clarity-setup-title">Connect Microsoft Clarity</div>
+      <div class="clarity-setup-sub">Paste your Data Export API token from clarity.microsoft.com → Settings → Data Export</div>
+      <div class="cs-field"><label>API Token</label><input id="c-token-input" type="password" placeholder="Paste token…"></div>
+      <div class="form-acts">
+        <button class="btn btn-primary" onclick="saveClarity()">Save & load</button>
+        <button class="btn btn-ghost" onclick="toggleClaritySetup()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<a id="brief"></a>
+<!-- ══════════════════════════════════════
+     CREATIVE BRIEF
+══════════════════════════════════════ -->
+<div class="page" id="page-brief">
+<div class="wrap">
+
+  <div class="sh" style="margin-bottom:20px;margin-top:0">
+    <div>
+      <div style="font-size:18px;font-weight:800;letter-spacing:-.01em">Active Brief — 3 creatives</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:2px">Film these. Next refresh: 23 Apr.</div>
+    </div>
+    <div style="font-size:11px;font-weight:700;color:var(--subtle);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:5px 12px;">Batch 01 · 21 Apr 2026</div>
+  </div>
+
+  <!-- BRIEF 01 -->
+  <div class="brief-card" id="bc-1">
+    <div class="brief-top">
+      <div class="brief-num-row">
+        <span class="brief-num">01</span>
+        <span class="brief-status bs-todo" id="bs-1">To Film</span>
+      </div>
+      <div class="brief-title">Why Are Companies Allowed To Sell Us This</div>
+      <div class="brief-why">CPA spiked 110% — current creative is fatigued. This is a fresh casual creator POV format modelled on a Lucent Globe ad that ran 150 days. Different format = algorithm treats it as new. Different energy = fresh audience response.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption — ready to paste <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="cap-field"><div class="cap-label">Primary Text</div><div class="cap-text" id="b1c1">I really don't understand why people are okay wearing a pad made from bleached synthetic fibres and plastic.
+
+Every month. For decades. Against your most absorptive skin.
+
+Femmé is certified organic cotton — same protection, nothing hidden. Link below 👇</div><button class="copy-btn" onclick="copyEl('b1c1')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Headline</div><div class="cap-text" id="b1c2">Try Femmé Risk-Free — 30 Day Money-Back Guarantee</div><button class="copy-btn" onclick="copyEl('b1c2')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Description</div><div class="cap-text" id="b1c3">Certified organic cotton. Free shipping. Australian-made.</div><button class="copy-btn" onclick="copyEl('b1c3')">Copy ↗</button></div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Script — read aloud as voiceover <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="script-lines">
+            <div class="sl sl-d">[OPEN: conventional pad on white bench. Hands turn it over slowly. Camera holds on ingredient list.]</div>
+            <div class="sl sl-s">I really don't understand why people think a pad made with bleached synthetic fibres is safe to wear down there.</div>
+            <div class="sl sl-d">[Hold 2 seconds.]</div>
+            <div class="sl sl-s">Plus some of them are up to 90% plastic.</div>
+            <div class="sl sl-d">[CUT: pad surrounded by small plastic bottles — chaotic. Hold 3 seconds.]</div>
+            <div class="sl sl-s">Did you know your intimate area has one of the highest absorption rates in your whole body? Meaning whatever is in that pad — doesn't just sit on the surface.</div>
+            <div class="sl sl-d">[CUT: slow zoom into ingredient list — holds on FRAGRANCE.]</div>
+            <div class="sl sl-s">Conventional pads contain chlorine-bleached fibres, synthetic gel, and fragrance — which is basically a legal loophole that can hide dozens of undisclosed chemicals. These are known hormone disruptors. Being linked to all sorts of health issues.</div>
+            <div class="sl sl-s">Why is it okay for companies to sell us this stuff?!</div>
+            <div class="sl sl-s">We have to have periods. We shouldn't have to damage our bodies doing it.</div>
+            <div class="sl sl-d">[CUT: Femmé packaging on bench — slow zoom in.]</div>
+            <div class="sl sl-s">That's where Femmé comes in. Certified organic cotton pads and tampons. No bleach, no synthetics, no fragrance. Same absorbency. Same comfort. One ingredient.</div>
+            <div class="sl sl-d">[CUT: flip Femmé pack — clean label. Hold.]</div>
+            <div class="sl sl-s">Look at this label versus a conventional one. There's nothing to hide.</div>
+            <div class="sl sl-s">Over 10,000 five-star reviews. Australian-made. Ships to your door. Tap below — 30-day money-back guarantee.</div>
+            <span class="sl-tag">On-screen overlays</span>
+            <div class="sl sl-o">Up to 90% plastic · bleached fibres · synthetic gel · fragrance (= ??)</div>
+            <div class="sl sl-o">Known hormone disruptors. Every month.</div>
+            <div class="sl sl-o">Femmé: certified organic cotton. One ingredient.</div>
+            <div class="sl sl-o">10,000+ five-star reviews · 30-day money-back guarantee</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Visual Direction <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Opening hook (0–4 sec)</div><div class="visual-desc">White bench. Hands place one conventional pad down. Surround it with small plastic bottles — 10–15, placed quickly, slightly chaotic. Camera overhead. Hold 3 seconds. No words. This is the scroll-stop.</div></div>
+          <div class="visual-item"><div class="visual-shot">Problem section</div><div class="visual-desc">Hands turn conventional pad over — slow pan across ingredient list. Zoom into FRAGRANCE. Hold 2 seconds.</div></div>
+          <div class="visual-item"><div class="visual-shot">Brand reveal</div><div class="visual-desc">Femmé packaging on bench. Flip to back — clean single-ingredient label. Product alone, natural light, final frame.</div></div>
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. White bench. Natural light. CapCut bold white text overlays. Vertical 9:16. ~40 seconds.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(1,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(1,'done')">Mark Done ✓</button>
+      <a class="inspo-link" href="https://app.foreplay.co/share/ads/TfhqIC21RLCAZlxX0KNS?user=ZbNn09lR7Fg1FrXLHyihpuASeN63" target="_blank">View inspo ↗</a>
+    </div>
+  </div>
+
+  <!-- BRIEF 02 -->
+  <div class="brief-card" id="bc-2">
+    <div class="brief-top">
+      <div class="brief-num-row"><span class="brief-num">02</span><span class="brief-status bs-todo" id="bs-2">To Film</span></div>
+      <div class="brief-title">Cut It Open</div>
+      <div class="brief-why">Same body safety angle — completely new opening visual. Cutting the pad open and showing the plastic mesh inside is something the audience hasn't seen from us. New first frame = algorithm distributes to fresh eyes. Visual proof is harder to dismiss than a claim.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption — ready to paste <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="cap-field"><div class="cap-label">Primary Text</div><div class="cap-text" id="b2c1">I cut open a conventional pad to see what's inside.
+
+The white mesh layer is plastic. The gel is synthetic polymer. And all of it bleached with chlorine — sitting against your most sensitive skin every month.
+
+Femmé uses one ingredient: certified organic cotton. Nothing else. Link below 👇</div><button class="copy-btn" onclick="copyEl('b2c1')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Headline</div><div class="cap-text" id="b2c2">Try Femmé Risk-Free — 30 Day Money-Back Guarantee</div><button class="copy-btn" onclick="copyEl('b2c2')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Description</div><div class="cap-text" id="b2c3">Certified organic cotton. Free shipping. Australian-made.</div><button class="copy-btn" onclick="copyEl('b2c3')">Copy ↗</button></div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Script — read aloud as voiceover <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="script-lines">
+            <div class="sl sl-d">[OPEN: hands pick up conventional pad. Scissors cut it open down the middle — slow, deliberate. Pull the two layers apart. Plastic mesh visible. Gel beads visible. Hold 4 seconds. No words.]</div>
+            <div class="sl sl-s">I cut open a conventional pad. This is what's inside it.</div>
+            <div class="sl sl-s">That white mesh layer? That's plastic. Same material used in plastic packaging.</div>
+            <div class="sl sl-s">And that gel in the middle — that's synthetic polymer. Sitting against your skin for five hours every day of your period.</div>
+            <div class="sl sl-d">[CUT: slow zoom into inside of pad.]</div>
+            <div class="sl sl-s">Did you know your intimate area has one of the highest absorption rates in the body? So whatever is in this pad doesn't just sit on the surface.</div>
+            <div class="sl sl-s">Conventional pads are also bleached with chlorine. That bleaching leaves chemical residues classified as hormone disruptors. Every month. For years.</div>
+            <div class="sl sl-d">[CUT: Femmé pad placed next to cut-open conventional one. Visual contrast.]</div>
+            <div class="sl sl-s">That's where Femmé comes in. Certified organic cotton. No plastic mesh. No synthetic gel. No chlorine bleach. Same protection — one ingredient.</div>
+            <div class="sl sl-d">[CUT: flip Femmé pack — clean label. Hold.]</div>
+            <div class="sl sl-s">Certified organic cotton. That's actually the whole thing.</div>
+            <div class="sl sl-s">Over 10,000 five-star reviews. Ships to your door. 30-day money-back guarantee. Tap below.</div>
+            <span class="sl-tag">On-screen overlays</span>
+            <div class="sl sl-o">This is what's inside your pad.</div>
+            <div class="sl sl-o">Plastic mesh · synthetic polymer gel · chlorine bleach</div>
+            <div class="sl sl-o">Femmé: certified organic cotton. One ingredient.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Visual Direction <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Opening hook (0–5 sec)</div><div class="visual-desc">Hands hold a conventional pad. Scissors cut it open down the middle — slow and deliberate. Pull the two halves apart. Camera close on the inside — white plastic mesh and gel beads clearly visible. Hold 4 seconds. Complete silence.</div></div>
+          <div class="visual-item"><div class="visual-shot">Problem section</div><div class="visual-desc">Keep camera close on the inside of the cut-open pad throughout. Point to the mesh, point to the gel. Let the viewer see what you're describing.</div></div>
+          <div class="visual-item"><div class="visual-shot">Brand reveal</div><div class="visual-desc">Place Femmé pad next to the cut-open conventional one. Flip Femmé to show back label. Product alone, natural light, final frame.</div></div>
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. White bench. Close-up lens for the cut section. Vertical 9:16. ~40 seconds.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(2,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(2,'done')">Mark Done ✓</button>
+    </div>
+  </div>
+
+  <!-- BRIEF 03 -->
+  <div class="brief-card" id="bc-3">
+    <div class="brief-top">
+      <div class="brief-num-row"><span class="brief-num">03</span><span class="brief-status bs-todo" id="bs-3">To Film</span></div>
+      <div class="brief-title">A Gynaecologist Told Me</div>
+      <div class="brief-why">Completely different emotional register — authority + credibility. CVR at 1.11% means we need ads that build trust pre-click. Third-party medical source makes it feel like a tip from someone you trust, not a brand ad. Covers a different audience entry point.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption — ready to paste <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="cap-field"><div class="cap-label">Primary Text</div><div class="cap-text" id="b3c1">A gynaecologist told me something about pads that I couldn't stop thinking about.
+
+The vulvar area has some of the highest absorption rates in the body. Hours of contact = hours of exposure to whatever is in your pad.
+
+Femmé: certified organic cotton. One ingredient. Nothing hidden. Link below 👇</div><button class="copy-btn" onclick="copyEl('b3c1')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Headline</div><div class="cap-text" id="b3c2">Try Femmé Risk-Free — 30 Day Money-Back Guarantee</div><button class="copy-btn" onclick="copyEl('b3c2')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Description</div><div class="cap-text" id="b3c3">Certified organic cotton. Free shipping. Australian-made.</div><button class="copy-btn" onclick="copyEl('b3c3')">Copy ↗</button></div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Script — read aloud as voiceover <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="script-lines">
+            <div class="sl sl-d">[OPEN: tight close-up on handwritten notes or phone notes app. Words visible: "gynaecologist said…". Camera slowly pulls back. Hands only. Very still. Hold 3 seconds.]</div>
+            <div class="sl sl-s">A gynaecologist told me something about pads that I couldn't stop thinking about.</div>
+            <div class="sl sl-d">[Hold 2 seconds.]</div>
+            <div class="sl sl-s">She said the vulvar area has some of the highest absorption rates in the whole body. Anything you put against it — especially for hours at a time — doesn't just sit on the surface.</div>
+            <div class="sl sl-d">[CUT: conventional pad — hands turn to ingredient list. Slow pan.]</div>
+            <div class="sl sl-s">So when a conventional pad contains chlorine-bleached fibres, synthetic polymer gel, and fragrance — and you're wearing it for five hours every day of your period — that exposure adds up.</div>
+            <div class="sl sl-d">[CUT: slow zoom into FRAGRANCE on the packaging.]</div>
+            <div class="sl sl-s">She wasn't telling me to panic. Just — know what you're using. Because most women have never thought to read the label.</div>
+            <div class="sl sl-d">[CUT: Femmé pad placed next to conventional.]</div>
+            <div class="sl sl-s">Femmé is certified organic cotton. No synthetic fibres. No chlorine bleach. No fragrance. One ingredient. That's all.</div>
+            <div class="sl sl-d">[CUT: flip Femmé pack — label visible. Hold 3 seconds.]</div>
+            <div class="sl sl-s">I just think it's worth knowing what you're putting on your body. Especially there.</div>
+            <div class="sl sl-s">Over 10,000 five-star reviews. Australian-made. 30-day money-back guarantee. Tap below.</div>
+            <span class="sl-tag">On-screen overlays</span>
+            <div class="sl sl-o">A gynaecologist told me something I couldn't stop thinking about.</div>
+            <div class="sl sl-o">Vulvar area = highest absorption in the body</div>
+            <div class="sl sl-o">Hours of contact = hours of exposure</div>
+            <div class="sl sl-o">Femmé: 100% certified organic cotton. One ingredient.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Visual Direction <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Opening hook (0–4 sec)</div><div class="visual-desc">Tight close-up on handwritten notes or notes app. Words visible: "gynaecologist said…". Camera pulls back slowly. Still, quiet energy. Completely different opening to briefs 01 and 02.</div></div>
+          <div class="visual-item"><div class="visual-shot">Problem section</div><div class="visual-desc">Hands turn conventional pad to ingredient list. Slow zoom into FRAGRANCE. Hold. Don't rush — the slow burn builds more trust than fast cuts here.</div></div>
+          <div class="visual-item"><div class="visual-shot">Brand reveal</div><div class="visual-desc">Femmé pad beside conventional — calm, no urgency. Flip to back label. Hold the clean single-ingredient label for 3 full seconds.</div></div>
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. Slower pacing than 01 and 02. Builds trust through calm authority. Vertical 9:16. ~45 seconds.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(3,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(3,'done')">Mark Done ✓</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<a id="lab"></a>
+<!-- ══════════════════════════════════════
+     CREATIVE LAB
+══════════════════════════════════════ -->
+<style>
+.period-tabs{display:flex;gap:6px;margin-bottom:24px;}
+.period-tab{padding:6px 16px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;transition:all .12s;}
+.period-tab.active{background:var(--text);color:#fff;border-color:var(--text);}
+.lab-section-label{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;margin-bottom:4px;}
+.lab-section-sub{font-size:11px;color:var(--subtle);margin-bottom:12px;}
+.lab-wrap{overflow-x:auto;margin-bottom:36px;border:1px solid var(--border);border-radius:var(--r);}
+.lab-table{width:100%;border-collapse:collapse;font-size:12px;min-width:1050px;}
+.lab-table .group-row th{padding:6px 12px;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;text-align:left;background:#111;color:rgba(255,255,255,.5);border-right:1px solid rgba(255,255,255,.08);}
+.lab-table .group-row th:first-child{color:rgba(255,255,255,.7);border-radius:var(--r) 0 0 0;}
+.lab-table .group-row th:last-child{border-right:none;border-radius:0 var(--r) 0 0;}
+.lab-table .col-row th{padding:8px 12px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--subtle);background:var(--surface);text-align:left;border-bottom:2px solid var(--border);border-right:1px solid var(--bl);white-space:nowrap;}
+.lab-table .col-row th.center{text-align:center;}
+.lab-table .col-row th:last-child{border-right:none;}
+.lab-table tbody tr{border-bottom:1px solid var(--bl);}
+.lab-table tbody tr:last-child{border-bottom:none;}
+.lab-table tbody tr:hover{background:#faf9f7;}
+.lab-td{padding:10px 12px;vertical-align:middle;}
+.lab-td.center{text-align:center;}
+.hook-edit{color:var(--muted);font-style:italic;line-height:1.4;outline:none;border-radius:4px;padding:2px 4px;transition:background .1s;cursor:text;}
+.hook-edit:hover{background:var(--bl);}
+.hook-edit:focus{background:var(--accent-s);outline:2px solid var(--accent);}
+.edit-hint{font-size:9px;color:var(--subtle);margin-top:2px;display:none;}
+tr:hover .edit-hint{display:block;}
+.metric-pill{display:inline-block;font-size:11px;font-weight:800;padding:2px 9px;border-radius:20px;}
+.metric-pill.green{color:var(--green);background:var(--green-s);}
+.metric-pill.amber{color:var(--amber);background:var(--amber-s);}
+.metric-pill.red{color:var(--red);background:var(--red-s);}
+.metric-pill.grey{color:var(--subtle);background:var(--bl);}
+.status-pill{display:inline-block;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;}
+.ad-name-link{color:var(--text);text-decoration:none;font-weight:700;}
+.ad-name-link:hover{text-decoration:underline;}
+.hook-type-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--bl);color:var(--muted);}
+.bench-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;align-items:center;}
+.bench-pill{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;}
+.pattern-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-top:4px;}
+.analysis-card:hover{box-shadow:0 0 0 2px var(--accent);cursor:text;}
+.analysis-card:hover .edit-hint{display:block!important;}
+.pattern-col-title{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;}
+.pattern-col-body{font-size:12px;color:var(--muted);line-height:1.6;}
+</style>
+<div class="page" id="page-lab">
+<div class="wrap">
+
+  <div class="sh" style="margin-top:0;margin-bottom:16px">
+    <div>
+      <div style="font-size:18px;font-weight:800;letter-spacing:-.01em">Creative Lab</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:2px">Live ad performance — all creatives, all metrics. Click any hook to edit.</div>
+    </div>
+    <div style="font-size:11px;font-weight:700;color:var(--subtle);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:5px 12px;">J-Dog · 21 Apr 2026</div>
+  </div>
+
+  <!-- ACTION BAR -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:24px;">
+    <div style="background:var(--green-s);border:1.5px solid #86efac;border-radius:var(--r);padding:16px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--green);margin-bottom:10px;">⬆ Scale now</div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);line-height:1.8;">Come Make A Pad — TOF LP Copy 2<br>Bleach Inside Your Pad — LP Copy</div>
+      <div style="font-size:11px;color:var(--green);margin-top:8px;">$17–20 CPA · only $55 combined spend · starved of budget</div>
+    </div>
+    <div style="background:#fffbeb;border:1.5px solid #fcd34d;border-radius:var(--r);padding:16px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--amber);margin-bottom:10px;">🔧 Fix first</div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);line-height:1.8;">Checkout drop-off — 44 ATCs across top 2 ads, only 7 purchases. 84% abandonment rate.</div>
+      <div style="font-size:11px;color:var(--amber);margin-top:8px;">Fix checkout before scaling spend — money is leaking here</div>
+    </div>
+    <div style="background:var(--red-s);border:1.5px solid #fca5a5;border-radius:var(--r);padding:16px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--red);margin-bottom:10px;">⏸ Pause today</div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);line-height:1.8;">Come Make A Pad — TOF LP Copy (0.99x ROAS)<br>Come Make A Pad + Green Screen (0.59x ROAS)<br>Tampon Shedding 2026 — Homepage</div>
+      <div style="font-size:11px;color:var(--red);margin-top:8px;">$342 spent this week — all three losing money</div>
+    </div>
+  </div>
+
+  <!-- LP MISMATCH CALLOUT -->
+  <div style="background:#0f0e0d;border-radius:var(--r);padding:18px 20px;margin-bottom:24px;display:flex;align-items:flex-start;gap:16px;">
+    <div style="font-size:22px;line-height:1;">⚠️</div>
+    <div>
+      <div style="font-size:12px;font-weight:800;color:#fff;margin-bottom:4px;">Landing page is killing your best creative</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.6;">Same ad — <em>"There's bleach in your pad"</em> — gets <span style="color:#4ade80;font-weight:700;">$20 CPA + 3.75x ROAS</span> when sent to LP Copy, and <span style="color:#f87171;font-weight:700;">zero conversions</span> when sent to Homepage. The creative is not the problem. Fix the destination before you film anything new.</div>
+    </div>
+  </div>
+
+  <!-- HOOK PATTERN ANALYSIS -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+    <div style="font-size:13px;font-weight:800;">Hook Pattern Analysis</div>
+    <div style="font-size:10px;color:var(--subtle);font-style:italic;">Click any card to edit — these are your labels, not Meta's</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px;" id="hook-analysis-grid">
+    <div class="analysis-card" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative;">
+      <div class="analysis-label hook-edit" contenteditable="true" spellcheck="false" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin-bottom:6px;">Symptom-led</div>
+      <div class="analysis-rate hook-edit" contenteditable="true" spellcheck="false" style="font-size:20px;font-weight:900;color:var(--text);">19%</div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:8px;">avg hook rate</div>
+      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">Feels personal. Stops people who recognise their own experience. Best for cold TOF.</div>
+      <div class="edit-hint" style="display:none;position:absolute;top:8px;right:8px;font-size:9px;color:var(--subtle);">✏ editing</div>
+    </div>
+    <div class="analysis-card" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative;">
+      <div class="analysis-label hook-edit" contenteditable="true" spellcheck="false" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--amber);margin-bottom:6px;">Shocking claim</div>
+      <div class="analysis-rate hook-edit" contenteditable="true" spellcheck="false" style="font-size:20px;font-weight:900;color:var(--text);">18%</div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:8px;">avg hook rate</div>
+      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">Works when paired with a strong visual. Needs the body to back the claim or hold collapses.</div>
+      <div class="edit-hint" style="display:none;position:absolute;top:8px;right:8px;font-size:9px;color:var(--subtle);">✏ editing</div>
+    </div>
+    <div class="analysis-card" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative;">
+      <div class="analysis-label hook-edit" contenteditable="true" spellcheck="false" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--amber);margin-bottom:6px;">Visual shock</div>
+      <div class="analysis-rate hook-edit" contenteditable="true" spellcheck="false" style="font-size:20px;font-weight:900;color:var(--text);">22%</div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:8px;">avg hook rate</div>
+      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">Hook is strong but hold is weak. First frame stops them — middle section loses them. Fix the body.</div>
+      <div class="edit-hint" style="display:none;position:absolute;top:8px;right:8px;font-size:9px;color:var(--subtle);">✏ editing</div>
+    </div>
+    <div class="analysis-card" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative;">
+      <div class="analysis-label hook-edit" contenteditable="true" spellcheck="false" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--red);margin-bottom:6px;">Contradiction</div>
+      <div class="analysis-rate hook-edit" contenteditable="true" spellcheck="false" style="font-size:20px;font-weight:900;color:var(--text);">—</div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:8px;">no data yet</div>
+      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">Untested. "You wouldn't drink bleach" — the angle to watch this week.</div>
+      <div class="edit-hint" style="display:none;position:absolute;top:8px;right:8px;font-size:9px;color:var(--subtle);">✏ editing</div>
+    </div>
+  </div>
+
+  <!-- CONTENT / HOLD ANALYSIS -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+    <div style="font-size:13px;font-weight:800;">Content Analysis — What Holds Attention</div>
+    <div style="font-size:10px;color:var(--subtle);font-style:italic;">Click any card to edit</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px;" id="content-analysis-grid">
+    <div class="analysis-card" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative;">
+      <div class="analysis-label hook-edit" contenteditable="true" spellcheck="false" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin-bottom:6px;">Faceless voiceover</div>
+      <div class="analysis-rate hook-edit" contenteditable="true" spellcheck="false" style="font-size:20px;font-weight:900;color:var(--text);">24%</div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:8px;">avg hold rate</div>
+      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">Most consistent format. Hands on product, no face, plain delivery. Best converting content type. Keep using this.</div>
+      <div class="edit-hint" style="display:none;position:absolute;top:8px;right:8px;font-size:9px;color:var(--subtle);">✏ editing</div>
+    </div>
+    <div class="analysis-card" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative;">
+      <div class="analysis-label hook-edit" contenteditable="true" spellcheck="false" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--amber);margin-bottom:6px;">Green screen</div>
+      <div class="analysis-rate hook-edit" contenteditable="true" spellcheck="false" style="font-size:20px;font-weight:900;color:var(--text);">43%</div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:8px;">avg hold rate</div>
+      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">Exceptional hold — people are watching. But zero conversions so far. Likely a destination problem, not a content problem.</div>
+      <div class="edit-hint" style="display:none;position:absolute;top:8px;right:8px;font-size:9px;color:var(--subtle);">✏ editing</div>
+    </div>
+    <div class="analysis-card" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative;">
+      <div class="analysis-label hook-edit" contenteditable="true" spellcheck="false" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--red);margin-bottom:6px;">Demo / visual proof</div>
+      <div class="analysis-rate hook-edit" contenteditable="true" spellcheck="false" style="font-size:20px;font-weight:900;color:var(--text);">4%</div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:8px;">avg hold rate</div>
+      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">Hook lands but the body loses them fast. Demo needs narration or text overlays to carry attention through.</div>
+      <div class="edit-hint" style="display:none;position:absolute;top:8px;right:8px;font-size:9px;color:var(--subtle);">✏ editing</div>
+    </div>
+    <div class="analysis-card" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative;">
+      <div class="analysis-label hook-edit" contenteditable="true" spellcheck="false" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--red);margin-bottom:6px;">Review compilation</div>
+      <div class="analysis-rate hook-edit" contenteditable="true" spellcheck="false" style="font-size:20px;font-weight:900;color:var(--text);">16%</div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:8px;">avg hold rate</div>
+      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">Warm audience format only. Fatigues fast — CPA tripled in one day. Rotate creative every 7–10 days.</div>
+      <div class="edit-hint" style="display:none;position:absolute;top:8px;right:8px;font-size:9px;color:var(--subtle);">✏ editing</div>
+    </div>
+  </div>
+
+  <!-- BENCHMARK KEY + PERIOD TABS -->
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+    <div class="bench-row" style="margin-bottom:0;">
+      <span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--subtle);margin-right:4px;">Benchmarks:</span>
+      <span class="bench-pill" style="background:var(--green-s);color:var(--green);">Hook% ≥25% ✓</span>
+      <span class="bench-pill" style="background:var(--green-s);color:var(--green);">Hold% ≥20% ✓</span>
+      <span class="bench-pill" style="background:var(--green-s);color:var(--green);">CTR ≥1% ✓</span>
+      <span class="bench-pill" style="background:var(--green-s);color:var(--green);">CPA ≤$25 ✓</span>
+      <span class="bench-pill" style="background:var(--red-s);color:var(--red);">CPA ≥$35 ✗</span>
+    </div>
+    <div class="period-tabs" style="margin-bottom:0;">
+      <button class="period-tab active" onclick="setPeriod(this,'1d')">Yesterday</button>
+      <button class="period-tab" onclick="setPeriod(this,'3d')">3 Days</button>
+      <button class="period-tab" onclick="setPeriod(this,'7d')">7 Days</button>
+      <button class="period-tab" onclick="setPeriod(this,'14d')">14 Days</button>
+      <button class="period-tab" onclick="setPeriod(this,'30d')">30 Days</button>
+    </div>
+  </div>
+
+  <!-- TOF TABLE -->
+  <div class="lab-section-label">
+    <span style="background:#eff6ff;color:#2563eb;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.05em;">TOF</span>
+    Top of Funnel — Cold Traffic
+  </div>
+  <div class="lab-section-sub">Unaware audience · Objective: stop the scroll, get the click, convert</div>
+
+  <div class="lab-wrap">
+  <table class="lab-table" id="tof-table">
+    <thead>
+      <tr class="group-row">
+        <th colspan="3">CREATIVE</th>
+        <th colspan="2" style="border-left:1px solid rgba(255,255,255,.08);">AUDIENCE</th>
+        <th colspan="2" style="border-left:1px solid rgba(255,255,255,.08);">RETENTION</th>
+        <th colspan="2" style="border-left:1px solid rgba(255,255,255,.08);">ENGAGEMENT</th>
+        <th colspan="3" style="border-left:1px solid rgba(255,255,255,.08);">CONVERSIONS</th>
+        <th style="border-left:1px solid rgba(255,255,255,.08);">READ</th>
+      </tr>
+      <tr class="col-row">
+        <th style="min-width:180px;">Ad · Status</th>
+        <th style="min-width:200px;">Hook (click to edit)</th>
+        <th style="min-width:160px;">Content type</th>
+        <th class="center" style="border-left:1px solid var(--bl);">Spend</th>
+        <th class="center">Freq</th>
+        <th class="center" style="border-left:1px solid var(--bl);">Hook%</th>
+        <th class="center">Hold%</th>
+        <th class="center" style="border-left:1px solid var(--bl);">CTR</th>
+        <th class="center">ATC</th>
+        <th class="center" style="border-left:1px solid var(--bl);">CPA</th>
+        <th class="center">Purch</th>
+        <th class="center">ROAS</th>
+        <th style="border-left:1px solid var(--bl);min-width:180px;">Claudio's read</th>
+      </tr>
+    </thead>
+    <tbody id="tof-tbody"></tbody>
+  </table>
+  </div>
+
+  <!-- ASC / MOF TABLE -->
+  <div class="lab-section-label">
+    <span style="background:#faf3e8;color:#c8a96e;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.05em;">ASC / MOF</span>
+    Warm Audience — Advantage+
+  </div>
+  <div class="lab-section-sub">Retargeting warm traffic · Freq below 3x · ROAS target 3x+</div>
+
+  <div class="lab-wrap">
+  <table class="lab-table" id="asc-table-new">
+    <thead>
+      <tr class="group-row">
+        <th colspan="3">CREATIVE</th>
+        <th colspan="2" style="border-left:1px solid rgba(255,255,255,.08);">AUDIENCE</th>
+        <th colspan="2" style="border-left:1px solid rgba(255,255,255,.08);">RETENTION</th>
+        <th colspan="2" style="border-left:1px solid rgba(255,255,255,.08);">ENGAGEMENT</th>
+        <th colspan="3" style="border-left:1px solid rgba(255,255,255,.08);">CONVERSIONS</th>
+        <th style="border-left:1px solid rgba(255,255,255,.08);">READ</th>
+      </tr>
+      <tr class="col-row">
+        <th style="min-width:180px;">Ad · Status</th>
+        <th style="min-width:200px;">Hook (click to edit)</th>
+        <th style="min-width:160px;">Content type</th>
+        <th class="center" style="border-left:1px solid var(--bl);">Spend</th>
+        <th class="center">Freq</th>
+        <th class="center" style="border-left:1px solid var(--bl);">Hook%</th>
+        <th class="center">Hold%</th>
+        <th class="center" style="border-left:1px solid var(--bl);">CTR</th>
+        <th class="center">ATC</th>
+        <th class="center" style="border-left:1px solid var(--bl);">CPA</th>
+        <th class="center">Purch</th>
+        <th class="center">ROAS</th>
+        <th style="border-left:1px solid var(--bl);min-width:180px;">Claudio's read</th>
+      </tr>
+    </thead>
+    <tbody id="asc-tbody"></tbody>
+  </table>
+  </div>
+
+  <!-- WHAT TO FILM NEXT -->
+  <div style="font-size:13px;font-weight:800;margin-bottom:4px;">What to Film Next</div>
+  <div style="font-size:11px;color:var(--muted);margin-bottom:16px;">Based on what the data is showing — these are the gaps worth closing this week.</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:40px;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:var(--r);padding:16px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px;">Priority 1 — Fix the body</div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">Tampon Shedding — rewrite mid-section</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.6;">30.2% hook rate — best on the account. But hold crashes to 7.7%. The opening is working. The middle is losing them. Rewrite everything after the first 3 seconds. New body, same opening.</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:var(--r);padding:16px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:8px;">Priority 2 — New angle to test</div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">Cut it open — visual proof hook</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.6;">Symptom-led is converting but the account needs a new first frame. Cutting a conventional pad open — showing the plastic mesh and gel inside — is a visual the audience hasn't seen. Different opening = algorithm treats it as fresh.</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--r);padding:16px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--amber);margin-bottom:8px;">Priority 3 — Warm audience refresh</div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">ASC creative — social proof led</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.6;">ASC audience is fatiguing — CPA went $9 to $32 in one day. Need a fresh creative for warm traffic. Lead with a review or result, not a problem. Different emotional register to TOF.</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+// CREATIVE LAB DATA + RENDER
+// ═══════════════════════════════════════
+
+function mp(val, type) {
+  if (!val || val === '—' || val === '$—') return `<span class="metric-pill grey">—</span>`;
+  const n = parseFloat(String(val).replace(/[$%x]/g,''));
+  let cls = 'grey';
+  if (type==='hook') cls = n>=25?'green':n>=15?'amber':'red';
+  else if (type==='hold') cls = n>=20?'green':n>=10?'amber':'red';
+  else if (type==='ctr') cls = n>=1.5?'green':n>=1?'amber':'red';
+  else if (type==='cpa') cls = n<=25?'green':n<=35?'amber':'red';
+  else if (type==='roas') cls = n>=3?'green':n>=2?'amber':'red';
+  return `<span class="metric-pill ${cls}">${val}</span>`;
+}
+
+function sp(status) {
+  const map={Scale:'green',Watch:'amber',Pause:'red',Testing:'blue','No Conv':'red'};
+  const clsMap={green:'background:var(--green-s);color:var(--green)',amber:'background:var(--amber-s);color:var(--amber)',red:'background:var(--red-s);color:var(--red)',blue:'background:var(--blue-s);color:var(--blue)'};
+  const s=map[status]||'grey';
+  const style=clsMap[s]||'background:var(--bl);color:var(--muted)';
+  return `<span class="status-pill" style="${style};">${status}</span>`;
+}
+
+function labRow(ad, d) {
+  d = d || {};
+  const fmt = {
+    spend:     d.spend     != null ? '$'+d.spend.toFixed(2)     : (ad.spend||'—'),
+    freq:      d.freq      != null ? d.freq.toFixed(2)+'x'      : (ad.freq||'—'),
+    hook_pct:  d.hook      != null ? d.hook.toFixed(1)+'%'      : (ad.hook_pct||'—'),
+    hold_pct:  d.hold      != null ? d.hold.toFixed(1)+'%'      : (ad.hold_pct||'—'),
+    ctr:       d.ctr       != null ? d.ctr.toFixed(2)+'%'       : (ad.ctr||'—'),
+    atc:       d.atc       != null ? d.atc                      : (ad.atc||'—'),
+    cpa:       d.cpa       != null && d.cpa > 0 ? '$'+d.cpa.toFixed(2) : (ad.cpa||'—'),
+    purchases: d.purchases != null ? d.purchases                : (ad.purchases||'—'),
+    roas:      d.roas      != null && d.roas > 0 ? d.roas.toFixed(2)+'x' : (ad.roas||'—'),
+  };
+  const nameCell = ad.url && ad.url!=='#'
+    ? `<a class="ad-name-link" href="${ad.url}" target="_blank">${ad.name}</a>`
+    : `<span style="font-weight:700;">${ad.name}</span>`;
+  return `<tr>
+    <td class="lab-td">
+      ${nameCell}
+      <div style="margin-top:4px;">${sp(ad.status)}</div>
+    </td>
+    <td class="lab-td" style="max-width:200px;">
+      <div class="hook-edit" contenteditable="true" spellcheck="false">${ad.hook}</div>
+      <div class="edit-hint">✏ click to edit</div>
+      <div style="margin-top:4px;"><span class="hook-type-tag hook-edit" contenteditable="true" spellcheck="false">${ad.hookType}</span></div>
+    </td>
+    <td class="lab-td" style="max-width:180px;">
+      <div class="hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:4px;outline:none;border-radius:3px;padding:1px 3px;">${ad.contentType||'—'}</div>
+      <div class="hook-edit" contenteditable="true" spellcheck="false" style="font-size:10px;color:var(--muted);line-height:1.4;outline:none;border-radius:3px;padding:1px 3px;">${ad.contentDesc||''}</div>
+    </td>
+    <td class="lab-td center" style="border-left:1px solid var(--bl);">${fmt.spend}</td>
+    <td class="lab-td center">${fmt.freq}</td>
+    <td class="lab-td center" style="border-left:1px solid var(--bl);">${mp(fmt.hook_pct,'hook')}</td>
+    <td class="lab-td center">${mp(fmt.hold_pct,'hold')}</td>
+    <td class="lab-td center" style="border-left:1px solid var(--bl);">${mp(fmt.ctr,'ctr')}</td>
+    <td class="lab-td center">${fmt.atc}</td>
+    <td class="lab-td center" style="border-left:1px solid var(--bl);">${mp(fmt.cpa,'cpa')}</td>
+    <td class="lab-td center">${fmt.purchases}</td>
+    <td class="lab-td center">${mp(fmt.roas,'roas')}</td>
+    <td class="lab-td" style="border-left:1px solid var(--bl);font-size:11px;color:var(--muted);line-height:1.5;">${ad.read}</td>
+  </tr>`;
+}
+
+// ── META_DATA_START ──
+const META_DATA = {};
+// ── META_DATA_END ──
+
+// ── Live from Meta API · 23 Apr 2026 ──
+const TOF_ADS = [
+  { id:'120242224369960786', name:'Come Make A Pad — TOF LP Copy 2', hook:"There's bleach in your pad. Your supermarket pad contains bleach, plastic and pesticide residue.", hookType:'Shocking claim', contentType:'Faceless voiceover', contentDesc:'Hands on product, CapCut text overlays, no face shown', status:'Scale', spend:'$19.93', freq:'1.06x', hook_pct:'20.3%', hold_pct:'25.7%', ctr:'2.12%', atc:'3', cpa:'$19.93', purchases:'1', roas:'3.75x', url:'https://femmeorganic.com/pages/better-period-care', read:'Hero creative. $20 CPA, 3.75x ROAS. 3 ATCs, 1 purchase — checkout needs work. Scale spend but fix checkout drop-off.' },
+  { id:'120241940316430786', name:'Pad Burns Irritation — LP Copy', hook:"Your pad is the problem... That burning, itching, irritation after wearing a pad? It's not normal.", hookType:'Symptom-led', contentType:'Faceless voiceover', contentDesc:'Product close-up, ingredient label reveal, text overlays', status:'Watch', spend:'$125.43', freq:'1.13x', hook_pct:'18.9%', hold_pct:'21.1%', ctr:'1.12%', atc:'22', cpa:'$41.81', purchases:'3', roas:'1.59x', url:'https://femmeorganic.com/pages/better-period-care', read:'22 ATCs but only 3 purchases — 86% checkout abandonment. Creative is working. Checkout or page is killing it.' },
+  { id:'120241577706660786', name:'Come Make A Pad — TOF LP Copy', hook:"There's bleach in your pad.", hookType:'Shocking claim', contentType:'Faceless voiceover', contentDesc:'Hands on product, label close-up, CapCut text', status:'Pause', spend:'$173.87', freq:'1.14x', hook_pct:'18.9%', hold_pct:'21.0%', ctr:'1.75%', atc:'22', cpa:'$43.47', purchases:'4', roas:'0.99x', url:'https://femmeorganic.com/pages/better-period-care', read:'$173 spent, 0.99x ROAS — losing money. 22 ATCs, 4 purchases. Same checkout problem. Pause and redirect budget to Copy 2.' },
+  { id:'120242024791620786', name:'Come Make A Pad + Green Screen — Homepage', hook:"There's bleach in your pad.", hookType:'Shocking claim', contentType:'Green screen', contentDesc:'Presenter in front of background, talking to camera', status:'Pause', spend:'$160.22', freq:'1.22x', hook_pct:'11.1%', hold_pct:'42.7%', ctr:'1.36%', atc:'19', cpa:'$80.11', purchases:'2', roas:'0.59x', url:'https://femmeorganic.com', read:'$160 spent, 0.59x ROAS — deeply unprofitable. 19 ATCs, 2 purchases. Homepage is the wrong destination. Pause now.' },
+  { id:'120241934616330786', name:'Bleach Inside Your Pad — LP Copy', hook:"Your pad is burning your skin. There's bleach in every conventional pad.", hookType:'Shocking claim', contentType:'Faceless voiceover', contentDesc:'Product close-up, text overlays, ingredient focus', status:'Watch', spend:'$35.20', freq:'1.30x', hook_pct:'18.9%', hold_pct:'21.0%', ctr:'1.02%', atc:'3', cpa:'$17.60', purchases:'2', roas:'2.44x', url:'https://femmeorganic.com/pages/better-period-care', read:'$17.60 CPA — green. 2.44x ROAS, only $35 spent. Under-budgeted. Push more spend here this week.' },
+  { id:'120242224385670786', name:'Inside Your Pads — Product Page', hook:"This is what's actually inside your pad.", hookType:'Visual reveal', contentType:'Faceless voiceover', contentDesc:'Hands open pad, slow zoom on interior layers', status:'Testing', spend:'$15.81', freq:'1.20x', hook_pct:'17.1%', hold_pct:'28.6%', ctr:'0.96%', atc:'0', cpa:'—', purchases:'0', roas:'—', url:'#', read:'Good hold (28.6%) but zero ATCs. CTR near benchmark. CTA or landing page not converting. Test harder offer.' },
+  { id:'120242023852550786', name:'Tampon Shedding 2026 — Homepage', hook:'Your tampon is shedding inside you.', hookType:'Shocking fact', contentType:'Faceless voiceover', contentDesc:'Product close-up, slow movement, minimal edit', status:'Pause', spend:'$7.98', freq:'1.29x', hook_pct:'6.1%', hold_pct:'20.0%', ctr:'0.79%', atc:'0', cpa:'—', purchases:'0', roas:'—', url:'https://femmeorganic.com', read:'Zero ATCs, zero purchases. Wrong destination (Homepage). Pause.' },
+  { id:'120240920323240786', name:'Fire Match Test — Pad Video', hook:"What's in yours? If your pad burns like this… why are you wearing it?", hookType:'Visual shock', contentType:'Demo', contentDesc:'Lighter applied to conventional pad — visual burn test', status:'Testing', spend:'$0.22', freq:'1.0x', hook_pct:'21.7%', hold_pct:'22.7%', ctr:'0.00%', atc:'0', cpa:'—', purchases:'0', roas:'—', url:'#', read:'Minimal spend. Decent hook and hold. Needs more budget to get signal — or rewrite the CTA.' },
+  { id:'120242076721820786', name:"You Wouldn't Drink Bleach — GS UGC", hook:"You wouldn't drink bleach. So why is it in your pads?", hookType:'Contradiction', contentType:'Green screen', contentDesc:'Presenter, glass of water visual as prop, talking to cam', status:'Testing', spend:'$0.09', freq:'1.17x', hook_pct:'—', hold_pct:'—', ctr:'0.00%', atc:'0', cpa:'—', purchases:'0', roas:'—', url:'#', read:'Almost no spend. Strong concept — needs real budget to test properly.' },
+  { id:'120239243021450786', name:'Light Pad Test', hook:'—', hookType:'Demo', contentType:'Demo', contentDesc:'Product demonstration — absorption or burn test', status:'Pause', spend:'$0.32', freq:'1.05x', hook_pct:'—', hold_pct:'—', ctr:'0.00%', atc:'0', cpa:'—', purchases:'0', roas:'—', url:'#', read:'Zero engagement across the board. Pause.' },
+];
+
+const ASC_ADS_NEW = [
+  { id:'120239243021450786', name:'Tampon Reviews — Build Your Bundle', hook:'Ready to make the switch? Build your Femmé Organic bundle.', hookType:'Social proof / CTA', contentType:'Review compilation', contentDesc:'Multiple review screenshots / testimonials cut together', status:'Pause', spend:'$31.57', freq:'1.06x', hook_pct:'33.3%', hold_pct:'35.8%', ctr:'0.74%', atc:'0', cpa:'$31.57', purchases:'1', roas:'1.42x', url:'#', read:'1 purchase, 0 ATCs recorded — likely direct checkout. 1.42x ROAS losing money. CPA was $9 two weeks ago. Audience fatiguing. Pause.' },
+  { id:'120240920958360786', name:'MOF Product Review v2 — Build Bundle', hook:'Free gift at $35. Ready to make the switch?', hookType:'Offer-led', contentType:'Faceless voiceover', contentDesc:'Product + offer overlay, CapCut text, no face', status:'Testing', spend:'$0.43', freq:'1.09x', hook_pct:'25.0%', hold_pct:'27.3%', ctr:'0.00%', atc:'0', cpa:'—', purchases:'0', roas:'—', url:'#', read:'Minimal spend. Decent hook and hold for a warm audience creative. Needs real budget.' },
+];
+
+function renderTables(period) {
+  const data = META_DATA[period] || {};
+  document.getElementById('tof-tbody').innerHTML = TOF_ADS.map(ad => labRow(ad, data[ad.id])).join('');
+  document.getElementById('asc-tbody').innerHTML = ASC_ADS_NEW.map(ad => labRow(ad, data[ad.id])).join('');
+}
+
+function setPeriod(btn, period) {
+  document.querySelectorAll('.period-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTables(period);
+}
+
+renderTables('1d');
+</script>
+
+<a id="site"></a>
+<!-- ══════════════════════════════════════
+     SITE FIXES
+══════════════════════════════════════ -->
+<div class="page" id="page-site">
+<div class="wrap">
+
+  <div class="sh" style="margin-top:0;margin-bottom:20px">
+    <div>
+      <div style="font-size:18px;font-weight:800;letter-spacing:-.01em">Site Fixes</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:2px">Based on Clarity data + advisor feedback. Tick when done.</div>
+    </div>
+  </div>
+
+  <div class="cro-list" id="cro-list"></div>
+  <div class="done-section" id="cro-done-section" style="display:none">
+    <button class="done-toggle" onclick="toggleDoneList()">▸ Completed (<span id="cro-done-count">0</span>)</button>
+    <div class="done-list" id="cro-done-list" style="display:none"></div>
+  </div>
+
+</div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// STORAGE
+// ══════════════════════════════════════════════════════
+function load(k,s){try{const v=localStorage.getItem(k);if(v)return JSON.parse(v);}catch(e){}return JSON.parse(JSON.stringify(s));}
+function save(k,d){localStorage.setItem(k,JSON.stringify(d));}
+
+// ══════════════════════════════════════════════════════
+// J-DOG DATA — updated by Claudio when processing Slack reports
+// ══════════════════════════════════════════════════════
+const JDOG = {
+  date: '21 Apr 2026',
+  cpa: 27.67, cpaAvg3d: 39.53, cpaTrend: 'down',
+  roas: 2.29, roasTrend: 'up',
+  cvr: 1.62, cvrTarget: 2.5,
+  spend: 135.02, purchases: 6,
+  netProfit: -13.65,
+  read: "Moving in the right direction — CPA dropped from $103 to $27 and ROAS hit 2.29x. Come Make A Pad Copy 2 and Pad Burns are both scaling. The problem is we're still losing money daily and CVR at 1.62% means the landing page still has work to do. Tampon Shedding has cratered — pause it. Focus budget on the two winners and get the landing page converting.",
+  readDate: '22 Apr 2026',
+  actions: [
+    {label:'Scale: Come Make A Pad Copy 2', type:'good'},
+    {label:'Scale: Pad Burns Irritation', type:'good'},
+    {label:'Pause: Tampon Shedding 2026', type:'urgent'},
+    {label:'Fix landing page CVR to 2.5%+', type:'urgent'}
+  ]
+};
+
+// ══════════════════════════════════════════════════════
+// CRO SEED
+// ══════════════════════════════════════════════════════
+const SEED_CRO = [
+  {id:'c1',priority:'p1',done:false,doneAt:'',
+   title:'Better Period Care page — fix above-fold copy to match ads',
+   location:'Shopify → Pages → Better Period Care → Hero section',
+   why:"This is the landing page for ALL running ads. 18% quickback rate + 42% scroll depth means every ad is sending people here and they're leaving immediately. The first words on this page must mirror the ad hook — body safety, not eco or savings.",
+   oldCopy:'eco-friendly period care / sustainability messaging',
+   newCopy:"Your pad contains bleach. Here's what that means for your body.\n\nConventional pads are made with chlorine-bleached fibres, synthetic polymer gel, and fragrance — sitting against your most absorptive skin for five days every month.\n\nFemmé is certified organic cotton. No bleach. No synthetics. Same protection, different ingredients."},
+  {id:'c2',priority:'p1',done:false,doneAt:'',
+   title:'All PDPs — add trust bar above Add to Cart button',
+   location:'Shopify → Themes → Customise → Product page → Add section above ATC',
+   why:'73% mobile traffic. The ATC button is the conversion moment. Trust signals at this exact point remove the last objection before purchase.',
+   oldCopy:'(Nothing above ATC button)',
+   newCopy:'✓ Certified Organic   ✓ No Chlorine Bleach   ✓ No Synthetic Fragrance   ✓ Dermatologist Safe   ✓ TGA Compliant'},
+  {id:'c3',priority:'p1',done:false,doneAt:'',
+   title:'Mobile — enable sticky Add to Cart bar on PDPs',
+   location:'Shopify → Themes → Customise → Product page → Theme settings → Sticky ATC toggle',
+   why:"73% of your traffic is mobile. When the ATC button scrolls out of view on mobile, you lose the conversion. 42% scroll depth means most people aren't scrolling back up to find it.",
+   oldCopy:'ATC disappears on mobile scroll',
+   newCopy:'Sticky ATC bar fixed to bottom of screen on mobile while scrolling'},
+  {id:'c4',priority:'p1',done:false,doneAt:'',
+   title:'Homepage hero — replace with body safety message',
+   location:'Shopify → Online Store → Themes → Customise → Hero section',
+   why:"Ad says body safety / no toxins. Homepage says eco-friendly comfort. That mismatch kills post-click CVR immediately for anyone landing on the homepage.",
+   oldCopy:'Build Your Bundle. Earn Free Gifts.',
+   newCopy:"Your body deserves better than synthetic chemicals.\n\nFemmé is Australia's only certified organic period care — no bleach, no synthetics, no compromise."},
+  {id:'c5',priority:'p2',done:false,doneAt:'',
+   title:'Pimple Patches PDP — add cycle acne angle to hero',
+   location:'Shopify → Products → Pimple Patches → Description (top)',
+   why:'Cycle-acne is the highest-intent search angle for this product. Current copy positions it as generic skincare — no differentiation.',
+   oldCopy:'(Current generic skincare description)',
+   newCopy:"Breaking out before your period? It's your hormone cycle — not bad luck.\n\nFemmé Overnight Pimple Patches use hydrocolloid technology to draw out inflammation while you sleep."},
+  {id:'c6',priority:'p2',done:false,doneAt:'',
+   title:'Cart — add Complete Your Kit upsell block',
+   location:'Shopify → Themes → Customise → Cart page → Add section OR install ReConvert',
+   why:'AOV at $26.44 is low. Cart upsell is the lowest-friction AOV lift available — no extra spend, just showing complementary products at peak intent.',
+   oldCopy:'Cart goes directly to checkout',
+   newCopy:"Complete Your Kit\nMost customers also add:\n• Organic Panty Liners — $12.95\n• Overnight Pimple Patches — $14.95"}
+];
+
+let cro = load('fe_cro_v3', SEED_CRO);
+
+// ══════════════════════════════════════════════════════
+// NAV — single page scroll, anchor links handle navigation
+// ══════════════════════════════════════════════════════
+
+document.getElementById('nav-date').textContent =
+  new Date().toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'long'});
+
+// ══════════════════════════════════════════════════════
+// CLARITY
+// ══════════════════════════════════════════════════════
+const CLARITY_PROJECT = 'vdc9r29ad3';
+
+function toggleClaritySetup(){document.getElementById('clarity-setup').classList.toggle('open');}
+function saveClarity(){
+  const t=document.getElementById('c-token-input').value.trim();
+  if(!t)return;
+  localStorage.setItem('clarity_token',t);
+  document.getElementById('clarity-setup').classList.remove('open');
+  document.getElementById('clarity-connect-bar').style.display='none';
+  fetchClarity();
+}
+
+async function fetchClarity(){
+  const token = localStorage.getItem('clarity_token') || 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4M0FCMDhFNUYwRDMxNjdEOTRFMTQ3M0FEQTk2RTcyRDkwRUYwRkYiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiI4ZjQyM2NlYi03NjA0LTQyOGUtYWU0NC04NmM5YTg5ODIxMWEiLCJzdWIiOiIzMTg1OTk0NjgyOTA3MzE5Iiwic2NvcGUiOiJEYXRhLkV4cG9ydCIsIm5iZiI6MTc3Njc0MjE0NSwiZXhwIjo0OTMwMzQyMTQ1LCJpYXQiOjE3NzY3NDIxNDUsImlzcyI6ImNsYXJpdHkiLCJhdWQiOiJjbGFyaXR5LmRhdGEtZXhwb3J0ZXIifQ.bvcJoou4S2mDFgcpSIlOCcLKmbcTXPO22I3GvPG8jL74b4I7x9fMrEIsdFb5L9LbccbAXm0oT-XgvsAqWSjl_-R0FornXeaVrPZj4MpZ7IZ0qe60lgs7cGWuPafAr913k8ls_1IKgmvkDY90EVPwKRTf3G9OWpIN4M02tjPiAEnba-jAoqPxcqvMMBEiWrKzghXTqYPIvuE4KMjO8W_uaMds3Stj5nKWylQdfg6Mbg2xV7LV86nsFS9NAL-PlFjSn0ZAsf2EMWpXi9gmEcW64pAGa0BmQSOrrO95Mws1RZEy8vuFwKkPtKxKaRtUKsMIFo1OzOSKtbF-os2Uczj5tQ';
+  const end = new Date(); const start = new Date(end - 7*24*60*60*1000);
+  const fmt = d => d.toISOString().split('T')[0];
+  const url = `https://www.clarity.ms/export-data/api/v1/project-live-insights?projectId=${CLARITY_PROJECT}&startDate=${fmt(start)}&endDate=${fmt(end)}`;
+  try {
+    const res = await fetch(url, {headers:{'Authorization':`Bearer ${token}`}});
+    if(!res.ok) throw new Error('auth');
+    const data = await res.json();
+    save('clarity_cache',{data,synced:new Date().toISOString()});
+    renderClarity(data);
+    document.getElementById('clarity-connect-bar').style.display='none';
+    document.getElementById('nav-sync').textContent = 'Synced ' + new Date().toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'});
+  } catch(e){
+    // try cache
+    const cache = load('clarity_cache',null);
+    if(cache && cache.data){
+      renderClarity(cache.data);
+      document.getElementById('clarity-updated').textContent = '· cached';
+    } else {
+      document.getElementById('clarity-content').innerHTML = '<div style="font-size:12px;color:var(--subtle);padding:8px 0">Could not load — check token</div>';
+      document.getElementById('clarity-connect-bar').style.display='block';
+    }
+  }
+}
+
+function renderClarity(data){
+  const get = name => data.find(d=>d.metricName===name);
+  const scroll    = get('ScrollDepth');
+  const quickback = get('QuickbackClick');
+  const traffic   = get('Traffic');
+  const device    = get('Device');
+  const pages     = get('PopularPages');
+  const browsers  = get('Browser');
+
+  const scrollVal   = scroll    ? Math.round(scroll.information[0].averageScrollDepth)                      : '—';
+  const qbVal       = quickback ? quickback.information[0].sessionsWithMetricPercentage.toFixed(1)+'%'     : '—';
+  const sessions    = traffic   ? parseInt(traffic.information[0].totalSessionCount)                        : '—';
+  const mobile      = device    ? device.information.find(d=>d.name==='Mobile')                             : null;
+  const mobilePct   = mobile && sessions ? Math.round(mobile.sessionsCount/sessions*100)+'%'               : '—';
+  const igApp       = browsers  ? browsers.information.find(b=>b.name==='InstagramApp')                     : null;
+  const igPct       = igApp && sessions ? Math.round(igApp.sessionsCount/sessions*100)+'%'                  : '—';
+
+  const scrollColor = scrollVal < 40 ? 'red' : scrollVal < 60 ? 'amber' : 'green';
+  const qbColor     = parseFloat(qbVal) > 15 ? 'red' : parseFloat(qbVal) > 8 ? 'amber' : 'green';
+
+  const topPages = pages ? pages.information.slice(0,5).map(p=>{
+    const raw = p.url.replace('https://femmeorganic.com','');
+    const url = raw === '' || raw === '/' ? 'Homepage' : raw;
+    return `<div class="page-row"><span class="pr-url">${url}</span><span class="pr-count">${p.visitsCount}</span></div>`;
+  }).join('') : '';
+
+  document.getElementById('clarity-content').innerHTML = `
+    <div class="clarity-grid">
+      <div class="cm-box"><div class="cm-label">Avg Scroll Depth</div><div class="cm-val ${scrollColor}">${scrollVal}%</div><div class="cm-sub">People see ${scrollVal}% of each page</div></div>
+      <div class="cm-box"><div class="cm-label">Quickback Rate</div><div class="cm-val ${qbColor}">${qbVal}</div><div class="cm-sub">Clicked then immediately left</div></div>
+      <div class="cm-box"><div class="cm-label">Mobile Traffic</div><div class="cm-val amber">${mobilePct}</div><div class="cm-sub">Design for phone first</div></div>
+      <div class="cm-box"><div class="cm-label">From Instagram App</div><div class="cm-val amber">${igPct}</div><div class="cm-sub">Slowest browser, most impatient</div></div>
+    </div>
+    <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--subtle);margin-bottom:8px;">Top Pages (7d)</div>
+    ${topPages}
+  `;
+  document.getElementById('clarity-updated').textContent = '· live';
+}
+
+// ══════════════════════════════════════════════════════
+// BRIEF STATUS
+// ══════════════════════════════════════════════════════
+let briefStatuses = load('fe_brief_b01',{1:'todo',2:'todo',3:'todo'});
+function setBriefStatus(n,s){
+  briefStatuses[n]=s; save('fe_brief_b01',briefStatuses); applyBriefStatuses();
+}
+function applyBriefStatuses(){
+  [1,2,3].forEach(n=>{
+    const s=briefStatuses[n]||'todo';
+    const card=document.getElementById('bc-'+n);
+    const badge=document.getElementById('bs-'+n);
+    card.className='brief-card'+(s==='done'?' done':s==='filming'?' filming':'');
+    badge.className='brief-status '+(s==='done'?'bs-done':s==='filming'?'bs-filming':'bs-todo');
+    badge.textContent=s==='done'?'Done ✓':s==='filming'?'Filming…':'To Film';
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// SECTION TOGGLES
+// ══════════════════════════════════════════════════════
+function secToggle(btn){
+  const body=btn.nextElementSibling;
+  const open=body.classList.toggle('open');
+  btn.classList.toggle('open',open);
+}
+
+function copyEl(id){
+  const el=document.getElementById(id);
+  navigator.clipboard.writeText(el.textContent.trim()).then(()=>{
+    const btn=el.nextElementSibling;
+    const orig=btn.textContent;
+    btn.textContent='Copied ✓';
+    setTimeout(()=>btn.textContent=orig,1500);
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// CRO
+// ══════════════════════════════════════════════════════
+function renderCro(){
+  const list=document.getElementById('cro-list');
+  const active=cro.filter(c=>!c.done).sort((a,b)=>({p1:0,p2:1,p3:2}[a.priority]-{p1:0,p2:1,p3:2}[b.priority]));
+  const done=cro.filter(c=>c.done);
+  const pillCls={p1:'pill-p1',p2:'pill-p2',p3:'pill-p3'};
+  const pillLabel={p1:'P1 — Critical',p2:'P2 — This week',p3:'P3 — Soon'};
+  list.innerHTML=active.map(c=>`
+  <div class="cro-card" id="croc-${c.id}">
+    <div class="cro-main">
+      <div class="cro-cb-wrap"><input class="cro-cb" type="checkbox" onchange="tickCro('${c.id}')"></div>
+      <div class="cro-body">
+        <div class="cro-head">
+          <span class="pill ${pillCls[c.priority]||'pill-p3'}">${pillLabel[c.priority]||'P3'}</span>
+          <span class="cro-title">${c.title}</span>
+        </div>
+        <div class="cro-where">${c.location}</div>
+        <div class="cro-why">${c.why}</div>
+        ${c.oldCopy?`<button class="cro-expand-btn" onclick="toggleCroX('${c.id}',this)">▸ Show exact copy</button>`:''}
+      </div>
+    </div>
+    ${c.oldCopy?`<div class="cro-copy-block" id="crox-${c.id}">
+      <div class="cro-copy-row">
+        <div class="cro-copy old">${c.oldCopy}</div>
+        <div class="cro-arrow">→</div>
+        <div class="cro-copy new">${c.newCopy}</div>
+      </div>
+    </div>`:''}
+  </div>`).join('') || '<div style="font-size:13px;color:var(--subtle);padding:20px 0;text-align:center">All done. Add new tasks when needed.</div>';
+
+  const ds=document.getElementById('cro-done-section');
+  if(done.length>0){
+    ds.style.display='block';
+    document.getElementById('cro-done-count').textContent=done.length;
+    document.getElementById('cro-done-list').innerHTML=done.map(c=>`
+    <div class="done-entry">
+      <div class="done-entry-title">${c.title}</div>
+      <div class="done-entry-date">${c.doneAt?new Date(c.doneAt).toLocaleDateString('en-AU',{day:'numeric',month:'short'}):''}</div>
+      <button class="btn-restore" onclick="restoreCro('${c.id}')">Restore</button>
+    </div>`).join('');
+  } else { ds.style.display='none'; }
+}
+
+function toggleCroX(id,btn){
+  const b=document.getElementById('crox-'+id);
+  const open=b.classList.toggle('open');
+  btn.textContent=(open?'▾':'▸')+' Show exact copy';
+}
+
+function tickCro(id){
+  const el=document.getElementById('croc-'+id);
+  if(el){el.style.transition='all .2s';el.style.opacity='0';el.style.maxHeight='0';el.style.overflow='hidden';el.style.margin='0';el.style.padding='0';}
+  setTimeout(()=>{cro=cro.map(c=>c.id===id?{...c,done:true,doneAt:new Date().toISOString()}:c);save('fe_cro_v3',cro);renderCro();},200);
+}
+
+function restoreCro(id){
+  cro=cro.map(c=>c.id===id?{...c,done:false,doneAt:''}:c);
+  save('fe_cro_v3',cro);renderCro();
+}
+
+function toggleDoneList(){
+  const list=document.getElementById('cro-done-list');
+  const btn=document.querySelector('.done-toggle');
+  const open=list.style.display!=='none';
+  list.style.display=open?'none':'flex';
+  btn.innerHTML=btn.innerHTML.replace(open?'▾':'▸',open?'▸':'▾');
+}
+
+// ══════════════════════════════════════════════════════
+// CREATIVE LAB DATA — updated by Claudio when processing Slack reports
+// ══════════════════════════════════════════════════════
+const LAB_ADS = [
+  {
+    name: 'Come Make A Pad — TOF LP Copy 2',
+    hook: 'Visual: conventional pad being made — synthetic materials shown on screen.',
+    angle: 'Behind the scenes / ingredient reveal',
+    format: 'Faceless voiceover + green screen',
+    stage: 'tof',
+    ctr: '2.12%', ctrColor: 'green',
+    cpa: '$20.00', cpaColor: 'green',
+    spend: '$20.00', spendColor: 'amber',
+    status: 'scale',
+    read: 'Hero creative right now. 2.12% CTR, $20 CPA, 3.75x ROAS. Scale budget into this immediately.'
+  },
+  {
+    name: 'Pad Burns Irritation',
+    hook: '"If your pad is burning or causing irritation — that\'s not normal."',
+    angle: 'Symptom-led / body safety',
+    format: 'Faceless voiceover over product',
+    stage: 'tof',
+    ctr: '1.37%', ctrColor: 'amber',
+    cpa: '$22.00', cpaColor: 'green',
+    spend: '$22.00', spendColor: 'amber',
+    status: 'scale',
+    read: 'Solid performer. CPA at $22 and scaling. Keep pushing budget — watch CVR as spend opens up.'
+  },
+  {
+    name: 'Tampon Reviews — Build Bundle',
+    hook: 'Social proof / review-led format',
+    angle: 'Trust / testimonial',
+    format: 'Review compilation',
+    stage: 'mof',
+    ctr: '0.74%', ctrColor: 'red',
+    cpa: '$32.00', cpaColor: 'amber',
+    spend: '$32.00', spendColor: 'amber',
+    status: 'pause',
+    read: 'CTR too low at 0.74%. Not stopping the scroll. Pause and reallocate budget to the two winners.'
+  },
+  {
+    name: 'Tampon Shedding 2026',
+    hook: '"Did you know conventional tampons shed synthetic fibres inside your body?"',
+    angle: 'Shocking fact / body safety',
+    format: 'Faceless voiceover over product',
+    stage: 'tof',
+    ctr: '—', ctrColor: 'red',
+    cpa: '—', cpaColor: 'red',
+    spend: '$1.00', spendColor: 'amber',
+    status: 'pause',
+    read: '6.1% hook rate — well below the 25% benchmark. Has cratered. Pause immediately.'
+  },
+  {
+    name: 'Inside Your Pads',
+    hook: '"This is what\'s actually inside your pad."',
+    angle: 'Ingredient reveal / visual proof',
+    format: 'Faceless voiceover + close-up product',
+    stage: 'tof',
+    ctr: '—', ctrColor: 'amber',
+    cpa: '—', cpaColor: 'amber',
+    spend: '$0', spendColor: 'amber',
+    status: 'test',
+    read: '17.1% hook rate but zero conversions. Landing page mismatch. Fix the BPC page before scaling.'
+  },
+  {
+    name: 'Bleach Inside Your Pad',
+    hook: '"Your pad contains bleach. Here\'s what that means."',
+    angle: 'Confrontational claim / body safety',
+    format: 'Faceless voiceover over product',
+    stage: 'tof',
+    ctr: '—', ctrColor: 'red',
+    cpa: '—', cpaColor: 'amber',
+    spend: '$0', spendColor: 'amber',
+    status: 'pause',
+    read: '0% hook engagement. Not working. Pause.'
+  }
+];
+
+const HOOK_BANK = [
+  {
+    hook: '"Did you know conventional tampons shed synthetic fibres inside your body?"',
+    ad: 'Tampon Shedding 2026',
+    angle: 'Shocking fact / body safety',
+    format: 'Faceless voiceover',
+    ctr: '1.75%'
+  },
+  {
+    hook: '"If your pad is burning or causing irritation — that\'s not normal."',
+    ad: 'Pad Burns Irritation',
+    angle: 'Symptom-led / body safety',
+    format: 'Faceless voiceover',
+    ctr: '1.12%'
+  },
+  {
+    hook: '"Your pad contains bleach. Here\'s what that means."',
+    ad: 'Bleach Inside Your Pad',
+    angle: 'Confrontational claim',
+    format: 'Faceless voiceover',
+    ctr: 'Early data'
+  }
+];
+
+function renderHookBank(){
+  document.getElementById('hook-bank-grid').innerHTML = HOOK_BANK.map(h => `
+    <div class="hb-row">
+      <div>
+        <div class="hb-hook">${h.hook}</div>
+        <div class="hb-meta">
+          <span class="hb-tag">${h.ad}</span>
+          <span class="hb-tag">${h.angle}</span>
+          <span class="hb-tag">${h.format}</span>
+        </div>
+      </div>
+      <div>
+        <div class="hb-ctr-label">CTR</div>
+        <div class="hb-ctr">${h.ctr}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+const statusMap = {
+  pause: {cls:'tag-pause', label:'Pause'},
+  watch: {cls:'tag-watch', label:'Watch'},
+  scale: {cls:'tag-scale', label:'Scale'},
+  test:  {cls:'tag-test',  label:'Testing'}
+};
+const stageMap = {tof:'TOF', mof:'MOF', bof:'BOF'};
+
+function renderLab(){
+  document.getElementById('lab-grid').innerHTML = LAB_ADS.map(ad => `
+    <div class="lab-card">
+      <div class="lab-card-top">
+        <div class="lab-ad-name">${ad.name}</div>
+        <div class="lab-hook">
+          <div class="lab-hook-label">Hook</div>
+          <div class="lab-hook-text">${ad.hook}</div>
+        </div>
+        <div class="lab-meta">
+          <span class="lab-pill ${ad.stage}">${stageMap[ad.stage]}</span>
+          <span class="lab-pill">${ad.format}</span>
+          <span class="lab-pill">${ad.angle}</span>
+        </div>
+      </div>
+      <div class="lab-metrics">
+        <div class="lab-metric">
+          <div class="lab-metric-label">CTR</div>
+          <div class="lab-metric-val ${ad.ctrColor}">${ad.ctr}</div>
+        </div>
+        <div class="lab-metric">
+          <div class="lab-metric-label">CPA</div>
+          <div class="lab-metric-val ${ad.cpaColor}">${ad.cpa}</div>
+        </div>
+        <div class="lab-metric">
+          <div class="lab-metric-label">Spend</div>
+          <div class="lab-metric-val ${ad.spendColor}">${ad.spend}</div>
+        </div>
+      </div>
+      <div class="lab-read">
+        <div class="lab-read-icon">C</div>
+        <div class="lab-read-text">${ad.read}</div>
+      </div>
+      <div class="lab-status-bar">
+        <span style="font-size:11px;color:var(--subtle)">Last updated: 20 Apr</span>
+        <span class="cr-tag ${statusMap[ad.status].cls}">${statusMap[ad.status].label}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ══════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════
+applyBriefStatuses();
+renderCro();
+renderLab();
+renderHookBank();
+fetchClarity();
+setInterval(fetchClarity, 5 * 60 * 1000);
+</script>
+
+<script>
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
