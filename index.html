@@ -2399,10 +2399,6 @@ function setPeriod(btn, period) {
 renderTables('1d');
 
 // ── PULSE METRIC STRIP ─────────────────────────────────────────────────────
-// PULSE_DATA injected by update_dashboard.py from J-Dog's report (1-day Clarity sheet numbers)
-// Falls back to Meta API computation if not available
-if (typeof PULSE_DATA === 'undefined') { var PULSE_DATA = null; }
-
 function renderPulseStrip() {
   let cpa, aov, rpv, roas, profit;
 
