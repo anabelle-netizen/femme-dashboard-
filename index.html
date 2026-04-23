@@ -606,6 +606,26 @@ Femmé: certified organic cotton. One ingredient. Nothing hidden. Link below �
      CREATIVE LAB
 ══════════════════════════════════════ -->
 <style>
+/* HOOK MATRIX */
+.hook-matrix{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);margin-bottom:28px;overflow:hidden;}
+.hook-matrix-header{padding:14px 18px 10px;border-bottom:1px solid var(--bl);display:flex;align-items:baseline;gap:10px;}
+.hook-matrix-title{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--subtle);}
+.hook-matrix-sub{font-size:11px;color:var(--subtle);}
+.hook-matrix table{width:100%;border-collapse:collapse;}
+.hook-matrix th{padding:8px 14px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--subtle);text-align:left;border-bottom:1px solid var(--bl);}
+.hook-matrix th.center{text-align:center;}
+.hook-matrix td{padding:10px 14px;font-size:12px;border-bottom:1px solid var(--bl);vertical-align:middle;}
+.hook-matrix td.center{text-align:center;font-weight:700;}
+.hook-matrix tr:last-child td{border-bottom:none;}
+.hook-matrix tr:hover td{background:var(--bl);}
+.hm-pill{display:inline-block;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;}
+.hm-pill.green{background:var(--green-s);color:var(--green);}
+.hm-pill.amber{background:var(--amber-s);color:var(--amber);}
+.hm-pill.red{background:var(--red-s);color:var(--red);}
+.hm-pill.muted{background:var(--bl);color:var(--subtle);}
+.hm-type{font-weight:700;font-size:12px;}
+.hm-ads{font-size:10px;color:var(--muted);margin-top:2px;}
+
 .period-tabs{display:flex;gap:6px;margin-bottom:24px;}
 .period-tab{padding:6px 16px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;transition:all .12s;}
 .period-tab.active{background:var(--text);color:#fff;border-color:var(--text);}
@@ -774,6 +794,31 @@ tr:hover .edit-hint{display:block;}
       <button class="period-tab" onclick="setPeriod(this,'14d')">14 Days</button>
       <button class="period-tab" onclick="setPeriod(this,'30d')">30 Days</button>
     </div>
+  </div>
+
+  <!-- HOOK PERFORMANCE MATRIX -->
+  <div class="hook-matrix">
+    <div class="hook-matrix-header">
+      <div class="hook-matrix-title">Hook Performance Matrix</div>
+      <div class="hook-matrix-sub">Grouped by hook type · updates with period selection · click any hook type in the table below to edit</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="min-width:160px;">Hook Type</th>
+          <th class="center">Ads</th>
+          <th class="center">Avg CTR</th>
+          <th class="center">Avg CPA</th>
+          <th class="center">Total Purchases</th>
+          <th class="center">Avg ROAS</th>
+          <th class="center">Avg Hook%</th>
+          <th class="center">Verdict</th>
+        </tr>
+      </thead>
+      <tbody id="hook-matrix-tbody">
+        <tr><td colspan="8" style="text-align:center;color:var(--subtle);padding:20px;">Loading…</td></tr>
+      </tbody>
+    </table>
   </div>
 
   <!-- TOF TABLE -->
@@ -2243,10 +2288,68 @@ const ASC_ADS_NEW = [
   { id:'120240920958360786', name:'MOF Product Review v2 — Build Bundle', hook:'Free gift at $35. Ready to make the switch?', hookType:'Offer-led', contentType:'Faceless voiceover', contentDesc:'Product + offer overlay, CapCut text, no face', status:'Testing', spend:'$0.43', freq:'1.09x', hook_pct:'25.0%', hold_pct:'27.3%', ctr:'0.00%', atc:'0', cpa:'—', purchases:'0', roas:'—', url:'#', read:'Minimal spend. Decent hook and hold for a warm audience creative. Needs real budget.' },
 ];
 
+function renderHookMatrix(period) {
+  const data = META_DATA[period] || {};
+  const allAds = [...TOF_ADS, ...ASC_ADS_NEW];
+  const groups = {};
+
+  allAds.forEach(ad => {
+    const type = ad.hookType || 'Uncategorised';
+    if (!groups[type]) groups[type] = { ads: [], ctrs: [], cpas: [], purchases: 0, roas: [], hooks: [] };
+    const g = groups[type];
+    g.ads.push(ad.name);
+    const d = data[ad.id] || {};
+    if (d.ctr  != null) g.ctrs.push(d.ctr);
+    if (d.cpa  != null && d.cpa > 0) g.cpas.push(d.cpa);
+    if (d.purchases != null) g.purchases += d.purchases;
+    if (d.roas != null && d.roas > 0) g.roas.push(d.roas);
+    if (d.hook != null) g.hooks.push(d.hook);
+  });
+
+  const avg = arr => arr.length ? arr.reduce((a,b)=>a+b,0)/arr.length : null;
+
+  const rows = Object.entries(groups).sort((a,b) => {
+    const pa = a[1].purchases, pb = b[1].purchases;
+    return pb - pa;
+  }).map(([type, g]) => {
+    const avgCtr  = avg(g.ctrs);
+    const avgCpa  = avg(g.cpas);
+    const avgRoas = avg(g.roas);
+    const avgHook = avg(g.hooks);
+
+    // Verdict
+    let verdict = 'muted', label = 'No data';
+    if (avgCpa != null) {
+      if (avgCpa <= 25)       { verdict='green'; label='Green'; }
+      else if (avgCpa <= 35)  { verdict='amber'; label='Watch'; }
+      else                    { verdict='red';   label='Weak'; }
+    } else if (g.purchases > 0) {
+      verdict='amber'; label='Testing';
+    }
+
+    return `<tr>
+      <td>
+        <div class="hm-type">${type}</div>
+        <div class="hm-ads">${g.ads.length} ad${g.ads.length!==1?'s':''}</div>
+      </td>
+      <td class="center">${g.ads.length}</td>
+      <td class="center">${avgCtr!=null ? avgCtr.toFixed(2)+'%' : '—'}</td>
+      <td class="center">${avgCpa!=null ? '$'+avgCpa.toFixed(2) : '—'}</td>
+      <td class="center">${g.purchases > 0 ? g.purchases : '—'}</td>
+      <td class="center">${avgRoas!=null ? avgRoas.toFixed(2)+'x' : '—'}</td>
+      <td class="center">${avgHook!=null ? avgHook.toFixed(1)+'%' : '—'}</td>
+      <td class="center"><span class="hm-pill ${verdict}">${label}</span></td>
+    </tr>`;
+  });
+
+  document.getElementById('hook-matrix-tbody').innerHTML = rows.join('') || '<tr><td colspan="8" style="text-align:center;color:var(--subtle);padding:20px;">No data for this period</td></tr>';
+}
+
 function renderTables(period) {
   const data = META_DATA[period] || {};
   document.getElementById('tof-tbody').innerHTML = TOF_ADS.map(ad => labRow(ad, data[ad.id])).join('');
   document.getElementById('asc-tbody').innerHTML = ASC_ADS_NEW.map(ad => labRow(ad, data[ad.id])).join('');
+  renderHookMatrix(period);
 }
 
 function setPeriod(btn, period) {
