@@ -935,6 +935,7 @@ function mp(val, type) {
   else if (type==='ctr') cls = n>=1.5?'green':n>=1?'amber':'red';
   else if (type==='cpa') cls = n<=25?'green':n<=35?'amber':'red';
   else if (type==='roas') cls = n>=3?'green':n>=2?'amber':'red';
+  else if (type==='freq') cls = n<=1.5?'green':n<=2?'amber':'red';
   return `<span class="metric-pill ${cls}">${val}</span>`;
 }
 
@@ -944,6 +945,61 @@ function sp(status) {
   const s=map[status]||'grey';
   const style=clsMap[s]||'background:var(--bl);color:var(--muted)';
   return `<span class="status-pill" style="${style};">${status}</span>`;
+}
+
+function lpBadge(url) {
+  if (!url || url === '#') return '';
+  if (url.includes('/pages/')) return '<span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:10px;background:var(--blue-s);color:var(--blue);display:inline-block;margin-top:4px;">TOF LP</span>';
+  if (url.includes('/products/')) return '<span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:10px;background:var(--amber-s);color:var(--amber);display:inline-block;margin-top:4px;">Product Page</span>';
+  return '<span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:10px;background:var(--bl);color:var(--muted);display:inline-block;margin-top:4px;">Homepage</span>';
+}
+
+function freqTrend(adId) {
+  const f1  = (META_DATA['1d']  || {})[adId];
+  const f7  = (META_DATA['7d']  || {})[adId];
+  const f30 = (META_DATA['30d'] || {})[adId];
+  const vals = [
+    f30 && f30.freq != null ? f30.freq : null,
+    f7  && f7.freq  != null ? f7.freq  : null,
+    f1  && f1.freq  != null ? f1.freq  : null,
+  ];
+  const labels = ['30d','7d','1d'];
+  const dots = vals.map((v,i) => {
+    if (v == null) return `<span style="color:var(--subtle);font-size:9px;">—</span>`;
+    const col = v >= 2 ? 'var(--red)' : v >= 1.5 ? 'var(--amber)' : 'var(--green)';
+    return `<span style="color:${col};font-size:9px;font-weight:700;">${v.toFixed(1)}x</span>`;
+  });
+  // Trend arrow
+  let arrow = '';
+  if (vals[0] != null && vals[2] != null) {
+    if (vals[2] > vals[0] * 1.15) arrow = `<span style="color:var(--red);font-size:9px;"> ↑</span>`;
+    else if (vals[2] < vals[0] * 0.9) arrow = `<span style="color:var(--green);font-size:9px;"> ↓</span>`;
+  }
+  return `<div style="font-size:9px;color:var(--subtle);margin-top:3px;">${labels.map((l,i)=>`${l}:${dots[i]}`).join(' → ')}${arrow}</div>`;
+}
+
+function ctrTrend(adId) {
+  const c1  = (META_DATA['1d']  || {})[adId];
+  const c7  = (META_DATA['7d']  || {})[adId];
+  const c30 = (META_DATA['30d'] || {})[adId];
+  if (!c1 && !c7 && !c30) return '';
+  const vals = [
+    c30 && c30.ctr != null ? c30.ctr : null,
+    c7  && c7.ctr  != null ? c7.ctr  : null,
+    c1  && c1.ctr  != null ? c1.ctr  : null,
+  ];
+  const labels = ['30d','7d','1d'];
+  const dots = vals.map(v => {
+    if (v == null) return `<span style="color:var(--subtle);font-size:9px;">—</span>`;
+    const col = v >= 1.5 ? 'var(--green)' : v >= 1 ? 'var(--amber)' : 'var(--red)';
+    return `<span style="color:${col};font-size:9px;font-weight:700;">${v.toFixed(2)}%</span>`;
+  });
+  let arrow = '';
+  if (vals[0] != null && vals[2] != null) {
+    if (vals[2] < vals[0] * 0.8) arrow = `<span style="color:var(--red);font-size:9px;"> ↓ fatigue</span>`;
+    else if (vals[2] > vals[0] * 1.15) arrow = `<span style="color:var(--green);font-size:9px;"> ↑</span>`;
+  }
+  return `<div style="font-size:9px;color:var(--subtle);margin-top:3px;">${labels.map((l,i)=>`${l}:${dots[i]}`).join(' → ')}${arrow}</div>`;
 }
 
 function labRow(ad, d) {
@@ -959,13 +1015,22 @@ function labRow(ad, d) {
     purchases: d.purchases != null ? d.purchases                : (ad.purchases||'—'),
     roas:      d.roas      != null && d.roas > 0 ? d.roas.toFixed(2)+'x' : (ad.roas||'—'),
   };
+
+  // Checkout CVR — purchases ÷ ATCs
+  const atcNum = d.atc != null ? d.atc : parseInt(ad.atc) || 0;
+  const purchNum = d.purchases != null ? d.purchases : parseInt(ad.purchases) || 0;
+  const checkoutCvr = atcNum > 0 ? Math.round(purchNum / atcNum * 100) + '%' : '—';
+  const cvrCol = atcNum > 0 ? (purchNum/atcNum >= 0.3 ? 'var(--green)' : purchNum/atcNum >= 0.15 ? 'var(--amber)' : 'var(--red)') : 'var(--subtle)';
+
   const nameCell = ad.url && ad.url!=='#'
     ? `<a class="ad-name-link" href="${ad.url}" target="_blank">${ad.name}</a>`
     : `<span style="font-weight:700;">${ad.name}</span>`;
+
   return `<tr>
     <td class="lab-td">
       ${nameCell}
-      <div style="margin-top:4px;">${sp(ad.status)}</div>
+      <div style="margin-top:4px;">${sp(ad.status)} ${lpBadge(ad.url)}</div>
+      ${atcNum > 0 ? `<div style="font-size:9px;color:var(--subtle);margin-top:4px;">Checkout CVR: <span style="color:${cvrCol};font-weight:700;">${checkoutCvr}</span> (${purchNum}/${atcNum} ATCs)</div>` : ''}
     </td>
     <td class="lab-td" style="max-width:200px;">
       <div class="hook-edit" contenteditable="true" spellcheck="false">${ad.hook}</div>
@@ -977,10 +1042,16 @@ function labRow(ad, d) {
       <div class="hook-edit" contenteditable="true" spellcheck="false" style="font-size:10px;color:var(--muted);line-height:1.4;outline:none;border-radius:3px;padding:1px 3px;">${ad.contentDesc||''}</div>
     </td>
     <td class="lab-td center" style="border-left:1px solid var(--bl);">${fmt.spend}</td>
-    <td class="lab-td center">${fmt.freq}</td>
+    <td class="lab-td center">
+      ${mp(fmt.freq,'freq')}
+      ${freqTrend(ad.id)}
+    </td>
     <td class="lab-td center" style="border-left:1px solid var(--bl);">${mp(fmt.hook_pct,'hook')}</td>
     <td class="lab-td center">${mp(fmt.hold_pct,'hold')}</td>
-    <td class="lab-td center" style="border-left:1px solid var(--bl);">${mp(fmt.ctr,'ctr')}</td>
+    <td class="lab-td center" style="border-left:1px solid var(--bl);">
+      ${mp(fmt.ctr,'ctr')}
+      ${ctrTrend(ad.id)}
+    </td>
     <td class="lab-td center">${fmt.atc}</td>
     <td class="lab-td center" style="border-left:1px solid var(--bl);">${mp(fmt.cpa,'cpa')}</td>
     <td class="lab-td center">${fmt.purchases}</td>
