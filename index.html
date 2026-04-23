@@ -281,32 +281,32 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
 <div class="page active" id="page-pulse">
 <div class="wrap">
 
-  <!-- METRIC STRIP -->
+  <!-- METRIC STRIP — Yesterday's numbers -->
   <div class="metric-strip" id="metric-strip">
     <div class="metric-cell">
-      <div class="mc-label" id="m-cpa-label">Cost Per Customer</div>
+      <div class="mc-label">CPA — Yesterday</div>
       <div class="mc-val" id="m-cpa">—</div>
-      <div class="mc-delta" id="m-cpa-d">loading…</div>
+      <div class="mc-delta" id="m-cpa-d">Target &lt;$25</div>
     </div>
     <div class="metric-cell">
-      <div class="mc-label">MER</div>
-      <div class="mc-val" id="m-mer">—</div>
-      <div class="mc-delta" id="m-mer-d">Revenue ÷ spend</div>
-    </div>
-    <div class="metric-cell">
-      <div class="mc-label">Revenue</div>
-      <div class="mc-val" id="m-rev">—</div>
-      <div class="mc-delta" id="m-rev-d">loading…</div>
-    </div>
-    <div class="metric-cell">
-      <div class="mc-label">Customers</div>
-      <div class="mc-val" id="m-customers">—</div>
-      <div class="mc-delta" id="m-customers-d">loading…</div>
-    </div>
-    <div class="metric-cell">
-      <div class="mc-label">Avg Order</div>
+      <div class="mc-label">AOV — Yesterday</div>
       <div class="mc-val" id="m-aov">—</div>
       <div class="mc-delta" id="m-aov-d">Target $52+</div>
+    </div>
+    <div class="metric-cell">
+      <div class="mc-label">RPV — Yesterday</div>
+      <div class="mc-val" id="m-rpv">—</div>
+      <div class="mc-delta" id="m-rpv-d">Target $2+</div>
+    </div>
+    <div class="metric-cell">
+      <div class="mc-label">ROAS — Yesterday</div>
+      <div class="mc-val" id="m-roas">—</div>
+      <div class="mc-delta" id="m-roas-d">Target 5x</div>
+    </div>
+    <div class="metric-cell">
+      <div class="mc-label">Ad Profit — Yesterday</div>
+      <div class="mc-val" id="m-profit">—</div>
+      <div class="mc-delta" id="m-profit-d">Revenue minus spend</div>
     </div>
   </div>
 
@@ -2461,78 +2461,91 @@ function setPeriod(btn, period) {
 renderTables('1d');
 
 // ── PULSE METRIC STRIP ─────────────────────────────────────────────────────
-function renderPulseStrip(period) {
-  const data = META_DATA[period] || {};
+let claritySessions = null; // set by renderClarity so RPV can use it
+
+function renderPulseStrip() {
+  const data = META_DATA['1d'] || {};
   const allAds = [...TOF_ADS, ...ASC_ADS_NEW];
 
   let totalSpend = 0, totalPurchases = 0, totalRevenue = 0;
   allAds.forEach(ad => {
     const d = data[ad.id];
     if (!d) return;
-    totalSpend    += d.spend     || 0;
+    totalSpend     += d.spend     || 0;
     totalPurchases += d.purchases || 0;
-    totalRevenue  += (d.spend || 0) * (d.roas || 0);
+    totalRevenue   += (d.spend || 0) * (d.roas || 0);
   });
 
-  const cpa = totalPurchases > 0 ? totalSpend / totalPurchases : null;
-  const mer = totalSpend > 0 ? totalRevenue / totalSpend : null;
-  const aov = totalPurchases > 0 ? totalRevenue / totalPurchases : null;
+  const cpa    = totalPurchases > 0 ? totalSpend / totalPurchases : null;
+  const aov    = totalPurchases > 0 ? totalRevenue / totalPurchases : null;
+  const roas   = totalSpend > 0 ? totalRevenue / totalSpend : null;
+  const profit = totalRevenue - totalSpend;
+  const rpv    = (claritySessions && claritySessions > 0) ? totalRevenue / claritySessions : null;
 
   const $ = id => document.getElementById(id);
 
-  // Cost Per Customer
+  // CPA
   if (cpa !== null) {
-    const cpaCol = cpa <= 25 ? 'green' : cpa <= 35 ? 'amber' : 'red';
-    $('m-cpa').className = 'mc-val ' + cpaCol;
+    const col = cpa <= 25 ? 'green' : cpa <= 35 ? 'amber' : 'red';
+    $('m-cpa').className = 'mc-val ' + col;
     $('m-cpa').textContent = '$' + cpa.toFixed(2);
-    $('m-cpa-d').textContent = cpa <= 25 ? 'On target ✓' : cpa <= 35 ? 'Watch — above $25' : 'Too high — above $35';
+    $('m-cpa-d').textContent = cpa <= 25 ? 'On target ✓' : cpa <= 35 ? 'Watch — above $25' : 'High — above $35';
     $('m-cpa-d').className = 'mc-delta ' + (cpa <= 25 ? 'down' : 'up');
   } else {
-    $('m-cpa').textContent = 'No data';
     $('m-cpa').className = 'mc-val';
-    $('m-cpa-d').textContent = 'No purchases yet';
+    $('m-cpa').textContent = '—';
+    $('m-cpa-d').textContent = 'No purchases';
   }
-
-  // MER
-  if (mer !== null) {
-    const merCol = mer >= 2 ? 'green' : mer >= 1.5 ? 'amber' : 'red';
-    $('m-mer').className = 'mc-val ' + merCol;
-    $('m-mer').textContent = mer.toFixed(2) + 'x';
-    $('m-mer-d').textContent = mer >= 2 ? 'Profitable' : mer >= 1 ? 'Marginal' : 'Losing money';
-    $('m-mer-d').className = 'mc-delta ' + (mer >= 2 ? 'down' : mer >= 1 ? 'neutral' : 'up');
-  } else {
-    $('m-mer').textContent = '—';
-    $('m-mer-d').textContent = 'No spend data';
-  }
-
-  // Revenue
-  $('m-rev').textContent = totalRevenue > 0 ? '$' + totalRevenue.toFixed(0) : '$0';
-  $('m-rev').className = 'mc-val ' + (totalRevenue > 0 ? 'green' : 'red');
-  $('m-rev-d').textContent = '$' + totalSpend.toFixed(0) + ' spend';
-
-  // Customers
-  $('m-customers').textContent = totalPurchases > 0 ? totalPurchases : '0';
-  $('m-customers').className = 'mc-val ' + (totalPurchases > 0 ? 'green' : 'amber');
-  $('m-customers-d').textContent = totalPurchases === 1 ? '1 purchase' : totalPurchases + ' purchases';
 
   // AOV
   if (aov !== null) {
-    const aovCol = aov >= 52 ? 'green' : aov >= 40 ? 'amber' : 'red';
-    $('m-aov').className = 'mc-val ' + aovCol;
+    const col = aov >= 52 ? 'green' : aov >= 40 ? 'amber' : 'red';
+    $('m-aov').className = 'mc-val ' + col;
     $('m-aov').textContent = '$' + aov.toFixed(2);
     $('m-aov-d').textContent = aov >= 52 ? 'On target ✓' : 'Below $52 target';
     $('m-aov-d').className = 'mc-delta ' + (aov >= 52 ? 'down' : 'up');
   } else {
+    $('m-aov').className = 'mc-val';
     $('m-aov').textContent = '—';
-    $('m-aov-d').textContent = 'No orders yet';
+    $('m-aov-d').textContent = 'No orders';
   }
 
-  // Update label with period
-  const labels = { '1d': 'Yesterday', '3d': 'Last 3 Days', '7d': 'Last 7 Days', '14d': 'Last 14 Days', '30d': 'Last 30 Days' };
-  $('m-cpa-label').textContent = 'Cost Per Customer — ' + (labels[period] || period);
+  // RPV
+  if (rpv !== null) {
+    const col = rpv >= 2 ? 'green' : rpv >= 1 ? 'amber' : 'red';
+    $('m-rpv').className = 'mc-val ' + col;
+    $('m-rpv').textContent = '$' + rpv.toFixed(2);
+    $('m-rpv-d').textContent = rpv >= 2 ? 'On target ✓' : 'Below $2 target';
+    $('m-rpv-d').className = 'mc-delta ' + (rpv >= 2 ? 'down' : 'up');
+  } else {
+    $('m-rpv').className = 'mc-val';
+    $('m-rpv').textContent = '—';
+    $('m-rpv-d').textContent = 'Connect Clarity for RPV';
+    $('m-rpv-d').className = 'mc-delta neutral';
+  }
+
+  // ROAS
+  if (roas !== null) {
+    const col = roas >= 3 ? 'green' : roas >= 1.5 ? 'amber' : 'red';
+    $('m-roas').className = 'mc-val ' + col;
+    $('m-roas').textContent = roas.toFixed(2) + 'x';
+    $('m-roas-d').textContent = roas >= 3 ? 'Healthy' : roas >= 1.5 ? 'Marginal' : 'Losing money';
+    $('m-roas-d').className = 'mc-delta ' + (roas >= 3 ? 'down' : roas >= 1.5 ? 'neutral' : 'up');
+  } else {
+    $('m-roas').className = 'mc-val';
+    $('m-roas').textContent = '—';
+    $('m-roas-d').textContent = 'No spend data';
+  }
+
+  // Ad Profit
+  const profitCol = profit > 0 ? 'green' : profit > -20 ? 'amber' : 'red';
+  $('m-profit').className = 'mc-val ' + profitCol;
+  $('m-profit').textContent = (profit >= 0 ? '+$' : '-$') + Math.abs(profit).toFixed(0);
+  $('m-profit-d').textContent = profit > 0 ? 'Profitable ✓' : 'Spend > revenue';
+  $('m-profit-d').className = 'mc-delta ' + (profit > 0 ? 'down' : 'up');
 }
 
-renderPulseStrip('1d');
+renderPulseStrip();
 </script>
 
 <a id="site"></a>
@@ -2688,7 +2701,8 @@ function renderClarity(data){
 
   const scrollVal   = scroll    ? Math.round(scroll.information[0].averageScrollDepth)                      : '—';
   const qbVal       = quickback ? quickback.information[0].sessionsWithMetricPercentage.toFixed(1)+'%'     : '—';
-  const sessions    = traffic   ? parseInt(traffic.information[0].totalSessionCount)                        : '—';
+  const sessions    = traffic   ? parseInt(traffic.information[0].totalSessionCount)                        : null;
+  if (sessions) { claritySessions = sessions; renderPulseStrip(); }
   const mobile      = device    ? device.information.find(d=>d.name==='Mobile')                             : null;
   const mobilePct   = mobile && sessions ? Math.round(mobile.sessionsCount/sessions*100)+'%'               : '—';
   const igApp       = browsers  ? browsers.information.find(b=>b.name==='InstagramApp')                     : null;
