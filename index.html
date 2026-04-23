@@ -284,29 +284,29 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
   <!-- METRIC STRIP -->
   <div class="metric-strip" id="metric-strip">
     <div class="metric-cell">
-      <div class="mc-label">CPA (22 Apr)</div>
-      <div class="mc-val green" id="m-cpa">$26.45</div>
-      <div class="mc-delta down" id="m-cpa-d">↓ vs 3d avg $39.53</div>
+      <div class="mc-label" id="m-cpa-label">Cost Per Customer</div>
+      <div class="mc-val" id="m-cpa">—</div>
+      <div class="mc-delta" id="m-cpa-d">loading…</div>
     </div>
     <div class="metric-cell">
-      <div class="mc-label">ROAS</div>
-      <div class="mc-val amber" id="m-roas">2.26x</div>
-      <div class="mc-delta up" id="m-roas-d">Target 5x</div>
+      <div class="mc-label">MER</div>
+      <div class="mc-val" id="m-mer">—</div>
+      <div class="mc-delta" id="m-mer-d">Revenue ÷ spend</div>
     </div>
     <div class="metric-cell">
-      <div class="mc-label">CVR</div>
-      <div class="mc-val amber" id="m-cvr">2.42%</div>
-      <div class="mc-delta up" id="m-cvr-d">Target 2.5%+</div>
+      <div class="mc-label">Revenue</div>
+      <div class="mc-val" id="m-rev">—</div>
+      <div class="mc-delta" id="m-rev-d">loading…</div>
     </div>
     <div class="metric-cell">
-      <div class="mc-label">Spend</div>
-      <div class="mc-val amber" id="m-spend">$102.66</div>
-      <div class="mc-delta neutral" id="m-spend-d">5 purchases</div>
+      <div class="mc-label">Customers</div>
+      <div class="mc-val" id="m-customers">—</div>
+      <div class="mc-delta" id="m-customers-d">loading…</div>
     </div>
     <div class="metric-cell">
-      <div class="mc-label">Net Profit</div>
-      <div class="mc-val red" id="m-profit">-$20.65</div>
-      <div class="mc-delta up" id="m-profit-d">Losing money</div>
+      <div class="mc-label">Avg Order</div>
+      <div class="mc-val" id="m-aov">—</div>
+      <div class="mc-delta" id="m-aov-d">Target $52+</div>
     </div>
   </div>
 
@@ -2459,6 +2459,80 @@ function setPeriod(btn, period) {
 }
 
 renderTables('1d');
+
+// ── PULSE METRIC STRIP ─────────────────────────────────────────────────────
+function renderPulseStrip(period) {
+  const data = META_DATA[period] || {};
+  const allAds = [...TOF_ADS, ...ASC_ADS_NEW];
+
+  let totalSpend = 0, totalPurchases = 0, totalRevenue = 0;
+  allAds.forEach(ad => {
+    const d = data[ad.id];
+    if (!d) return;
+    totalSpend    += d.spend     || 0;
+    totalPurchases += d.purchases || 0;
+    totalRevenue  += (d.spend || 0) * (d.roas || 0);
+  });
+
+  const cpa = totalPurchases > 0 ? totalSpend / totalPurchases : null;
+  const mer = totalSpend > 0 ? totalRevenue / totalSpend : null;
+  const aov = totalPurchases > 0 ? totalRevenue / totalPurchases : null;
+
+  const $ = id => document.getElementById(id);
+
+  // Cost Per Customer
+  if (cpa !== null) {
+    const cpaCol = cpa <= 25 ? 'green' : cpa <= 35 ? 'amber' : 'red';
+    $('m-cpa').className = 'mc-val ' + cpaCol;
+    $('m-cpa').textContent = '$' + cpa.toFixed(2);
+    $('m-cpa-d').textContent = cpa <= 25 ? 'On target ✓' : cpa <= 35 ? 'Watch — above $25' : 'Too high — above $35';
+    $('m-cpa-d').className = 'mc-delta ' + (cpa <= 25 ? 'down' : 'up');
+  } else {
+    $('m-cpa').textContent = 'No data';
+    $('m-cpa').className = 'mc-val';
+    $('m-cpa-d').textContent = 'No purchases yet';
+  }
+
+  // MER
+  if (mer !== null) {
+    const merCol = mer >= 2 ? 'green' : mer >= 1.5 ? 'amber' : 'red';
+    $('m-mer').className = 'mc-val ' + merCol;
+    $('m-mer').textContent = mer.toFixed(2) + 'x';
+    $('m-mer-d').textContent = mer >= 2 ? 'Profitable' : mer >= 1 ? 'Marginal' : 'Losing money';
+    $('m-mer-d').className = 'mc-delta ' + (mer >= 2 ? 'down' : mer >= 1 ? 'neutral' : 'up');
+  } else {
+    $('m-mer').textContent = '—';
+    $('m-mer-d').textContent = 'No spend data';
+  }
+
+  // Revenue
+  $('m-rev').textContent = totalRevenue > 0 ? '$' + totalRevenue.toFixed(0) : '$0';
+  $('m-rev').className = 'mc-val ' + (totalRevenue > 0 ? 'green' : 'red');
+  $('m-rev-d').textContent = '$' + totalSpend.toFixed(0) + ' spend';
+
+  // Customers
+  $('m-customers').textContent = totalPurchases > 0 ? totalPurchases : '0';
+  $('m-customers').className = 'mc-val ' + (totalPurchases > 0 ? 'green' : 'amber');
+  $('m-customers-d').textContent = totalPurchases === 1 ? '1 purchase' : totalPurchases + ' purchases';
+
+  // AOV
+  if (aov !== null) {
+    const aovCol = aov >= 52 ? 'green' : aov >= 40 ? 'amber' : 'red';
+    $('m-aov').className = 'mc-val ' + aovCol;
+    $('m-aov').textContent = '$' + aov.toFixed(2);
+    $('m-aov-d').textContent = aov >= 52 ? 'On target ✓' : 'Below $52 target';
+    $('m-aov-d').className = 'mc-delta ' + (aov >= 52 ? 'down' : 'up');
+  } else {
+    $('m-aov').textContent = '—';
+    $('m-aov-d').textContent = 'No orders yet';
+  }
+
+  // Update label with period
+  const labels = { '1d': 'Yesterday', '3d': 'Last 3 Days', '7d': 'Last 7 Days', '14d': 'Last 14 Days', '30d': 'Last 30 Days' };
+  $('m-cpa-label').textContent = 'Cost Per Customer — ' + (labels[period] || period);
+}
+
+renderPulseStrip('1d');
 </script>
 
 <a id="site"></a>
