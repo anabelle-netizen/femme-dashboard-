@@ -2461,26 +2461,38 @@ function setPeriod(btn, period) {
 renderTables('1d');
 
 // ── PULSE METRIC STRIP ─────────────────────────────────────────────────────
-let claritySessions = null; // set by renderClarity so RPV can use it
+// PULSE_DATA injected by update_dashboard.py from J-Dog's report (1-day Clarity sheet numbers)
+// Falls back to Meta API computation if not available
+if (typeof PULSE_DATA === 'undefined') { var PULSE_DATA = null; }
 
 function renderPulseStrip() {
-  const data = META_DATA['1d'] || {};
-  const allAds = [...TOF_ADS, ...ASC_ADS_NEW];
+  let cpa, aov, rpv, roas, profit;
 
-  let totalSpend = 0, totalPurchases = 0, totalRevenue = 0;
-  allAds.forEach(ad => {
-    const d = data[ad.id];
-    if (!d) return;
-    totalSpend     += d.spend     || 0;
-    totalPurchases += d.purchases || 0;
-    totalRevenue   += (d.spend || 0) * (d.roas || 0);
-  });
-
-  const cpa    = totalPurchases > 0 ? totalSpend / totalPurchases : null;
-  const aov    = totalPurchases > 0 ? totalRevenue / totalPurchases : null;
-  const roas   = totalSpend > 0 ? totalRevenue / totalSpend : null;
-  const profit = totalRevenue - totalSpend;
-  const rpv    = (claritySessions && claritySessions > 0) ? totalRevenue / claritySessions : null;
+  if (PULSE_DATA && PULSE_DATA.cpa !== null) {
+    // Use J-Dog's accurate 1-day numbers from the Clarity sheet
+    cpa    = PULSE_DATA.cpa;
+    aov    = PULSE_DATA.aov;
+    rpv    = PULSE_DATA.rpv;
+    roas   = PULSE_DATA.roas;
+    profit = PULSE_DATA.profit;
+  } else {
+    // Fallback: compute from Meta API ad-level data
+    const data = META_DATA['1d'] || {};
+    const allAds = [...TOF_ADS, ...ASC_ADS_NEW];
+    let totalSpend = 0, totalPurchases = 0, totalRevenue = 0;
+    allAds.forEach(ad => {
+      const d = data[ad.id];
+      if (!d) return;
+      totalSpend     += d.spend     || 0;
+      totalPurchases += d.purchases || 0;
+      totalRevenue   += (d.spend || 0) * (d.roas || 0);
+    });
+    cpa    = totalPurchases > 0 ? totalSpend / totalPurchases : null;
+    aov    = totalPurchases > 0 ? totalRevenue / totalPurchases : null;
+    roas   = totalSpend > 0 ? totalRevenue / totalSpend : null;
+    profit = totalRevenue - totalSpend;
+    rpv    = null;
+  }
 
   const $ = id => document.getElementById(id);
 
@@ -2702,7 +2714,6 @@ function renderClarity(data){
   const scrollVal   = scroll    ? Math.round(scroll.information[0].averageScrollDepth)                      : '—';
   const qbVal       = quickback ? quickback.information[0].sessionsWithMetricPercentage.toFixed(1)+'%'     : '—';
   const sessions    = traffic   ? parseInt(traffic.information[0].totalSessionCount)                        : null;
-  if (sessions) { claritySessions = sessions; renderPulseStrip(); }
   const mobile      = device    ? device.information.find(d=>d.name==='Mobile')                             : null;
   const mobilePct   = mobile && sessions ? Math.round(mobile.sessionsCount/sessions*100)+'%'               : '—';
   const igApp       = browsers  ? browsers.information.find(b=>b.name==='InstagramApp')                     : null;
