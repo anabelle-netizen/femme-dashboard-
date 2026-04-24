@@ -268,7 +268,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
   <button class="nav-tab active" onclick="showPage('pulse',this)">Pulse</button>
   <button class="nav-tab" onclick="showPage('lab',this)">Creative Lab</button>
   <button class="nav-tab" onclick="showPage('brief',this)">Creative Brief</button>
-  <button class="nav-tab" onclick="showPage('site',this)">Site Fixes</button>
+  <button class="nav-tab" onclick="showPage('site',this)">Site Fixes <span id="nav-site-count" style="font-size:10px;opacity:.6;"></span></button>
   <div class="nav-right">
     <span class="nav-sync" id="nav-sync">Synced 08:08</span>
     <span class="nav-date" id="nav-date"></span>
@@ -493,7 +493,7 @@ Femmé uses one ingredient: certified organic cotton. Nothing else. Link below �
     <div class="brief-top">
       <div class="brief-num-row"><span class="brief-num">03</span><span class="brief-status bs-todo" id="bs-3">To Film</span></div>
       <div class="brief-title">A Gynaecologist Told Me</div>
-      <div class="brief-why">Completely different emotional register — authority + credibility. CVR at 1.11% means we need ads that build trust pre-click. Third-party medical source makes it feel like a tip from someone you trust, not a brand ad. Covers a different audience entry point.</div>
+      <div class="brief-why">Completely different emotional register — authority + credibility. Medical source framing makes it feel like a tip from someone you trust, not a brand ad. Different audience entry point to the visual shock and symptom-led ads already running. This angle has historically been the strongest converter in this account.</div>
     </div>
     <div class="brief-sections">
       <div class="section">
@@ -633,8 +633,8 @@ tr:hover .edit-hint{display:block;}
     <div style="flex-shrink:0;width:40px;height:40px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">🎯</div>
     <div>
       <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:4px;">Today's one thing</div>
-      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:6px;">Fix the checkout page — then put more money into the two ads that are working.</div>
-      <div style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.6;">People are clicking and adding to cart — 84% of them aren't buying. That's not a creative problem, that's a checkout problem. Fix it first. Then double the budget on <strong style="color:rgba(255,255,255,.85);">Come Make A Pad LP Copy 2</strong> and <strong style="color:rgba(255,255,255,.85);">Bleach Inside Your Pad</strong> — both under $20 CPA with almost no spend behind them.</div>
+      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:6px;">Film Cut It Open and Gynaecologist today — before Come Make A Pad fully burns out.</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.6;">Come Make A Pad was your only TOF ad. It held $23 CPA for two weeks — yesterday it crashed to $43. Classic fatigue. Film Cut It Open first (10 mins, bench + scissors + phone), then A Gynaecologist Told Me. Scripts are in the Creative Brief tab. Get both filmed today.</div>
     </div>
   </div>
 
@@ -642,21 +642,19 @@ tr:hover .edit-hint{display:block;}
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:24px;">
     <div style="background:var(--green-s);border:1.5px solid #86efac;border-radius:var(--r);padding:16px;">
       <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--green);margin-bottom:10px;">⬆ Put money here</div>
-      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:4px;">Come Make A Pad — LP Copy 2</div>
-      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:10px;">Bleach Inside Your Pad — LP Copy</div>
-      <div style="font-size:11px;color:var(--green);line-height:1.6;">Both under $20 cost per customer. Barely any budget behind them. These are your winners — feed them.</div>
+      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:10px;">ASC — Broad Audience</div>
+      <div style="font-size:11px;color:var(--green);line-height:1.6;">CPA $20.08, ROAS 3.58x yesterday. The only ad currently generating profitable purchases. Keep budget here while TOF is in transition.</div>
     </div>
     <div style="background:#fffbeb;border:1.5px solid #fcd34d;border-radius:var(--r);padding:16px;">
-      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--amber);margin-bottom:10px;">🔧 Fix this today</div>
-      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:10px;">People are adding to cart and not buying</div>
-      <div style="font-size:11px;color:#92400e;line-height:1.6;">84 out of 100 people who add to cart don't complete the purchase. The ads are working. The checkout page is losing them. Fix this before filming anything new.</div>
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--amber);margin-bottom:10px;">🔧 Do today</div>
+      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:10px;">Film two new TOF ads today</div>
+      <div style="font-size:11px;color:#92400e;line-height:1.6;">Come Make A Pad is fatiguing fast — CPA crashed to $43 yesterday. You have zero TOF backup when it dies. Cut It Open and Gynaecologist are both ready to film. 20 minutes each, no setup needed.</div>
     </div>
     <div style="background:var(--red-s);border:1.5px solid #fca5a5;border-radius:var(--r);padding:16px;">
       <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--red);margin-bottom:10px;">⏸ Turn these off</div>
       <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:4px;">Come Make A Pad — TOF LP Copy</div>
-      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:4px;">Come Make A Pad + Green Screen</div>
-      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:10px;">Tampon Shedding — Homepage</div>
-      <div style="font-size:11px;color:var(--red);line-height:1.6;">$342 spent with almost nothing coming back. Off now.</div>
+      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:10px;">Come Make A Pad + Green Screen</div>
+      <div style="font-size:11px;color:var(--red);line-height:1.6;">Both paused correctly. Combined $334 spent, ROAS under 0.5x. Don't reactivate.</div>
     </div>
   </div>
 
@@ -883,19 +881,19 @@ tr:hover .edit-hint{display:block;}
   <div style="font-size:11px;color:var(--muted);margin-bottom:16px;">Based on what the data is showing — these are the gaps worth closing this week.</div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:40px;">
     <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:var(--r);padding:16px;">
-      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px;">Priority 1 — Fix the body</div>
-      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">Tampon Shedding — rewrite mid-section</div>
-      <div style="font-size:11px;color:var(--muted);line-height:1.6;">30.2% hook rate — best on the account. But hold crashes to 7.7%. The opening is working. The middle is losing them. Rewrite everything after the first 3 seconds. New body, same opening.</div>
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px;">Priority 1 — Most urgent</div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">Cut It Open</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.6;">Come Make A Pad is your only TOF ad and it's fatiguing. Cut It Open is the direct successor — same curiosity trigger, harder visual. Scissors open a conventional pad on a white bench, camera close on plastic mesh and gel inside. 10 minutes to film. Script is in Creative Brief.</div>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:var(--r);padding:16px;">
-      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:8px;">Priority 2 — New angle to test</div>
-      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">Cut it open — visual proof hook</div>
-      <div style="font-size:11px;color:var(--muted);line-height:1.6;">Symptom-led is converting but the account needs a new first frame. Cutting a conventional pad open — showing the plastic mesh and gel inside — is a visual the audience hasn't seen. Different opening = algorithm treats it as fresh.</div>
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:8px;">Priority 2 — Film same day</div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">A Gynaecologist Told Me</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.6;">Authority and education angle — the format that historically converts best in this account. Different emotional register to Cut It Open, which means it reaches a different buyer. Script ready in Creative Brief.</div>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--r);padding:16px;">
-      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--amber);margin-bottom:8px;">Priority 3 — Warm audience refresh</div>
-      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">ASC creative — social proof led</div>
-      <div style="font-size:11px;color:var(--muted);line-height:1.6;">ASC audience is fatiguing — CPA went $9 to $32 in one day. Need a fresh creative for warm traffic. Lead with a review or result, not a problem. Different emotional register to TOF.</div>
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--amber);margin-bottom:8px;">Priority 3 — Same shoot</div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">Tampon version of Cut It Open</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.6;">Same bench, same scissors, different product. Doubles your test surface for zero extra shoot time. Once the pad version is filmed, do a tampon cut-open before packing up.</div>
     </div>
   </div>
 
@@ -2455,7 +2453,7 @@ renderPulseStrip();
   <div class="sh" style="margin-top:0;margin-bottom:20px">
     <div>
       <div style="font-size:18px;font-weight:800;letter-spacing:-.01em">Site Fixes</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:2px">Based on Clarity data + advisor feedback. Tick when done.</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:2px">Based on Clarity data + advisor feedback. Tick when done. <span id="cro-progress" style="font-weight:700;color:var(--text);"></span></div>
     </div>
   </div>
 
@@ -2479,19 +2477,19 @@ function save(k,d){localStorage.setItem(k,JSON.stringify(d));}
 // J-DOG DATA — updated by Claudio when processing Slack reports
 // ══════════════════════════════════════════════════════
 const JDOG = {
-  date: '21 Apr 2026',
-  cpa: 27.67, cpaAvg3d: 39.53, cpaTrend: 'down',
-  roas: 2.29, roasTrend: 'up',
-  cvr: 1.62, cvrTarget: 2.5,
-  spend: 135.02, purchases: 6,
-  netProfit: -13.65,
-  read: "Moving in the right direction — CPA dropped from $103 to $27 and ROAS hit 2.29x. Come Make A Pad Copy 2 and Pad Burns are both scaling. The problem is we're still losing money daily and CVR at 1.62% means the landing page still has work to do. Tampon Shedding has cratered — pause it. Focus budget on the two winners and get the landing page converting.",
-  readDate: '22 Apr 2026',
+  date: '24 Apr 2026',
+  cpa: 28.93, cpaAvg3d: 45.51, cpaTrend: 'up',
+  roas: 2.18, roasTrend: 'stable',
+  cvr: 0.9, cvrTarget: 2.5,
+  spend: 86.78, purchases: 3,
+  netProfit: 36.90,
+  read: "Come Make A Pad was green at $23 CPA for 14 days — yesterday it crashed to $43. Classic fatigue. It's the only TOF ad still running, which means when it dies there's nothing left. ASC is the bright spot — CPA $20.08, ROAS 3.58x, the only profitable ad right now. Film Cut It Open and Gynaecologist today before TOF goes dark.",
+  readDate: '24 Apr 2026',
   actions: [
-    {label:'Scale: Come Make A Pad Copy 2', type:'good'},
-    {label:'Scale: Pad Burns Irritation', type:'good'},
-    {label:'Pause: Tampon Shedding 2026', type:'urgent'},
-    {label:'Fix landing page CVR to 2.5%+', type:'urgent'}
+    {label:'Film today: Cut It Open', type:'urgent'},
+    {label:'Film today: Gynaecologist Told Me', type:'urgent'},
+    {label:'Keep budget: ASC Broad — CPA $20.08', type:'good'},
+    {label:'Watch: Come Make A Pad Copy 2 — fatigue confirmed', type:'urgent'}
   ]
 };
 
@@ -2532,7 +2530,7 @@ const SEED_CRO = [
   {id:'c6',priority:'p2',done:false,doneAt:'',
    title:'Cart — add Complete Your Kit upsell block',
    location:'Shopify → Themes → Customise → Cart page → Add section OR install ReConvert',
-   why:'AOV at $26.44 is low. Cart upsell is the lowest-friction AOV lift available — no extra spend, just showing complementary products at peak intent.',
+   why:'Cart upsell is the lowest-friction AOV lift available — no extra spend, just showing complementary products at peak intent. AOV is $57.09 which is healthy, but a well-placed upsell can push it past $70.',
    oldCopy:'Cart goes directly to checkout',
    newCopy:"Complete Your Kit\nMost customers also add:\n• Organic Panty Liners — $12.95\n• Overnight Pimple Patches — $14.95"}
 ];
@@ -2672,6 +2670,10 @@ function renderCro(){
   const list=document.getElementById('cro-list');
   const active=cro.filter(c=>!c.done).sort((a,b)=>({p1:0,p2:1,p3:2}[a.priority]-{p1:0,p2:1,p3:2}[b.priority]));
   const done=cro.filter(c=>c.done);
+  const prog=document.getElementById('cro-progress');
+  if(prog) prog.textContent=done.length+'/'+cro.length+' done';
+  const navCount=document.getElementById('nav-site-count');
+  if(navCount) navCount.textContent=active.length>0?'('+active.length+')':'';
   const pillCls={p1:'pill-p1',p2:'pill-p2',p3:'pill-p3'};
   const pillLabel={p1:'P1 — Critical',p2:'P2 — This week',p3:'P3 — Soon'};
   list.innerHTML=active.map(c=>`
@@ -2959,7 +2961,7 @@ function renderPulseCards() {
 // ══════════════════════════════════════════════════════
 try { applyBriefStatuses(); } catch(e) { console.error('applyBriefStatuses:', e); }
 try { renderCro(); } catch(e) { console.error('renderCro:', e); }
-try { renderLab(); } catch(e) { console.error('renderLab:', e); }
+// renderLab — #lab-grid not in DOM, skipped
 try { renderHookBank(); } catch(e) { console.error('renderHookBank:', e); }
 try { renderPulseCards(); } catch(e) { console.error('renderPulseCards:', e); }
 fetchClarity();
