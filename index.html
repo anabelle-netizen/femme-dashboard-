@@ -757,23 +757,14 @@ tr:hover .edit-hint{display:block;}
     </div>
   </div>
 
-  <!-- BENCHMARK KEY + PERIOD TABS -->
-  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
-    <div class="bench-row" style="margin-bottom:0;">
-      <span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--subtle);margin-right:4px;">Benchmarks:</span>
-      <span class="bench-pill" style="background:var(--green-s);color:var(--green);">Hook% ≥25% ✓</span>
-      <span class="bench-pill" style="background:var(--green-s);color:var(--green);">Hold% ≥20% ✓</span>
-      <span class="bench-pill" style="background:var(--green-s);color:var(--green);">CTR ≥1% ✓</span>
-      <span class="bench-pill" style="background:var(--green-s);color:var(--green);">CPA ≤$25 ✓</span>
-      <span class="bench-pill" style="background:var(--red-s);color:var(--red);">CPA ≥$35 ✗</span>
-    </div>
-    <div class="period-tabs" style="margin-bottom:0;">
-      <button class="period-tab active" onclick="setPeriod(this,'1d')">Yesterday</button>
-      <button class="period-tab" onclick="setPeriod(this,'3d')">3 Days</button>
-      <button class="period-tab" onclick="setPeriod(this,'7d')">7 Days</button>
-      <button class="period-tab" onclick="setPeriod(this,'14d')">14 Days</button>
-      <button class="period-tab" onclick="setPeriod(this,'30d')">30 Days</button>
-    </div>
+  <!-- BENCHMARK KEY -->
+  <div class="bench-row" style="margin-bottom:16px;">
+    <span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--subtle);margin-right:4px;">Benchmarks:</span>
+    <span class="bench-pill" style="background:var(--green-s);color:var(--green);">Hook% ≥25% ✓</span>
+    <span class="bench-pill" style="background:var(--green-s);color:var(--green);">Hold% ≥20% ✓</span>
+    <span class="bench-pill" style="background:var(--green-s);color:var(--green);">CTR ≥1% ✓</span>
+    <span class="bench-pill" style="background:var(--green-s);color:var(--green);">CPA ≤$25 ✓</span>
+    <span class="bench-pill" style="background:var(--red-s);color:var(--red);">CPA ≥$35 ✗</span>
   </div>
 
   <!-- HOOK PERFORMANCE MATRIX -->
@@ -802,9 +793,19 @@ tr:hover .edit-hint{display:block;}
   </div>
 
   <!-- TOF TABLE -->
-  <div class="lab-section-label">
-    <span style="background:#eff6ff;color:#2563eb;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.05em;">TOF</span>
-    Top of Funnel — Cold Traffic
+  <!-- PERIOD TABS — pinned above the table -->
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+    <div class="lab-section-label" style="margin-bottom:0;">
+      <span style="background:#eff6ff;color:#2563eb;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.05em;">TOF</span>
+      Top of Funnel — Cold Traffic
+    </div>
+    <div class="period-tabs" style="margin-bottom:0;">
+      <button class="period-tab active" onclick="setPeriod(this,'1d')">Yesterday</button>
+      <button class="period-tab" onclick="setPeriod(this,'3d')">3 Days</button>
+      <button class="period-tab" onclick="setPeriod(this,'7d')">7 Days</button>
+      <button class="period-tab" onclick="setPeriod(this,'14d')">14 Days</button>
+      <button class="period-tab" onclick="setPeriod(this,'30d')">30 Days</button>
+    </div>
   </div>
   <div class="lab-section-sub">Unaware audience · Objective: stop the scroll, get the click, convert</div>
 
@@ -2260,16 +2261,16 @@ const META_DATA = {
 
 // ── Live from Meta API · 23 Apr 2026 ──
 const TOF_ADS = [
-  { id:'120242224369960786', name:'Come Make A Pad — TOF LP Copy 2', hook:"There's bleach in your pad. Your supermarket pad contains bleach, plastic and pesticide residue.", hookType:'Shocking claim', contentType:'Faceless voiceover', contentDesc:'Hands on product, CapCut text overlays, no face shown', status:'Scale', spend:'$19.93', freq:'1.06x', hook_pct:'20.3%', hold_pct:'25.7%', ctr:'2.12%', atc:'3', cpa:'$19.93', purchases:'1', roas:'3.75x', url:'https://femmeorganic.com/pages/better-period-care', read:'Hero creative. $20 CPA, 3.75x ROAS. 3 ATCs, 1 purchase — checkout needs work. Scale spend but fix checkout drop-off.' },
-  { id:'120241940316430786', name:'Pad Burns Irritation — LP Copy', hook:"Your pad is the problem... That burning, itching, irritation after wearing a pad? It's not normal.", hookType:'Symptom-led', contentType:'Faceless voiceover', contentDesc:'Product close-up, ingredient label reveal, text overlays', status:'Watch', spend:'$125.43', freq:'1.13x', hook_pct:'18.9%', hold_pct:'21.1%', ctr:'1.12%', atc:'22', cpa:'$41.81', purchases:'3', roas:'1.59x', url:'https://femmeorganic.com/pages/better-period-care', read:'22 ATCs but only 3 purchases — 86% checkout abandonment. Creative is working. Checkout or page is killing it.' },
-  { id:'120241577706660786', name:'Come Make A Pad — TOF LP Copy', hook:"There's bleach in your pad.", hookType:'Shocking claim', contentType:'Faceless voiceover', contentDesc:'Hands on product, label close-up, CapCut text', status:'Pause', spend:'$173.87', freq:'1.14x', hook_pct:'18.9%', hold_pct:'21.0%', ctr:'1.75%', atc:'22', cpa:'$43.47', purchases:'4', roas:'0.99x', url:'https://femmeorganic.com/pages/better-period-care', read:'$173 spent, 0.99x ROAS — losing money. 22 ATCs, 4 purchases. Same checkout problem. Pause and redirect budget to Copy 2.' },
-  { id:'120242024791620786', name:'Come Make A Pad + Green Screen — Homepage', hook:"There's bleach in your pad.", hookType:'Shocking claim', contentType:'Green screen', contentDesc:'Presenter in front of background, talking to camera', status:'Pause', spend:'$160.22', freq:'1.22x', hook_pct:'11.1%', hold_pct:'42.7%', ctr:'1.36%', atc:'19', cpa:'$80.11', purchases:'2', roas:'0.59x', url:'https://femmeorganic.com', read:'$160 spent, 0.59x ROAS — deeply unprofitable. 19 ATCs, 2 purchases. Homepage is the wrong destination. Pause now.' },
-  { id:'120241934616330786', name:'Bleach Inside Your Pad — LP Copy', hook:"Your pad is burning your skin. There's bleach in every conventional pad.", hookType:'Shocking claim', contentType:'Faceless voiceover', contentDesc:'Product close-up, text overlays, ingredient focus', status:'Watch', spend:'$35.20', freq:'1.30x', hook_pct:'18.9%', hold_pct:'21.0%', ctr:'1.02%', atc:'3', cpa:'$17.60', purchases:'2', roas:'2.44x', url:'https://femmeorganic.com/pages/better-period-care', read:'$17.60 CPA — green. 2.44x ROAS, only $35 spent. Under-budgeted. Push more spend here this week.' },
-  { id:'120242224385670786', name:'Inside Your Pads — Product Page', hook:"This is what's actually inside your pad.", hookType:'Visual reveal', contentType:'Faceless voiceover', contentDesc:'Hands open pad, slow zoom on interior layers', status:'Testing', spend:'$15.81', freq:'1.20x', hook_pct:'17.1%', hold_pct:'28.6%', ctr:'0.96%', atc:'0', cpa:'—', purchases:'0', roas:'—', url:'#', read:'Good hold (28.6%) but zero ATCs. CTR near benchmark. CTA or landing page not converting. Test harder offer.' },
-  { id:'120242023852550786', name:'Tampon Shedding 2026 — Homepage', hook:'Your tampon is shedding inside you.', hookType:'Shocking fact', contentType:'Faceless voiceover', contentDesc:'Product close-up, slow movement, minimal edit', status:'Pause', spend:'$7.98', freq:'1.29x', hook_pct:'6.1%', hold_pct:'20.0%', ctr:'0.79%', atc:'0', cpa:'—', purchases:'0', roas:'—', url:'https://femmeorganic.com', read:'Zero ATCs, zero purchases. Wrong destination (Homepage). Pause.' },
-  { id:'120240920323240786', name:'Fire Match Test — Pad Video', hook:"What's in yours? If your pad burns like this… why are you wearing it?", hookType:'Visual shock', contentType:'Demo', contentDesc:'Lighter applied to conventional pad — visual burn test', status:'Testing', spend:'$0.22', freq:'1.0x', hook_pct:'21.7%', hold_pct:'22.7%', ctr:'0.00%', atc:'0', cpa:'—', purchases:'0', roas:'—', url:'#', read:'Minimal spend. Decent hook and hold. Needs more budget to get signal — or rewrite the CTA.' },
-  { id:'120242076721820786', name:"You Wouldn't Drink Bleach — GS UGC", hook:"You wouldn't drink bleach. So why is it in your pads?", hookType:'Contradiction', contentType:'Green screen', contentDesc:'Presenter, glass of water visual as prop, talking to cam', status:'Testing', spend:'$0.09', freq:'1.17x', hook_pct:'—', hold_pct:'—', ctr:'0.00%', atc:'0', cpa:'—', purchases:'0', roas:'—', url:'#', read:'Almost no spend. Strong concept — needs real budget to test properly.' },
-  { id:'120239243021450786', name:'Light Pad Test', hook:'—', hookType:'Demo', contentType:'Demo', contentDesc:'Product demonstration — absorption or burn test', status:'Pause', spend:'$0.32', freq:'1.05x', hook_pct:'—', hold_pct:'—', ctr:'0.00%', atc:'0', cpa:'—', purchases:'0', roas:'—', url:'#', read:'Zero engagement across the board. Pause.' },
+  { id:'120242224369960786', name:'Come Make A Pad — TOF LP Copy 2', hook:"There's bleach in your pad. Your supermarket pad contains bleach, plastic and pesticide residue.", hookType:'Shocking claim', contentType:'Faceless voiceover', contentDesc:'Hands on product, CapCut text overlays, no face shown', status:'Watch', spend:'', freq:'', hook_pct:'', hold_pct:'', ctr:'', atc:'', cpa:'', purchases:'', roas:'', url:'https://femmeorganic.com/pages/better-period-care', read:'CPA spiked to $43.30 yesterday (was $23 for 14d/7d/3d). Classic fatigue pattern. Only TOF ad still active — when it dies there is nothing left. New creative urgent.' },
+  { id:'120241940316430786', name:'Pad Burns Irritation — LP Copy', hook:"Your pad is the problem... That burning, itching, irritation after wearing a pad? It's not normal.", hookType:'Symptom-led', contentType:'Faceless voiceover', contentDesc:'Product close-up, ingredient label reveal, text overlays', status:'Watch', spend:'', freq:'', hook_pct:'', hold_pct:'', ctr:'', atc:'', cpa:'', purchases:'', roas:'', url:'https://femmeorganic.com/pages/better-period-care', read:'Minimal spend yesterday. Hook 82% — angle still works. Not enough data to judge current CPA. Keep watching.' },
+  { id:'120241577706660786', name:'Come Make A Pad — TOF LP Copy', hook:"There's bleach in your pad.", hookType:'Shocking claim', contentType:'Faceless voiceover', contentDesc:'Hands on product, label close-up, CapCut text', status:'Pause', spend:'', freq:'', hook_pct:'', hold_pct:'', ctr:'', atc:'', cpa:'', purchases:'', roas:'', url:'https://femmeorganic.com/pages/better-period-care', read:'3d CPA $28.39, ROAS 1.48x — not profitable. Same hook as Copy 2 but performing worse. Keep paused.' },
+  { id:'120242024791620786', name:'Come Make A Pad + Green Screen — Homepage', hook:"There's bleach in your pad.", hookType:'Shocking claim', contentType:'Green screen', contentDesc:'Presenter in front of background, talking to camera', status:'Pause', spend:'', freq:'', hook_pct:'', hold_pct:'', ctr:'', atc:'', cpa:'', purchases:'', roas:'', url:'https://femmeorganic.com', read:'3d CPA $75.85, ROAS 0.43x — deeply unprofitable. Homepage is the wrong destination. Keep paused.' },
+  { id:'120241934616330786', name:'Bleach Inside Your Pad — LP Copy', hook:"Your pad is burning your skin. There's bleach in every conventional pad.", hookType:'Shocking claim', contentType:'Faceless voiceover', contentDesc:'Product close-up, text overlays, ingredient focus', status:'Watch', spend:'', freq:'', hook_pct:'', hold_pct:'', ctr:'', atc:'', cpa:'', purchases:'', roas:'', url:'https://femmeorganic.com/pages/better-period-care', read:'3d hook rate dropped to 70% and no purchases. Needs fresh budget with the right campaign setup before writing off.' },
+  { id:'120242224385670786', name:'Inside Your Pads — Product Page', hook:"This is what's actually inside your pad.", hookType:'Visual reveal', contentType:'Faceless voiceover', contentDesc:'Hands open pad, slow zoom on interior layers', status:'test', spend:'', freq:'', hook_pct:'', hold_pct:'', ctr:'', atc:'', cpa:'', purchases:'', roas:'', url:'#', read:'Hook 94.7%, hold 16.7% yesterday — strong scroll-stop, poor hold. First few seconds working. Script needs to earn retention after the hook.' },
+  { id:'120242023852550786', name:'Tampon Shedding 2026 — Homepage', hook:'Your tampon is shedding inside you.', hookType:'Shocking fact', contentType:'Faceless voiceover', contentDesc:'Product close-up, slow movement, minimal edit', status:'Pause', spend:'', freq:'', hook_pct:'', hold_pct:'', ctr:'', atc:'', cpa:'', purchases:'', roas:'', url:'https://femmeorganic.com', read:'Hook 6% historically — not stopping the scroll. Wrong destination (Homepage). Paused correctly.' },
+  { id:'120240920323240786', name:'Fire Match Test — Pad Video', hook:"What's in yours? If your pad burns like this… why are you wearing it?", hookType:'Visual shock', contentType:'Demo', contentDesc:'Lighter applied to conventional pad — visual burn test', status:'test', spend:'', freq:'', hook_pct:'', hold_pct:'', ctr:'', atc:'', cpa:'', purchases:'', roas:'', url:'#', read:'3d: hook 97%, hold 29%, CTR 1.49% — excellent attention signals. Zero spend to get real data. Needs budget.' },
+  { id:'120242076721820786', name:"You Wouldn't Drink Bleach — GS UGC", hook:"You wouldn't drink bleach. So why is it in your pads?", hookType:'Contradiction', contentType:'Green screen', contentDesc:'Presenter, glass of water visual as prop, talking to cam', status:'test', spend:'', freq:'', hook_pct:'', hold_pct:'', ctr:'', atc:'', cpa:'', purchases:'', roas:'', url:'#', read:'Strong concept. Near-zero spend — impossible to judge. Needs real budget.' },
+  { id:'120239243021450786', name:'ASC — Broad Audience', hook:'—', hookType:'Social proof / CTA', contentType:'Faceless voiceover', contentDesc:'Review or product overview, warm audience', status:'Scale', spend:'', freq:'', hook_pct:'', hold_pct:'', ctr:'', atc:'', cpa:'', purchases:'', roas:'', url:'https://femmeorganic.com/pages/better-period-care', read:'Best performer yesterday — CPA $20.08, ROAS 3.58x, 2 purchases from $40 spend. This is the one currently generating profitable purchases. Watch frequency carefully.' },
 ];
 
 const ASC_ADS_NEW = [
@@ -2638,9 +2639,11 @@ function applyBriefStatuses(){
     const s=briefStatuses[n]||'todo';
     const card=document.getElementById('bc-'+n);
     const badge=document.getElementById('bs-'+n);
-    card.className='brief-card'+(s==='done'?' done':s==='filming'?' filming':'');
-    badge.className='brief-status '+(s==='done'?'bs-done':s==='filming'?'bs-filming':'bs-todo');
-    badge.textContent=s==='done'?'Done ✓':s==='filming'?'Filming…':'To Film';
+    if(card) card.className='brief-card'+(s==='done'?' done':s==='filming'?' filming':'');
+    if(badge){
+      badge.className='brief-status '+(s==='done'?'bs-done':s==='filming'?'bs-filming':'bs-todo');
+      badge.textContent=s==='done'?'Done ✓':s==='filming'?'Filming…':'To Film';
+    }
   });
 }
 
@@ -2955,11 +2958,11 @@ function renderPulseCards() {
 // ══════════════════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════════════════
-applyBriefStatuses();
-renderCro();
-renderLab();
-renderHookBank();
-renderPulseCards();
+try { applyBriefStatuses(); } catch(e) { console.error('applyBriefStatuses:', e); }
+try { renderCro(); } catch(e) { console.error('renderCro:', e); }
+try { renderLab(); } catch(e) { console.error('renderLab:', e); }
+try { renderHookBank(); } catch(e) { console.error('renderHookBank:', e); }
+try { renderPulseCards(); } catch(e) { console.error('renderPulseCards:', e); }
 fetchClarity();
 setInterval(fetchClarity, 5 * 60 * 1000);
 </script>
