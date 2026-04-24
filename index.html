@@ -658,37 +658,14 @@ tr:hover .edit-hint{display:block;}
     </div>
   </div>
 
-  <!-- LP FIXES CALLOUT — from J-Dog x Claudio collab, 23 Apr -->
-  <div style="background:#1c1917;border-radius:var(--r);padding:18px 20px;margin-bottom:24px;">
-    <div style="display:flex;align-items:flex-start;gap:16px;margin-bottom:14px;">
-      <div style="font-size:22px;line-height:1;flex-shrink:0;">⚠️</div>
-      <div>
-        <div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:4px;">TOF Landing Page — 4 fixes agreed (J-Dog + Claudio · 29 Clarity sessions)</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);">22-second conversion window · 60 dead clicks · 43% scroll depth</div>
-      </div>
+  <!-- LP FIXES CALLOUT — compact reminder -->
+  <div onclick="showPage('site',document.querySelector('[onclick*=\'site\']'))" style="background:#1c1917;border-radius:var(--r);padding:14px 18px;margin-bottom:24px;display:flex;align-items:center;gap:12px;cursor:pointer;border:1px solid rgba(255,255,255,.08);">
+    <div style="font-size:16px;line-height:1;flex-shrink:0;">⚠️</div>
+    <div style="flex:1;">
+      <span style="font-size:12px;font-weight:800;color:#fff;">TOF Landing Page — 4 fixes pending</span>
+      <span style="font-size:11px;color:rgba(255,255,255,.4);margin-left:8px;">Replace bundle CTA · Fix dead clicks · Move builder up · Add guarantee</span>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:12px;">
-        <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:#f87171;margin-bottom:5px;">Priority 1</div>
-        <div style="font-size:12px;font-weight:800;color:#fff;margin-bottom:3px;">Replace two bundle cards with one CTA</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;">Both cards go to the same builder — forcing a tier decision too early. One button: "Build Your Bundle →". Show tiers inside the builder.</div>
-      </div>
-      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:12px;">
-        <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:#fcd34d;margin-bottom:5px;">Priority 2</div>
-        <div style="font-size:12px;font-weight:800;color:#fff;margin-bottom:3px;">Fix 60 dead clicks</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;">People are tapping ingredient images expecting a response. Make them clickable or visually soften so they don't look interactive.</div>
-      </div>
-      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:12px;">
-        <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:#fcd34d;margin-bottom:5px;">Priority 3</div>
-        <div style="font-size:12px;font-weight:800;color:#fff;margin-bottom:3px;">Move bundle builder from position 5 → 3</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;">43% scroll depth — most visitors never reach the buy point. Move directly after the ingredients section.</div>
-      </div>
-      <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:12px;">
-        <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:#86efac;margin-bottom:5px;">Priority 4</div>
-        <div style="font-size:12px;font-weight:800;color:#fff;margin-bottom:3px;">Guarantee line under CTA</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;">One line directly under the button: "30-Day Body-Safe Guarantee"</div>
-      </div>
-    </div>
+    <div style="font-size:10px;color:rgba(255,255,255,.3);flex-shrink:0;">See Site Fixes →</div>
   </div>
 
   <!-- WHAT'S WORKING — Hook patterns -->
