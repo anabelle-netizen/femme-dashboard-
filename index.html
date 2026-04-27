@@ -362,12 +362,41 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
 <div class="page" id="page-brief">
 <div class="wrap">
 
-  <div class="sh" style="margin-bottom:20px;margin-top:0">
+  <div class="sh" style="margin-bottom:16px;margin-top:0">
     <div>
-      <div style="font-size:18px;font-weight:800;letter-spacing:-.01em">Active Brief — 3 creatives</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:2px">Film today. Priority: Cut It Open → Gynaecologist → Why Are Companies Allowed.</div>
+      <div style="font-size:18px;font-weight:800;letter-spacing:-.01em">Creative Briefs</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:2px">TOF and MOF. Mark filming when you start. Mark done when it's filmed.</div>
     </div>
-    <div style="font-size:11px;font-weight:700;color:var(--subtle);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:5px 12px;">Batch 01 · 24 Apr 2026</div>
+    <div style="font-size:11px;font-weight:700;color:var(--subtle);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:5px 12px;">Batch 01 · 27 Apr 2026</div>
+  </div>
+
+  <!-- FUNNEL GAP CALLOUT -->
+  <div style="background:#1c1917;border:1.5px solid #f97316;border-radius:var(--r);padding:18px 22px;margin-bottom:24px;">
+    <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:#f97316;margin-bottom:10px;">⚠️ Funnel gap — action required</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+      <div style="background:rgba(134,239,172,.08);border:1px solid #86efac;border-radius:var(--r-sm);padding:12px;">
+        <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin-bottom:4px;">TOF — Top of Funnel</div>
+        <div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">8 briefs ready</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);">Interruption + awareness. Film these first.</div>
+      </div>
+      <div style="background:rgba(249,115,22,.1);border:1.5px solid #f97316;border-radius:var(--r-sm);padding:12px;">
+        <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:#f97316;margin-bottom:4px;">MOF — Middle of Funnel</div>
+        <div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">❌ Nothing running</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);">Proof + trust. Warm audience is being wasted.</div>
+      </div>
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-sm);padding:12px;">
+        <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--subtle);margin-bottom:4px;">BOF — Bottom of Funnel</div>
+        <div style="font-size:13px;font-weight:800;color:rgba(255,255,255,.4);margin-bottom:2px;">Not yet</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.3);">Retargeting. Build after MOF is live.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOF SECTION HEADER -->
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--bl);">
+    <span style="font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;background:var(--accent-s);color:var(--accent);border-radius:4px;padding:3px 10px;">TOF</span>
+    <span style="font-size:13px;font-weight:800;">Top of Funnel — Interruption &amp; Awareness</span>
+    <span style="font-size:11px;color:var(--muted);margin-left:auto;">Unaware audience. Hook first, brand second.</span>
   </div>
 
   <!-- BRIEF 01 -->
@@ -838,8 +867,143 @@ Build your routine 👇</div><button class="copy-btn" onclick="copyEl('b8c1')">C
 
   <!-- ARCHIVE SECTION — populated by applyBriefStatuses() when briefs are marked done -->
   <div class="brief-archive-section" id="brief-archive" style="display:none">
-    <div class="brief-archive-header">Archived — filmed & live</div>
+    <div class="brief-archive-header">Archived — filmed &amp; live</div>
     <div id="brief-archive-list"></div>
+  </div>
+
+  <!-- MOF SECTION HEADER -->
+  <div style="display:flex;align-items:center;gap:10px;margin-top:36px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--bl);">
+    <span style="font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;background:#fff7ed;color:#f97316;border-radius:4px;padding:3px 10px;">MOF</span>
+    <span style="font-size:13px;font-weight:800;">Middle of Funnel — Proof &amp; Trust</span>
+    <span style="font-size:11px;color:var(--muted);margin-left:auto;">Warm audience. They know the problem. Give them a reason to choose Femmé.</span>
+  </div>
+
+  <!-- MOF BRIEF 09 -->
+  <div class="brief-card" id="bc-9" style="border-left-color:#f97316;">
+    <div class="brief-top">
+      <div class="brief-num-row">
+        <span class="brief-num" style="color:#f97316;background:#fff7ed;">09</span>
+        <span class="brief-status bs-todo" id="bs-9">To Film</span>
+        <span style="font-size:10px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 10px;margin-left:4px;">MOF</span>
+      </div>
+      <div class="brief-title">Ingredient Comparison — Conventional vs Femmé</div>
+      <div class="brief-why">Your warm audience has seen the TOF ads. They know conventional pads are bad. Now they need proof that Femmé is the answer. Side-by-side ingredient labels — one conventional, one Femmé — is the clearest proof format available. No claims needed. The labels say everything.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption <span class="arr">▾</span></button>
+        <div class="sec-body">
+          <div class="cap-field">
+            <div class="cap-label">Primary Text</div>
+            <div class="cap-text" id="mof09-cap">This is what's in your conventional pad.\n\nChlorine bleach. Synthetic polymer gel. Artificial fragrance. Elemental dioxins from the bleaching process.\n\nAnd this is what's in ours.\n\nCertified organic cotton. That's it.\n\nSame protection. Different ingredients. Your body knows the difference.\n\nFemmé Organic — 30-Day Body-Safe Guarantee.</div>
+            <button class="copy-btn" onclick="copyEl('mof09-cap')">Copy</button>
+          </div>
+          <div class="cap-field">
+            <div class="cap-label">Headline</div>
+            <div class="cap-text">Read the label. Then decide.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Script / Visual Direction <span class="arr">▾</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Opening frame (0–2 sec)</div><div class="visual-desc">Two ingredient labels flat on a white surface. Hands enter from the bottom. One conventional pad packet, one Femmé packet. No branding visible yet — just the labels side by side.</div></div>
+          <div class="visual-item"><div class="visual-shot">Text overlay (2–5 sec)</div><div class="visual-desc">"What's in your pad?" — white text, bold, centred on screen. Camera slowly pushes in on the conventional label.</div></div>
+          <div class="visual-item"><div class="visual-shot">Middle (5–15 sec)</div><div class="visual-desc">Finger traces ingredients on conventional label. Text overlays appear one by one: "Chlorine bleach ✗" / "Synthetic fragrance ✗" / "Polymer gel ✗". Fast cuts between each callout.</div></div>
+          <div class="visual-item"><div class="visual-shot">Pivot (15–20 sec)</div><div class="visual-desc">Cut to Femmé label. Finger traces. Single text overlay: "Certified organic cotton ✓". Hold for 2 seconds. Let the contrast land.</div></div>
+          <div class="visual-item"><div class="visual-shot">Closing frame</div><div class="visual-desc">Both packets side by side. Femmé product on top. Text overlay: "Same protection. Cleaner ingredients." CTA: "30-Day Body-Safe Guarantee — link in bio."</div></div>
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. Vertical 9:16. 20–25 seconds. CapCut text motion. No voiceover needed — text overlays carry it. Works as organic and paid.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(9,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(9,'done')">Mark Done ✓</button>
+    </div>
+  </div>
+
+  <!-- MOF BRIEF 10 -->
+  <div class="brief-card" id="bc-10" style="border-left-color:#f97316;">
+    <div class="brief-top">
+      <div class="brief-num-row">
+        <span class="brief-num" style="color:#f97316;background:#fff7ed;">10</span>
+        <span class="brief-status bs-todo" id="bs-10">To Film</span>
+        <span style="font-size:10px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 10px;margin-left:4px;">MOF</span>
+      </div>
+      <div class="brief-title">3 Months After Switching — The Switch Story</div>
+      <div class="brief-why">Warm audience has been considering switching. They need to see what happens after the switch — not a product pitch, a result. Text-on-screen format means zero production. Just words appearing on screen. No face, no filming location, no setup. The most efficient MOF format possible.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption <span class="arr">▾</span></button>
+        <div class="sec-body">
+          <div class="cap-field">
+            <div class="cap-label">Primary Text</div>
+            <div class="cap-text" id="mof10-cap">I switched to organic period care 3 months ago.\n\nMonth one: no difference really. Just felt better about what I was using.\n\nMonth two: the irritation I always got mid-cycle didn't show up.\n\nMonth three: I genuinely can't go back.\n\nI didn't think it would matter this much. It did.\n\nFemmé Organic. Try it for 30 days — if your body doesn't feel the difference, we'll refund you.</div>
+            <button class="copy-btn" onclick="copyEl('mof10-cap')">Copy</button>
+          </div>
+          <div class="cap-field">
+            <div class="cap-label">Headline</div>
+            <div class="cap-text">What 3 months without conventional pads feels like.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Script / Visual Direction <span class="arr">▾</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Pure text-on-screen. Black background, white text. CapCut text animation — words appear line by line. No face, no product, no voiceover required. Minimal edit time.</div></div>
+          <div class="visual-item"><div class="visual-shot">Text sequence</div><div class="visual-desc">"I switched to organic period care 3 months ago." → pause → "Month 1." → "Month 2." → "Month 3." Each month gets 3–4 seconds. Final card: "Try Femmé for 30 days — 30-Day Body-Safe Guarantee."</div></div>
+          <div class="visual-item"><div class="visual-shot">Why this works</div><div class="visual-desc">Feels like a real person's story, not a brand ad. Warm audience recognises themselves in the hesitation. The result (irritation gone) is the payoff they're looking for. No exaggeration, no claim — just a timeline.</div></div>
+          <div class="visual-item"><div class="visual-shot">Funnel note</div><div class="visual-desc">Run to warm audiences only — website visitors, video viewers, page engagers. Not cold TOF traffic.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(10,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(10,'done')">Mark Done ✓</button>
+    </div>
+  </div>
+
+  <!-- MOF BRIEF 11 -->
+  <div class="brief-card" id="bc-11" style="border-left-color:#f97316;">
+    <div class="brief-top">
+      <div class="brief-num-row">
+        <span class="brief-num" style="color:#f97316;background:#fff7ed;">11</span>
+        <span class="brief-status bs-todo" id="bs-11">To Film</span>
+        <span style="font-size:10px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 10px;margin-left:4px;">MOF</span>
+      </div>
+      <div class="brief-title">The Guarantee — 30 Days, No Risk</div>
+      <div class="brief-why">The last reason warm audiences don't convert is risk. They're interested but not sure it'll work for them. A guarantee ad removes that barrier entirely. Direct, simple, zero production. This one lives in retargeting — for anyone who's clicked an ad or visited the site but not bought.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption <span class="arr">▾</span></button>
+        <div class="sec-body">
+          <div class="cap-field">
+            <div class="cap-label">Primary Text</div>
+            <div class="cap-text" id="mof11-cap">Still thinking about it?\n\nHere's the deal: try Femmé for 30 days. If your body doesn't feel the difference — we'll give you your money back. No questions.\n\nWe call it the 30-Day Body-Safe Guarantee because we're that confident in what we've made.\n\nOrganic cotton. No bleach. No synthetics. Same protection, cleaner ingredients.\n\nYour first box is the hardest part. After that, most people never go back.</div>
+            <button class="copy-btn" onclick="copyEl('mof11-cap')">Copy</button>
+          </div>
+          <div class="cap-field">
+            <div class="cap-label">Headline</div>
+            <div class="cap-text">30-Day Body-Safe Guarantee. Try it risk-free.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Script / Visual Direction <span class="arr">▾</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Opening frame</div><div class="visual-desc">Product in hands — clean, close-up. Text overlay appears immediately: "Still thinking about it?" Two seconds, then cut.</div></div>
+          <div class="visual-item"><div class="visual-shot">Middle</div><div class="visual-desc">Text on screen: "30-Day Body-Safe Guarantee." Hold 3 seconds. Then: "Try it. If your body doesn't feel the difference — full refund." Simple. Direct. No performance needed.</div></div>
+          <div class="visual-item"><div class="visual-shot">Closing</div><div class="visual-desc">Product flat lay — all four products. Text overlay: "Organic cotton. No bleach. No compromise." CTA: "Link in bio — free shipping on first order."</div></div>
+          <div class="visual-item"><div class="visual-shot">Format &amp; audience</div><div class="visual-desc">Faceless. Vertical 9:16. 15 seconds max. Run exclusively to retargeting audiences — website visitors (30d), video viewers (75%), page engagers. Do NOT run to cold traffic.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(11,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(11,'done')">Mark Done ✓</button>
+    </div>
   </div>
 
 </div>
@@ -2977,9 +3141,12 @@ const BRIEF_TITLES = {
   5:'Pap Smear? We\'ve All Been There.',
   6:'Heavy Flow Girls, This One\'s For You',
   7:'They\'ve Been Lying To You About This Product',
-  8:'POV: Your Entire Cycle Routine Is Finally Clean'
+  8:'POV: Your Entire Cycle Routine Is Finally Clean',
+  9:'Ingredient Comparison — Conventional vs Femmé',
+  10:'3 Months After Switching — The Switch Story',
+  11:'The Guarantee — 30 Days, No Risk'
 };
-let briefStatuses = load('fe_brief_b01',{1:'todo',2:'todo',3:'todo',4:'todo',5:'todo',6:'todo',7:'todo',8:'todo'});
+let briefStatuses = load('fe_brief_b01',{1:'todo',2:'todo',3:'todo',4:'todo',5:'todo',6:'todo',7:'todo',8:'todo',9:'todo',10:'todo',11:'todo'});
 function setBriefStatus(n,s){
   if(s==='done' && briefStatuses[n]!=='done'){
     briefStatuses[n]={status:'done',doneAt:new Date().toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})};
@@ -2992,7 +3159,7 @@ function applyBriefStatuses(){
   const archiveList=document.getElementById('brief-archive-list');
   const archiveSection=document.getElementById('brief-archive');
   const archiveItems=[];
-  [1,2,3,4,5,6,7,8].forEach(n=>{
+  [1,2,3,4,5,6,7,8,9,10,11].forEach(n=>{
     const entry=briefStatuses[n];
     const s=typeof entry==='object'?entry.status:(entry||'todo');
     const card=document.getElementById('bc-'+n);
@@ -3011,7 +3178,7 @@ function applyBriefStatuses(){
     archiveSection.style.display='block';
     archiveList.innerHTML=archiveItems.map(({n,doneAt})=>`
       <div class="brief-archive-item">
-        <span class="brief-archive-num">0${n}</span>
+        <span class="brief-archive-num">${n<10?'0'+n:n}</span>
         <span class="brief-archive-title">${BRIEF_TITLES[n]||'Brief '+n}</span>
         ${doneAt?`<span class="brief-archive-date">Filmed ${doneAt}</span>`:''}
         <a class="brief-archive-lab" onclick="showPage('lab',document.querySelector('[onclick*=\'lab\']'))">Monitor in Creative Lab →</a>
