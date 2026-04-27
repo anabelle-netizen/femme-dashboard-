@@ -121,7 +121,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
 /* BRIEF CARDS */
 .brief-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--r);margin-bottom:14px;overflow:hidden;}
 .brief-card.filming{border-left-color:var(--amber);}
-.brief-card.done{border-left-color:var(--green);opacity:.6;}
+.brief-card.done{display:none;}
+.brief-archive-section{margin-top:28px;}
+.brief-archive-header{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--subtle);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--bl);}
+.brief-archive-item{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:var(--r);padding:14px 18px;margin-bottom:8px;display:flex;align-items:center;gap:14px;}
+.brief-archive-num{font-size:10px;font-weight:900;letter-spacing:.1em;color:var(--green);background:var(--green-s);border-radius:4px;padding:2px 8px;flex-shrink:0;}
+.brief-archive-title{font-size:13px;font-weight:800;flex:1;}
+.brief-archive-date{font-size:11px;color:var(--muted);flex-shrink:0;}
+.brief-archive-lab{font-size:11px;font-weight:700;color:var(--accent);cursor:pointer;flex-shrink:0;text-decoration:none;}
+.brief-archive-lab:hover{text-decoration:underline;}
 .brief-top{padding:20px 22px 16px;}
 .brief-num-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
 .brief-num{font-size:10px;font-weight:900;letter-spacing:.1em;color:var(--accent);background:var(--accent-s);border-radius:4px;padding:2px 8px;}
@@ -826,6 +834,12 @@ Build your routine 👇</div><button class="copy-btn" onclick="copyEl('b8c1')">C
       <button class="btn btn-primary" onclick="setBriefStatus(8,'filming')">Mark Filming</button>
       <button class="btn btn-done" onclick="setBriefStatus(8,'done')">Mark Done ✓</button>
     </div>
+  </div>
+
+  <!-- ARCHIVE SECTION — populated by applyBriefStatuses() when briefs are marked done -->
+  <div class="brief-archive-section" id="brief-archive" style="display:none">
+    <div class="brief-archive-header">Archived — filmed & live</div>
+    <div id="brief-archive-list"></div>
   </div>
 
 </div>
@@ -2862,7 +2876,7 @@ function saveClarity(){
 }
 
 async function fetchClarity(){
-  const token = localStorage.getItem('clarity_token') || 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4M0FCMDhFNUYwRDMxNjdEOTRFMTQ3M0FEQTk2RTcyRDkwRUYwRkYiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiI4ZjQyM2NlYi03NjA0LTQyOGUtYWU0NC04NmM5YTg5ODIxMWEiLCJzdWIiOiIzMTg1OTk0NjgyOTA3MzE5Iiwic2NvcGUiOiJEYXRhLkV4cG9ydCIsIm5iZiI6MTc3Njc0MjE0NSwiZXhwIjo0OTMwMzQyMTQ1LCJpYXQiOjE3NzY3NDIxNDUsImlzcyI6ImNsYXJpdHkiLCJhdWQiOiJjbGFyaXR5LmRhdGEtZXhwb3J0ZXIifQ.bvcJoou4S2mDFgcpSIlOCcLKmbcTXPO22I3GvPG8jL74b4I7x9fMrEIsdFb5L9LbccbAXm0oT-XgvsAqWSjl_-R0FornXeaVrPZj4MpZ7IZ0qe60lgs7cGWuPafAr913k8ls_1IKgmvkDY90EVPwKRTf3G9OWpIN4M02tjPiAEnba-jAoqPxcqvMMBEiWrKzghXTqYPIvuE4KMjO8W_uaMds3Stj5nKWylQdfg6Mbg2xV7LV86nsFS9NAL-PlFjSn0ZAsf2EMWpXi9gmEcW64pAGa0BmQSOrrO95Mws1RZEy8vuFwKkPtKxKaRtUKsMIFo1OzOSKtbF-os2Uczj5tQ';
+  const token = localStorage.getItem('clarity_token') || 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4M0FCMDhFNUYwRDMxNjdEOTRFMTQ3M0FEQTk2RTcyRDkwRUYwRkYiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJkNTM2YzlmNi0wNTMyLTQzMzYtODU5ZC03MGJmYjVhZGVhZTgiLCJzdWIiOiIzMTg1OTk0NjgyOTA3MzE5Iiwic2NvcGUiOiJEYXRhLkV4cG9ydCIsIm5iZiI6MTc3NzI1NTk2MiwiZXhwIjo0OTMwODU1OTYyLCJpYXQiOjE3NzcyNTU5NjIsImlzcyI6ImNsYXJpdHkiLCJhdWQiOiJjbGFyaXR5LmRhdGEtZXhwb3J0ZXIifQ.YifX2qR86hJjdOclH8s10VsxafUcsTSumnEQF2NbWJXKXJRls4em_69xIpkzLE7-xNrvwyWVoOgjJd5fjUbjzSS2tmSecEQoDUnVGq8smDuvqtJ12jitH_F1JqH-irNRFDdV_KAVSOAlO0xpRTiJ-v8qdzsPQB_ZkONh23bD9g9c2NZMcK-yBLIroPp1LKe1hr7xLZ1UEWK-5Z2iLFnXXthZheFrDYa_3LjftF9kJHhUBdfpQD7PVRbynyxWdQIczr-r5eAKJRehNJ5vReBphiUIjggWVdRtI4wjrJ9Rp9fFTAvVciTTIcGKoU7J_JPfqgVOV631MHBk_DGNsgqjUw';
   const end = new Date(); const start = new Date(end - 7*24*60*60*1000);
   const fmt = d => d.toISOString().split('T')[0];
   const url = `https://www.clarity.ms/export-data/api/v1/project-live-insights?projectId=${CLARITY_PROJECT}&startDate=${fmt(start)}&endDate=${fmt(end)}`;
@@ -2924,18 +2938,61 @@ function renderClarity(data){
     ${topPages}
   `;
   document.getElementById('clarity-updated').textContent = '· live';
+
+  // Sync live Clarity numbers into site fix cards c9 and c10
+  const qbPct = quickback ? quickback.information[0].sessionsWithMetricPercentage : null;
+  const deadClick = data.find(d=>d.metricName==='DeadClick');
+  const dcPct = deadClick ? deadClick.information[0].sessionsWithMetricPercentage : null;
+  let croChanged = false;
+  cro = cro.map(c => {
+    if(c.id==='c10' && qbPct!==null){
+      const updated = {...c,
+        title:`TOF LP — reduce quickback rate (Clarity: ${qbPct.toFixed(1)}% of sessions)`,
+        why:`${qbPct.toFixed(1)}% of visitors are clicking back within seconds of landing — that's 1 in ${Math.round(100/qbPct)} people. The above-fold content isn't holding them. Stronger headline or faster load may fix this.`
+      };
+      croChanged = true; return updated;
+    }
+    if(c.id==='c9' && dcPct!==null){
+      const updated = {...c,
+        title:`Site-wide — fix dead clicks (Clarity: ${dcPct.toFixed(1)}% of sessions)`,
+        why:`Clarity shows dead clicks in ${dcPct.toFixed(1)}% of sessions — visitors clicking on non-interactive elements. Open Clarity heatmaps for homepage, PDP, and cart to identify which elements are drawing false clicks.`
+      };
+      croChanged = true; return updated;
+    }
+    return c;
+  });
+  if(croChanged){ save('fe_cro_v3', cro); renderCro(); }
 }
 
 // ══════════════════════════════════════════════════════
 // BRIEF STATUS
 // ══════════════════════════════════════════════════════
+const BRIEF_TITLES = {
+  1:'Why Are Companies Allowed To Sell Us This',
+  2:'Cut It Open',
+  3:'A Gynaecologist Told Me',
+  4:'You Will Switch By The End Of This Video',
+  5:'Pap Smear? We\'ve All Been There.',
+  6:'Heavy Flow Girls, This One\'s For You',
+  7:'They\'ve Been Lying To You About This Product',
+  8:'POV: Your Entire Cycle Routine Is Finally Clean'
+};
 let briefStatuses = load('fe_brief_b01',{1:'todo',2:'todo',3:'todo',4:'todo',5:'todo',6:'todo',7:'todo',8:'todo'});
 function setBriefStatus(n,s){
-  briefStatuses[n]=s; save('fe_brief_b01',briefStatuses); applyBriefStatuses();
+  if(s==='done' && briefStatuses[n]!=='done'){
+    briefStatuses[n]={status:'done',doneAt:new Date().toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})};
+  } else if(s!=='done'){
+    briefStatuses[n]=s;
+  }
+  save('fe_brief_b01',briefStatuses); applyBriefStatuses();
 }
 function applyBriefStatuses(){
+  const archiveList=document.getElementById('brief-archive-list');
+  const archiveSection=document.getElementById('brief-archive');
+  const archiveItems=[];
   [1,2,3,4,5,6,7,8].forEach(n=>{
-    const s=briefStatuses[n]||'todo';
+    const entry=briefStatuses[n];
+    const s=typeof entry==='object'?entry.status:(entry||'todo');
     const card=document.getElementById('bc-'+n);
     const badge=document.getElementById('bs-'+n);
     if(card) card.className='brief-card'+(s==='done'?' done':s==='filming'?' filming':'');
@@ -2943,7 +3000,23 @@ function applyBriefStatuses(){
       badge.className='brief-status '+(s==='done'?'bs-done':s==='filming'?'bs-filming':'bs-todo');
       badge.textContent=s==='done'?'Done ✓':s==='filming'?'Filming…':'To Film';
     }
+    if(s==='done'){
+      const doneAt=typeof entry==='object'?entry.doneAt:'';
+      archiveItems.push({n,doneAt});
+    }
   });
+  if(archiveItems.length>0 && archiveList && archiveSection){
+    archiveSection.style.display='block';
+    archiveList.innerHTML=archiveItems.map(({n,doneAt})=>`
+      <div class="brief-archive-item">
+        <span class="brief-archive-num">0${n}</span>
+        <span class="brief-archive-title">${BRIEF_TITLES[n]||'Brief '+n}</span>
+        ${doneAt?`<span class="brief-archive-date">Filmed ${doneAt}</span>`:''}
+        <a class="brief-archive-lab" onclick="showPage('lab',document.querySelector('[onclick*=\'lab\']'))">Monitor in Creative Lab →</a>
+      </div>`).join('');
+  } else if(archiveSection){
+    archiveSection.style.display='none';
+  }
 }
 
 // ══════════════════════════════════════════════════════
@@ -3215,8 +3288,9 @@ function renderPulseCards() {
   const briefContent = document.getElementById('pulse-brief-content');
   if (briefContent) {
     let found = false;
-    for (let n = 1; n <= 3; n++) {
-      const s = briefStatuses[n] || 'todo';
+    for (let n = 1; n <= 8; n++) {
+      const entry = briefStatuses[n];
+      const s = typeof entry==='object' ? entry.status : (entry||'todo');
       if (s === 'done') continue;
       const card = document.getElementById('bc-' + n);
       const titleEl = card ? card.querySelector('.brief-title') : null;
