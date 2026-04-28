@@ -1018,13 +1018,13 @@ Build your routine →</div><button class="copy-btn" onclick="copyEl('b8c1')">Co
         <div class="sec-body">
           <div class="cap-field">
             <div class="cap-label">Primary Text</div>
-            <div class="cap-text" id="mof12-cap">Don't take our word for it.
+            <div class="cap-text" id="mof12-cap">If you've ever leaked through a pad, this is for you.
 
-Heavy periods, overnight wear, sensitive skin — here's what women actually said after making the switch.
+Here's what women said after trying Femmé.
 
 100% organic cotton. No bleach. No synthetics. No nasties.
 
-Build your bundle 👇</div>
+Make the switch 👇</div>
             <button class="copy-btn" onclick="copyEl('mof12-cap')">Copy</button>
           </div>
           <div class="cap-field">
@@ -3184,6 +3184,10 @@ function renderClarity(data){
 // ══════════════════════════════════════════════════════
 // BRIEF STATUS
 // ══════════════════════════════════════════════════════
+const BRIEF_STAGE = {
+  1:'TOF',2:'TOF',3:'TOF',4:'TOF',5:'TOF',6:'TOF',7:'TOF',
+  8:'MOF',9:'MOF',10:'MOF',11:'MOF',12:'MOF'
+};
 const BRIEF_TITLES = {
   1:'Why Are Companies Allowed To Sell Us This',
   2:'Cut It Open',
@@ -3231,6 +3235,7 @@ function applyBriefStatuses(){
     archiveList.innerHTML=archiveItems.map(({n,doneAt})=>`
       <div class="brief-archive-item">
         <span class="brief-archive-num">${n<10?'0'+n:n}</span>
+        <span style="font-size:10px;font-weight:700;color:${BRIEF_STAGE[n]==='TOF'?'#2563eb':'#f97316'};background:${BRIEF_STAGE[n]==='TOF'?'#eff6ff':'#fff7ed'};border-radius:20px;padding:2px 8px;margin-right:4px;">${BRIEF_STAGE[n]||''}</span>
         <span class="brief-archive-title">${BRIEF_TITLES[n]||'Brief '+n}</span>
         ${doneAt?`<span class="brief-archive-date">Filmed ${doneAt}</span>`:''}
         <a class="brief-archive-lab" onclick="showPage('lab',document.querySelector('[onclick*=\'lab\']'))">Monitor in Creative Lab →</a>
