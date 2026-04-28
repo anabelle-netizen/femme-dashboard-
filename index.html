@@ -1057,6 +1057,60 @@ Make the switch 👇</div>
     </div>
   </div>
 
+  <div class="brief-card" id="bc-13" style="border-left-color:#f97316;">
+    <div class="brief-top">
+      <div class="brief-num-row">
+        <span class="brief-num" style="color:#f97316;background:#fff7ed;">13</span>
+        <span class="brief-status bs-todo" id="bs-13">To Film</span>
+        <span style="font-size:10px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 10px;margin-left:4px;">MOF</span>
+      </div>
+      <div class="brief-title">The Founder Switch Story — Voiceover</div>
+      <div class="brief-why">Warm audiences have seen the fear. This gives them the human story behind the brand — who made it and why. Voiceover over B-roll, no talking to camera. Builds trust in a way reviews can't. Founder authenticity is the hardest thing to fake and the most powerful thing to have.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption <span class="arr">▾</span></button>
+        <div class="sec-body">
+          <div class="cap-field">
+            <div class="cap-label">Primary Text</div>
+            <div class="cap-text" id="mof13-cap">I looked up what was in my pads and I couldn't go back.
+
+Bleach. Synthetic fibres. Chemicals that aren't required to be on the label.
+
+So I built something I could actually trust.
+
+100% organic cotton. No nasties. Nothing your body doesn't need.
+
+Build your routine 👇</div>
+            <button class="copy-btn" onclick="copyEl('mof13-cap')">Copy</button>
+          </div>
+          <div class="cap-field">
+            <div class="cap-label">Headline</div>
+            <div class="cap-text">Why I started Femmé.</div>
+          </div>
+          <div class="cap-field">
+            <div class="cap-label">Description</div>
+            <div class="cap-text">The switch most women say they wish they'd made sooner.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Script / Visual Direction <span class="arr">▾</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Voiceover recorded on phone — natural, not scripted-sounding. Laid over product B-roll. Faceless. Vertical 9:16. 45–60 seconds.</div></div>
+          <div class="visual-item"><div class="visual-shot">Script</div><div class="visual-desc">I started Femmé because of what I found in my own pads. / I'd been using the same brand since I was a teenager. Then one day I actually looked up what was in them. / Bleach. Synthetic fibres. Chemicals that don't even have to be listed on the label. / I couldn't believe I'd been putting that on my body every single month for years. / That was the last time I used a conventional pad. / I wanted something I could actually trust. So I built it. / 100% organic cotton. No bleach. No synthetics. No nasties. Nothing your body doesn't need. / And once I started looking at everything else in my routine — the wash, the skincare around my cycle — I realised how much of it had the same problem. / So we fixed that too. / Because what touches your body every month matters more than most people realise.</div></div>
+          <div class="visual-item"><div class="visual-shot">Shot list</div><div class="visual-desc">Hands holding conventional pad next to Femmé pad. Cotton close-up. Full routine flat lay on bath mat. Intimate wash pumped into hand. Pimple patches out of box. Products arranged naturally — not too styled.</div></div>
+          <div class="visual-item"><div class="visual-shot">Text overlays</div><div class="visual-desc">"Bleach." appears on screen as she says it. "Synthetic fibres." next. "100% organic cotton." at the switch point. Keep overlays minimal — voice does the work.</div></div>
+          <div class="visual-item"><div class="visual-shot">End frame</div><div class="visual-desc">Full routine flat lay. CTA text: "Build your routine →"</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(13,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(13,'done')">Mark Done ✓</button>
+    </div>
+  </div>
+
 </div>
 </div>
 
@@ -3186,7 +3240,7 @@ function renderClarity(data){
 // ══════════════════════════════════════════════════════
 const BRIEF_STAGE = {
   1:'TOF',2:'TOF',3:'TOF',4:'TOF',5:'TOF',6:'TOF',7:'TOF',
-  8:'MOF',9:'MOF',10:'MOF',11:'MOF',12:'MOF'
+  8:'MOF',9:'MOF',10:'MOF',11:'MOF',12:'MOF',13:'MOF'
 };
 const BRIEF_TITLES = {
   1:'Why Are Companies Allowed To Sell Us This',
@@ -3200,9 +3254,10 @@ const BRIEF_TITLES = {
   9:'Ingredient Comparison — Conventional vs Femmé',
   10:'3 Months After Switching — The Switch Story',
   11:'The Guarantee — 30 Days, No Risk',
-  12:'Pad Review Compilation — Real Results'
+  12:'Pad Review Compilation — Real Results',
+  13:'The Founder Switch Story — Voiceover'
 };
-let briefStatuses = load('fe_brief_b01',{1:'todo',2:'todo',3:'todo',4:'todo',5:'todo',6:'todo',7:'todo',8:'todo',9:'todo',10:'todo',11:'todo',12:'todo'});
+let briefStatuses = load('fe_brief_b01',{1:'todo',2:'todo',3:'todo',4:'todo',5:'todo',6:'todo',7:'todo',8:'todo',9:'todo',10:'todo',11:'todo',12:'todo',13:'todo'});
 function setBriefStatus(n,s){
   if(s==='done' && briefStatuses[n]!=='done'){
     briefStatuses[n]={status:'done',doneAt:new Date().toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})};
@@ -3215,7 +3270,7 @@ function applyBriefStatuses(){
   const archiveList=document.getElementById('brief-archive-list');
   const archiveSection=document.getElementById('brief-archive');
   const archiveItems=[];
-  [1,2,3,4,5,6,7,8,9,10,11,12].forEach(n=>{
+  [1,2,3,4,5,6,7,8,9,10,11,12,13].forEach(n=>{
     const entry=briefStatuses[n];
     const s=typeof entry==='object'?entry.status:(entry||'todo');
     const card=document.getElementById('bc-'+n);
