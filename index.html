@@ -122,6 +122,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
 .brief-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--r);margin-bottom:14px;overflow:hidden;}
 .brief-card.filming{border-left-color:var(--amber);}
 .brief-card.done{display:none;}
+.brief-card .brief-sections{display:none;}
+.brief-card .brief-footer{display:none;}
+.brief-card .brief-why{display:none;}
+.brief-card.expanded .brief-sections{display:block;}
+.brief-card.expanded .brief-footer{display:flex;}
+.brief-card.expanded .brief-why{display:block;}
+.brief-top{cursor:pointer;user-select:none;}
+.brief-top:hover{background:var(--bl);}
+.brief-expand-arrow{float:right;font-size:11px;color:var(--subtle);transition:transform .2s;}
+.brief-card.expanded .brief-expand-arrow{transform:rotate(180deg);}
 .brief-archive-section{margin-top:28px;}
 .brief-archive-header{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--subtle);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--bl);}
 .brief-archive-item{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:var(--r);padding:14px 18px;margin-bottom:8px;display:flex;align-items:center;gap:14px;}
@@ -401,7 +411,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
 
   <!-- BRIEF 01 -->
   <div class="brief-card" id="bc-1">
-    <div class="brief-top">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row">
         <span class="brief-num">01</span>
         <span class="brief-status bs-todo" id="bs-1">To Film</span>
@@ -468,7 +478,7 @@ Femmé is certified organic cotton — same protection, nothing hidden. Link bel
 
   <!-- BRIEF 02 -->
   <div class="brief-card" id="bc-2">
-    <div class="brief-top">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row"><span class="brief-num">02</span><span class="brief-status bs-todo" id="bs-2">To Film</span></div>
       <div class="brief-title">Cut It Open</div>
       <div class="brief-why">Same body safety angle — completely new opening visual. Cutting the pad open and showing the plastic mesh inside is something the audience hasn't seen from us. New first frame = algorithm distributes to fresh eyes. Visual proof is harder to dismiss than a claim.</div>
@@ -527,7 +537,7 @@ Femmé uses one ingredient: certified organic cotton. Nothing else. Link below �
 
   <!-- BRIEF 03 -->
   <div class="brief-card" id="bc-3">
-    <div class="brief-top">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row"><span class="brief-num">03</span><span class="brief-status bs-todo" id="bs-3">To Film</span></div>
       <div class="brief-title">A Gynaecologist Told Me</div>
       <div class="brief-why">Completely different emotional register — authority + credibility. Medical source framing makes it feel like a tip from someone you trust, not a brand ad. Different audience entry point to the visual shock and symptom-led ads already running. This angle has historically been the strongest converter in this account.</div>
@@ -588,7 +598,7 @@ Femmé: certified organic cotton. One ingredient. Nothing hidden. Link below �
 
   <!-- BRIEF 04 -->
   <div class="brief-card" id="bc-4">
-    <div class="brief-top">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row"><span class="brief-num">04</span><span class="brief-status bs-todo" id="bs-4">To Film</span></div>
       <div class="brief-title">You Will Switch By The End Of This Video</div>
       <div class="brief-why">Strongest idea in the batch. Confidence hook + visual proof in one. Two bloody pads side by side — then you pull the conventional one apart to show what's inside. The promise in the hook ("you will switch") makes people stay to see if it's true. TOF unaware, high scroll-stop potential.</div>
@@ -645,7 +655,7 @@ Try it for yourself — 30 Day Body-Safe Guarantee 👇</div><button class="copy
 
   <!-- BRIEF 05 -->
   <div class="brief-card" id="bc-5">
-    <div class="brief-top">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row"><span class="brief-num">05</span><span class="brief-status bs-todo" id="bs-5">To Film</span></div>
       <div class="brief-title">Pap Smear? We've All Been There.</div>
       <div class="brief-why">Pattern interrupt — the pap smear visual (gown, stirrups, clinical setting) is instantly recognisable and slightly uncomfortable. Stops the scroll hard. Pivots from a universal women's health moment into the "why aren't you thinking about what touches you every day?" angle. Check Meta policies before running — keep it tasteful and faceless.</div>
@@ -700,7 +710,7 @@ Femmé Organic: certified organic cotton. Nothing else.
 
   <!-- BRIEF 06 -->
   <div class="brief-card" id="bc-6">
-    <div class="brief-top">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row"><span class="brief-num">06</span><span class="brief-status bs-todo" id="bs-6">To Film</span></div>
       <div class="brief-title">Heavy Flow Girls, This One's For You</div>
       <div class="brief-why">Symptom-led with a strong visual hook. Blood hitting a pad is scroll-stopping — normalises heavy periods while immediately speaking to a specific audience segment. The "holds up to X tampons" proof mechanism is concrete and relatable. Different emotional register to the ingredient-led ads.</div>
@@ -754,7 +764,7 @@ Heavy days sorted. 30 Day Body-Safe Guarantee 👇</div><button class="copy-btn"
 
   <!-- BRIEF 07 -->
   <div class="brief-card" id="bc-7">
-    <div class="brief-top">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row"><span class="brief-num">07</span><span class="brief-status bs-todo" id="bs-7">To Film</span></div>
       <div class="brief-title">They've Been Lying To You About This Product</div>
       <div class="brief-why">Classic TOF unaware hook — reframed so it's the industry lying, not Femmé. Creates immediate curiosity and moral tension. Works because the claim is true and provable — ingredient labels back it up. Different entry point to the "cut it open" ads since it leads with deception rather than demonstration.</div>
@@ -810,7 +820,7 @@ Femmé Organic: everything disclosed, nothing hidden. Certified organic cotton �
 
   <!-- BRIEF 08 -->
   <div class="brief-card" id="bc-8">
-    <div class="brief-top">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row"><span class="brief-num">08</span><span class="brief-status bs-todo" id="bs-8">To Film</span></div>
       <div class="brief-title">MOF — Aesthetic Flat Lay</div>
       <div class="brief-why">MOF/warm audience ad — shows the full product ecosystem in 15 seconds. Best for retargeting people who've already seen the brand. Not for cold traffic. Hands-only, lifestyle feel. Note: only the pads and tampons are certified organic — pimple patches, konjac sponge, and intimate wash are body-safe but not certified organic. Copy reflects this.</div>
@@ -876,7 +886,7 @@ Build your routine →</div><button class="copy-btn" onclick="copyEl('b8c1')">Co
 
   <!-- MOF BRIEF 09 -->
   <div class="brief-card" id="bc-9" style="border-left-color:#f97316;">
-    <div class="brief-top">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row">
         <span class="brief-num" style="color:#f97316;background:#fff7ed;">09</span>
         <span class="brief-status bs-todo" id="bs-9">To Film</span>
@@ -920,7 +930,7 @@ Build your routine →</div><button class="copy-btn" onclick="copyEl('b8c1')">Co
 
   <!-- MOF BRIEF 10 -->
   <div class="brief-card" id="bc-10" style="border-left-color:#f97316;">
-    <div class="brief-top">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row">
         <span class="brief-num" style="color:#f97316;background:#fff7ed;">10</span>
         <span class="brief-status bs-todo" id="bs-10">To Film</span>
@@ -962,7 +972,7 @@ Build your routine →</div><button class="copy-btn" onclick="copyEl('b8c1')">Co
 
   <!-- MOF BRIEF 11 -->
   <div class="brief-card" id="bc-11" style="border-left-color:#f97316;">
-    <div class="brief-top">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row">
         <span class="brief-num" style="color:#f97316;background:#fff7ed;">11</span>
         <span class="brief-status bs-todo" id="bs-11">To Film</span>
@@ -1003,7 +1013,7 @@ Build your routine →</div><button class="copy-btn" onclick="copyEl('b8c1')">Co
   </div>
 
   <div class="brief-card" id="bc-12" style="border-left-color:#f97316;">
-    <div class="brief-top">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row">
         <span class="brief-num" style="color:#f97316;background:#fff7ed;">12</span>
         <span class="brief-status bs-todo" id="bs-12">To Film</span>
@@ -1058,7 +1068,7 @@ Make the switch 👇</div>
   </div>
 
   <div class="brief-card" id="bc-13" style="border-left-color:#f97316;">
-    <div class="brief-top">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row">
         <span class="brief-num" style="color:#f97316;background:#fff7ed;">13</span>
         <span class="brief-status bs-todo" id="bs-13">To Film</span>
@@ -3303,6 +3313,9 @@ function applyBriefStatuses(){
 // ══════════════════════════════════════════════════════
 // SECTION TOGGLES
 // ══════════════════════════════════════════════════════
+function toggleBrief(card){
+  card.classList.toggle('expanded');
+}
 function secToggle(btn){
   const body=btn.nextElementSibling;
   const open=body.classList.toggle('open');
