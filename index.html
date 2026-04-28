@@ -871,6 +871,66 @@ Shop now 👇</div>
     </div>
   </div>
 
+  <!-- BRIEF 15 -->
+  <div class="brief-card" id="bc-15" style="border-left-color:#2563eb;">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
+      <div class="brief-num-row">
+        <span class="brief-num" style="color:#2563eb;background:#eff6ff;">15</span>
+        <span class="brief-status bs-todo" id="bs-15">To Film</span>
+        <span style="font-size:10px;font-weight:700;color:#2563eb;background:#eff6ff;border-radius:20px;padding:2px 10px;margin-left:4px;">TOF</span>
+      </div>
+      <div class="brief-title">Crash Out — Pixar 3D Animated</div>
+      <div class="brief-why">Cold audience. Humor-led interruption — relatable crash-out moments in Pixar 3D animated style pivot to Femmé as the one reliable thing. No fear, no chemicals. Stops the scroll through comedy and visual surprise. AI-generated scenes stitched in CapCut with voiceover.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption <span class="arr">▾</span></button>
+        <div class="sec-body">
+          <div class="cap-field">
+            <div class="cap-label">Primary Text</div>
+            <div class="cap-text" id="tof15-cap">There are certain things in life that are just... guaranteed to make you crash out.
+
+The annual pap smear. Getting left on read. One mascara smudge on a perfect eye. Wearing white. At the wrong time of the month.
+
+But your period care? That should never be one of them.
+
+Femmé Organic — the one thing you can actually rely on. Month after month.
+
+Shop now 👇</div>
+            <button class="copy-btn" onclick="copyEl('tof15-cap')">Copy</button>
+          </div>
+          <div class="cap-field">
+            <div class="cap-label">Headline</div>
+            <div class="cap-text">One less thing to crash out about.</div>
+          </div>
+          <div class="cap-field">
+            <div class="cap-label">Description</div>
+            <div class="cap-text">Organic period care that shows up every time.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Script / Visual Direction <span class="arr">▾</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Pixar 3D AI-generated scenes stitched in CapCut. Voiceover recorded by Anabelle or friend — natural, dry, funny tone. ~60 seconds. Vertical 9:16.</div></div>
+          <div class="visual-item"><div class="visual-shot">Scene order</div><div class="visual-desc">1. Pap smear → 2. Ghosted (phone flip-off) → 3. Mascara scream → 4. White pants / period arriving → 5. Cloud (resolution) → 6. Product shot</div></div>
+          <div class="visual-item"><div class="visual-shot">Voiceover</div><div class="visual-desc">There are certain things in life that are just... guaranteed to make you crash out. / The annual pap smear. / Getting left on read. / One mascara smudge on a perfect eye. / Wearing white. At the wrong time of the month. / But there's one thing that will never, ever make you crash out. / Month after month — Femmé Organic. The one thing you can actually rely on.</div></div>
+          <div class="visual-item"><div class="visual-shot">Scene 1 — Pap smear (✓ generated)</div><div class="visual-desc">Pixar 3D. Woman on examination table in paper gown, staring at ceiling, pure awkward dread. Text overlay: "crash out."</div></div>
+          <div class="visual-item"><div class="visual-shot">Scene 2 — Ghosted</div><div class="visual-desc">Pixar 3D. Wrapped in blanket on couch, flipping phone off with both hands, read receipt with no reply, empty snack wrappers around her. Text overlay: "crash out."</div></div>
+          <div class="visual-item"><div class="visual-shot">Scene 3 — Mascara scream</div><div class="visual-desc">Pixar 3D. Bathroom mirror, one eye perfect, one eye smudged, head thrown back mid-scream, hands gripping counter. Text overlay: "crash out."</div></div>
+          <div class="visual-item"><div class="visual-shot">Scene 4 — White pants</div><div class="visual-desc">Pixar 3D. Standing in public in white trousers, looking down in frozen horror, hands out, face pale with dread. Text overlay: "crash out."</div></div>
+          <div class="visual-item"><div class="visual-shot">Scene 5 — Cloud (✓ generated)</div><div class="visual-desc">Pixar 3D. Woman floating peacefully on giant fluffy cloud, golden dreamy sky, complete bliss. Text overlay: "one thing that never lets you down." then "month after month."</div></div>
+          <div class="visual-item"><div class="visual-shot">Scene 6 — Product shot</div><div class="visual-desc">Clean product flat lay or pack shot. Femmé Organic logo + "Shop now →"</div></div>
+          <div class="visual-item"><div class="visual-shot">Text overlays</div><div class="visual-desc">"crash out." appears on each scene in bold. Font should feel meme-native — big, white, slight drop shadow. Resolution scenes switch to softer text style to signal the mood shift.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(15,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(15,'done')">Mark Done ✓</button>
+    </div>
+  </div>
+
   <!-- BRIEF 08 -->
   <div class="brief-card" id="bc-8">
     <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
@@ -3300,7 +3360,7 @@ function renderClarity(data){
 // ══════════════════════════════════════════════════════
 const BRIEF_STAGE = {
   1:'TOF',2:'TOF',3:'TOF',4:'TOF',5:'TOF',6:'TOF',7:'TOF',
-  8:'MOF',9:'MOF',10:'MOF',11:'MOF',12:'MOF',13:'TOF',14:'MOF'
+  8:'MOF',9:'MOF',10:'MOF',11:'MOF',12:'MOF',13:'TOF',14:'MOF',15:'TOF'
 };
 const BRIEF_TITLES = {
   1:'Why Are Companies Allowed To Sell Us This',
@@ -3316,9 +3376,10 @@ const BRIEF_TITLES = {
   11:'The Guarantee — 30 Days, No Risk',
   12:'Pad Review Compilation — Real Results',
   13:'The Founder Switch Story — TOF',
-  14:'The Founder Switch Story — MOF'
+  14:'The Founder Switch Story — MOF',
+  15:'Crash Out — Pixar 3D Animated'
 };
-let briefStatuses = load('fe_brief_b01',{1:'todo',2:'todo',3:'todo',4:'todo',5:'todo',6:'todo',7:'todo',8:'todo',9:'todo',10:'todo',11:'todo',12:'todo',13:'todo',14:'todo'});
+let briefStatuses = load('fe_brief_b01',{1:'todo',2:'todo',3:'todo',4:'todo',5:'todo',6:'todo',7:'todo',8:'todo',9:'todo',10:'todo',11:'todo',12:'todo',13:'todo',14:'todo',15:'todo'});
 function setBriefStatus(n,s){
   if(s==='done' && briefStatuses[n]!=='done'){
     briefStatuses[n]={status:'done',doneAt:new Date().toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})};
@@ -3331,7 +3392,7 @@ function applyBriefStatuses(){
   const archiveList=document.getElementById('brief-archive-list');
   const archiveSection=document.getElementById('brief-archive');
   const archiveItems=[];
-  [1,2,3,4,5,6,7,8,9,10,11,12,13,14].forEach(n=>{
+  [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].forEach(n=>{
     const entry=briefStatuses[n];
     const s=typeof entry==='object'?entry.status:(entry||'todo');
     const card=document.getElementById('bc-'+n);
