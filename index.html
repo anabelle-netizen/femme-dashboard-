@@ -3239,10 +3239,90 @@ const SEED_CRO = [
    location:'Shopify → Pages → Better Period Care → between ingredients section and Build Your Bundle',
    why:"Zach Miller flagged this 24 Apr — the page jumps from problem (chlorine bleach) straight to CTA with no bridge. Reader is still in fear mode when the buy prompt hits. Adding a solution beat lifts CVR by completing the problem → solution → offer arc.",
    oldCopy:'Scare tactics section → straight to Build Your Bundle',
-   newCopy:"Heading: We leave all of it out.\n\nFemmé Organic pads are made with certified organic cotton — no chlorine bleach, no synthetic fragrance, no plastic mesh. Just the protection you need, without anything your body doesn't.\n\nSub-line: 30-Day Body-Safe Guarantee. Free shipping over $X."}
+   newCopy:"Heading: We leave all of it out.\n\nFemmé Organic pads are made with certified organic cotton — no chlorine bleach, no synthetic fragrance, no plastic mesh. Just the protection you need, without anything your body doesn't.\n\nSub-line: 30-Day Body-Safe Guarantee. Free shipping over $X."},
+
+  // ── PDP AUDIT — 29 Apr 2026 ──────────────────────────
+  {id:'c11',priority:'p1',done:false,doneAt:'',
+   title:'All PDPs — add 30-day money-back guarantee near buy button',
+   location:'Shopify → Themes → Customise → Product pages → Add text section above or below ATC button',
+   why:'Cold Google Ads traffic will not buy from a brand they have never heard of without a safety net. This single line removes the biggest purchase barrier for every product page.',
+   oldCopy:'(No guarantee visible on any product page)',
+   newCopy:'30-day money-back guarantee. If you don\'t love it, we\'ll refund you. No questions asked.'},
+
+  {id:'c12',priority:'p1',done:false,doneAt:'',
+   title:'All PDPs — add trust line directly below product title',
+   location:'Shopify → Themes → Customise → Product pages → Subtitle or description opening line',
+   why:'A cold Google Ads visitor lands on a product page and needs instant confirmation they are in the right place. This line does that in under 2 seconds.',
+   oldCopy:'(No trust line below title on any page)',
+   newCopy:'100% organic cotton. No bleach, no synthetics, no chemicals. Trusted by 10,000+ women.'},
+
+  {id:'c13',priority:'p1',done:false,doneAt:'',
+   title:'Regular Pads PDP — rewrite hero headline',
+   location:'Shopify → Products → Regular Organic Cotton Pads → Page title / hero description',
+   why:'Current headline is generic and identical to conventional brand messaging. Cold Google traffic has zero reason to switch based on this. Needs to lead with the reason to switch.',
+   oldCopy:'Soft, Breathable Comfort That Stays in Place',
+   newCopy:'Organic Pads Without the Chemicals Your Body\'s Been Absorbing\n\nLight to medium flow. Absorbs 41ml. Stays in place. No plastic, no bleach, no irritation.\nIf you bleed heavier — our Super pads absorb 61ml.'},
+
+  {id:'c14',priority:'p1',done:false,doneAt:'',
+   title:'Super Pads PDP — rewrite hero headline + add flow guide',
+   location:'Shopify → Products → Super Organic Cotton Pads → Page title / hero description',
+   why:'Current headline doesn\'t speak to the heavy flow customer or give them the specs they need to feel confident. Missing the absorbency numbers that make the upgrade decision obvious.',
+   oldCopy:'Because leaks shouldn\'t control your day',
+   newCopy:'Heavy Flow? These Are the Organic Pads That Actually Hold Up.\n\nMedium to heavy flow. Absorbs 61ml. Water-resistant back sheet. Longer length for full coverage.\nNo leaks. No chemicals. No compromises.'},
+
+  {id:'c15',priority:'p2',done:false,doneAt:'',
+   title:'Super Pads + Super Tampons — update price to $29.99',
+   location:'Shopify → Products → Super Organic Cotton Pads + Super Organic Cotton Tampons → Pricing',
+   why:'Regular and Super are the same price on both pads and tampons. This creates decision paralysis — if they\'re identical in price, customers default to Regular (more reviews, lower risk). A small premium on Super creates a logical upgrade path and signals quality tier.',
+   oldCopy:'Super Pads: $27.99 / Super Tampons: $27.99',
+   newCopy:'Super Pads: $29.99 / Super Tampons: $29.99'},
+
+  {id:'c16',priority:'p1',done:false,doneAt:'',
+   title:'Regular Tampons PDP — rewrite headline + add TSS safety section',
+   location:'Shopify → Products → Regular Organic Cotton Tampons → Title + description (add section above ATC)',
+   why:'TSS fear is the #1 reason people bounce from tampon pages. There is zero safety information on the current page. Cold Google traffic landing here will leave without converting.',
+   oldCopy:'(No TSS safety information anywhere on the page)',
+   newCopy:'Headline: Organic Cotton Tampons. No Synthetics, No Bleach, No TSS Risk.\n\nSafety section above buy button:\nWhy organic tampons are safer — Conventional tampons contain rayon, bleach and synthetic fibres — the materials linked to TSS risk and irritation. Ours are 100% organic cotton. Nothing else.\nChange every 4–6 hours. Max wear 8 hours.'},
+
+  {id:'c17',priority:'p1',done:false,doneAt:'',
+   title:'Super Tampons PDP — rewrite headline + add TSS safety section',
+   location:'Shopify → Products → Super Organic Cotton Tampons → Title + description (add section above ATC)',
+   why:'Same TSS issue as regular tampons. Heavy flow customers are even more anxious about safety — this page needs to address it directly or they will leave.',
+   oldCopy:'(No TSS safety information anywhere on the page)',
+   newCopy:'Headline: Heavy Flow Tampons. 100% Organic Cotton. No Leaks, No Chemicals.\n\nSafety section above buy button: (same as Regular Tampons safety copy)\n\nAdd below: Absorbs 12–15ml. Designed for medium to heavy flow days. Same organic cotton. More protection.'},
+
+  {id:'c18',priority:'p2',done:false,doneAt:'',
+   title:'Intimate Wash PDP — rewrite hero headline + add bridging copy',
+   location:'Shopify → Products → Intimate Wash → Title / description opening',
+   why:'Current headline is functional but generic. Cold Google traffic doesn\'t immediately understand why this is different from any other intimate wash. Needs a differentiating opener and a bridge line that connects it to the Femmé routine.',
+   oldCopy:'pH-Balanced & Fragrance-Free',
+   newCopy:'Headline: Intimate Wash That Actually Belongs Near Your Body\n\nBelow headline: No sulphates, no alcohol, no synthetic fragrances. pH-balanced for your most sensitive skin. Dermatologist tested. Formulated in Australia. One bottle = approx. 4 months of use.\n\nAbove buy button: If you\'ve switched your period products to organic — this is the next step.'},
+
+  {id:'c19',priority:'p1',done:false,doneAt:'',
+   title:'Pimple Patches PDP — fix "no reviews" showing + rewrite headline',
+   location:'Step 1: Apps → Judge.me → import reviews to Pimple Patches. Step 2: Products → Pimple Patches → Title/description',
+   why:'"No reviews" above the fold is a conversion killer — it signals no one has bought it. Fix reviews first. Then update the headline to connect to the cycle angle which is the strongest differentiator vs generic patch brands.',
+   oldCopy:'Shows "no reviews" + generic skincare headline',
+   newCopy:'Step 1: Import all pimple patch reviews from Judge.me immediately.\n\nHeadline: Pimple Patches That Work With Your Cycle, Not Against It\n\nBelow headline: Hormonal breakouts are different. These patches are made for them — ultra-thin, fast-acting, biodegradable. 100% free from harsh chemicals.\n\nAbove buy button: 36 patches. Two sizes. Day and night use. Add to your Femmé routine — or try it on its own.'},
+
+  {id:'c20',priority:'p2',done:false,doneAt:'',
+   title:'Regular vs Super — add flow guide to collection pages',
+   location:'Shopify → Themes → Customise → Collection pages → Add product card subtitle or banner',
+   why:'On collection pages users see Regular and Super side by side with no way to differentiate without clicking. Adding absorbency specs to product cards cuts decision friction and reduces bounce from the collection page.',
+   oldCopy:'(No flow/absorbency info on collection page product cards)',
+   newCopy:'Regular card: Light to medium flow • Absorbs 41ml\nSuper card: Medium to heavy flow • Absorbs 61ml'}
 ];
 
-let cro = load('fe_cro_v3', SEED_CRO);
+// Merge: preserve existing done states, add any new items from SEED_CRO
+const _saved = load('fe_cro_v3', null);
+let cro;
+if(_saved && Array.isArray(_saved)){
+  const _map = Object.fromEntries(_saved.map(c=>[c.id,c]));
+  cro = SEED_CRO.map(seed => _map[seed.id] ? {...seed, done:_map[seed.id].done, doneAt:_map[seed.id].doneAt} : seed);
+} else {
+  cro = JSON.parse(JSON.stringify(SEED_CRO));
+}
+save('fe_cro_v3', cro);
 
 // ══════════════════════════════════════════════════════
 // NAV — single page scroll, anchor links handle navigation
