@@ -3158,20 +3158,21 @@ function save(k,d){localStorage.setItem(k,JSON.stringify(d));}
 // ══════════════════════════════════════════════════════
 // ── JDOG_DATA_START ──
 const JDOG = {
-  date: '29 Apr 2026',
-  cpa: 17.50, cpaAvg3d: 19.20, cpaTrend: 'down',
-  roas: 3.29, roasTrend: 'up',
-  cvr: 1.8, cvrTarget: 2.5,
-  spend: 148, purchases: 8,
-  netProfit: null,
-  read: "Account is in a much healthier place. Come Make A Pad recovered — $15.86 CPA, 3.29x ROAS, scaling well. Inside Your Pads is a second TOF winner at $20.71 CPA. MOF bench is now 6 ads deep — Family Story leading at 4.24x ROAS, strongest performer in the account. AOV sitting at $55.28, needs to push to $65+ via bundle upsells. Creative priority: new TOF hooks to keep bench fresh while these two scale.",
-  readDate: '29 Apr 2026',
+  date: '28 Apr 2026',
+  cpa: 17.51, cpaAvg3d: 17.66, cpaTrend: 'down',
+  roas: 3.69, roasTrend: 'up',
+  cvr: 3.13, cvrTarget: 2.5,
+  spend: 149.96, purchases: 10,
+  netProfit: 101.39,
+  aov: 55.28, sessions: 320,
+  read: "Good day — $101 profit, CPA $17.51, ROAS 3.69x. Come Make A Pad is the account engine at $15.86 CPA, scale it 25-30% today. Family Story MOF is the best performer in the account at 4.24x ROAS — duplicate and test 2 variations before it fatigues. Inside Your Pads needs to be paused — looks ok at $20 CPA on 1-day but 7-day CPA is $41.86, trending red fast. Biggest structural problem: RPV has collapsed from $1.73 to $1.04 over 14 days and AOV is below target at $48.66 on 7-day. That's a store problem not an ads problem — the bundle upsells aren't converting.",
+  readDate: '28 Apr 2026',
   actions: [
-    {label:'Scale: Come Make A Pad — $15.86 CPA, 3.29x ROAS', type:'good'},
-    {label:'Scale: Family Story MOF — 4.24x ROAS, best in account', type:'good'},
-    {label:'Watch: Inside Your Pads — $20.71 CPA, second TOF winner', type:'good'},
-    {label:'Watch: Tampon Reviews MOF — hold rate dropping, monitor', type:'urgent'},
-    {label:'Priority: new TOF hooks to back up two scaling ads', type:'urgent'}
+    {label:'Scale now: Come Make A Pad TOF — increase budget $20-25/day', type:'good'},
+    {label:'Pause now: Inside Your Pads — 7d CPA $41.86, trending red', type:'urgent'},
+    {label:'Duplicate: Family Story MOF — hero dependency risk, test 2 variations', type:'urgent'},
+    {label:'Watch: Tampon Reviews — 34% hook, 0 purchases, needs more spend data', type:'good'},
+    {label:'Fix store: RPV collapsing $1.73 → $1.04 over 14 days — bundle upsells not converting', type:'urgent'}
   ]
 };
 // ── JDOG_DATA_END ──
