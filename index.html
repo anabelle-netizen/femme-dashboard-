@@ -286,7 +286,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
   <button class="nav-tab active" onclick="showPage('pulse',this)">Pulse</button>
   <button class="nav-tab" onclick="showPage('lab',this)">Creative Lab</button>
   <button class="nav-tab" onclick="showPage('brief',this)">Creative Brief</button>
-  <button class="nav-tab" onclick="showPage('site',this)">Site Fixes <span id="nav-site-count" style="font-size:10px;opacity:.6;"></span></button>
   <div class="nav-right">
     <span class="nav-sync" id="nav-sync">Synced 12:22</span>
     <span class="nav-date" id="nav-date"></span>
@@ -3159,19 +3158,20 @@ function save(k,d){localStorage.setItem(k,JSON.stringify(d));}
 // ══════════════════════════════════════════════════════
 // ── JDOG_DATA_START ──
 const JDOG = {
-  date: '24 Apr 2026',
-  cpa: 28.93, cpaAvg3d: 45.51, cpaTrend: 'up',
-  roas: 2.18, roasTrend: 'stable',
-  cvr: 0.9, cvrTarget: 2.5,
-  spend: 86.78, purchases: 3,
-  netProfit: 36.90,
-  read: "Come Make A Pad was green at $23 CPA for 14 days — yesterday it crashed to $43. Classic fatigue. It's the only TOF ad still running, which means when it dies there's nothing left. ASC is the bright spot — CPA $20.08, ROAS 3.58x, the only profitable ad right now. Film Cut It Open and Gynaecologist today before TOF goes dark.",
-  readDate: '24 Apr 2026',
+  date: '29 Apr 2026',
+  cpa: 17.50, cpaAvg3d: 19.20, cpaTrend: 'down',
+  roas: 3.29, roasTrend: 'up',
+  cvr: 1.8, cvrTarget: 2.5,
+  spend: 148, purchases: 8,
+  netProfit: null,
+  read: "Account is in a much healthier place. Come Make A Pad recovered — $15.86 CPA, 3.29x ROAS, scaling well. Inside Your Pads is a second TOF winner at $20.71 CPA. MOF bench is now 6 ads deep — Family Story leading at 4.24x ROAS, strongest performer in the account. AOV sitting at $55.28, needs to push to $65+ via bundle upsells. Creative priority: new TOF hooks to keep bench fresh while these two scale.",
+  readDate: '29 Apr 2026',
   actions: [
-    {label:'Film today: Cut It Open', type:'urgent'},
-    {label:'Film today: Gynaecologist Told Me', type:'urgent'},
-    {label:'Keep budget: ASC Broad — CPA $20.08', type:'good'},
-    {label:'Watch: Come Make A Pad Copy 2 — fatigue confirmed', type:'urgent'}
+    {label:'Scale: Come Make A Pad — $15.86 CPA, 3.29x ROAS', type:'good'},
+    {label:'Scale: Family Story MOF — 4.24x ROAS, best in account', type:'good'},
+    {label:'Watch: Inside Your Pads — $20.71 CPA, second TOF winner', type:'good'},
+    {label:'Watch: Tampon Reviews MOF — hold rate dropping, monitor', type:'urgent'},
+    {label:'Priority: new TOF hooks to back up two scaling ads', type:'urgent'}
   ]
 };
 // ── JDOG_DATA_END ──
@@ -3459,7 +3459,17 @@ const BRIEF_TITLES = {
   14:'The Founder Switch Story — MOF',
   15:'Crash Out — Pixar 3D Animated'
 };
-let briefStatuses = load('fe_brief_b01',{1:'todo',2:'todo',3:'todo',4:'todo',5:'todo',6:'todo',7:'todo',8:'todo',9:'todo',10:'todo',11:'todo',12:'todo',13:'todo',14:'todo',15:'todo'});
+let briefStatuses = load('fe_brief_b01',{
+  1:'todo',2:'todo',3:'todo',4:'todo',5:'todo',6:'todo',7:'todo',
+  8:{status:'done',doneAt:'29 Apr 2026'},
+  9:'todo',
+  10:{status:'done',doneAt:'29 Apr 2026'},
+  11:'todo',
+  12:{status:'done',doneAt:'29 Apr 2026'},
+  13:'filming',
+  14:{status:'done',doneAt:'29 Apr 2026'},
+  15:'todo'
+});
 function setBriefStatus(n,s){
   if(s==='done' && briefStatuses[n]!=='done'){
     briefStatuses[n]={status:'done',doneAt:new Date().toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})};
