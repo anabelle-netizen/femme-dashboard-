@@ -31,7 +31,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
 .wrap{max-width:1100px;margin:0 auto;padding:0 24px 80px;}
 
 /* SECTION HEADERS */
-.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;margin-top:28px;}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;margin-top:20px;}
 .sh:first-child{margin-top:0;}
 .sh-title{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--subtle);}
 .sh-right{font-size:11px;color:var(--subtle);}
@@ -119,20 +119,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
 .form-acts{display:flex;gap:8px;margin-top:12px;}
 
 /* BRIEF CARDS */
-.brief-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--r);margin-bottom:14px;overflow:hidden;}
+.brief-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--r);margin-bottom:5px;overflow:hidden;}
 .brief-card.filming{border-left-color:var(--amber);}
-.brief-card.done{display:none;}
+.brief-card.done{opacity:0.5;}
 .brief-card .brief-sections{display:none;}
 .brief-card .brief-footer{display:none;}
 .brief-card .brief-why{display:none;}
 .brief-card.expanded .brief-sections{display:block;}
 .brief-card.expanded .brief-footer{display:flex;}
 .brief-card.expanded .brief-why{display:block;}
-.brief-top{cursor:pointer;user-select:none;}
+.brief-top{cursor:pointer;user-select:none;display:flex;align-items:center;gap:8px;padding:9px 14px;flex-wrap:wrap;}
 .brief-top:hover{background:var(--bl);}
-.brief-expand-arrow{float:right;font-size:11px;color:var(--subtle);transition:transform .2s;}
+.brief-expand-arrow{float:none;order:99;flex-shrink:0;font-size:10px;color:var(--subtle);transition:transform .2s;}
 .brief-card.expanded .brief-expand-arrow{transform:rotate(180deg);}
-.brief-archive-section{margin-top:28px;}
+.brief-archive-section{margin-top:20px;}
 .brief-archive-header{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--subtle);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--bl);}
 .brief-archive-item{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:var(--r);padding:14px 18px;margin-bottom:8px;display:flex;align-items:center;gap:14px;}
 .brief-archive-num{font-size:10px;font-weight:900;letter-spacing:.1em;color:var(--green);background:var(--green-s);border-radius:4px;padding:2px 8px;flex-shrink:0;}
@@ -140,23 +140,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
 .brief-archive-date{font-size:11px;color:var(--muted);flex-shrink:0;}
 .brief-archive-lab{font-size:11px;font-weight:700;color:var(--accent);cursor:pointer;flex-shrink:0;text-decoration:none;}
 .brief-archive-lab:hover{text-decoration:underline;}
-.brief-top{padding:20px 22px 16px;}
-.brief-num-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
-.brief-num{font-size:10px;font-weight:900;letter-spacing:.1em;color:var(--accent);background:var(--accent-s);border-radius:4px;padding:2px 8px;}
-.brief-status{font-size:10px;font-weight:700;padding:2px 10px;border-radius:20px;}
+.brief-num-row{display:flex;align-items:center;gap:6px;margin:0;flex-shrink:0;}
+.brief-num{font-size:9px;font-weight:900;letter-spacing:.1em;color:var(--accent);background:var(--accent-s);border-radius:4px;padding:2px 7px;}
+.brief-status{font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;}
 .bs-todo{background:var(--bl);color:var(--muted);}
 .bs-filming{background:var(--amber-s);color:var(--amber);}
 .bs-done{background:var(--green-s);color:var(--green);}
-.brief-title{font-size:16px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px;line-height:1.3;}
-.brief-why{font-size:12.5px;color:var(--muted);line-height:1.55;padding:10px 13px;background:var(--bg);border-radius:var(--r-sm);border-left:2px solid var(--accent);}
+.brief-title{font-size:13px;font-weight:700;letter-spacing:-.01em;flex:1;min-width:0;margin:0;line-height:1.3;}
+.brief-why{font-size:12px;color:var(--muted);line-height:1.5;padding:8px 10px;background:var(--bg);border-radius:var(--r-sm);border-left:2px solid var(--accent);flex-basis:100%;margin-top:6px;}
 .brief-sections{border-top:1px solid var(--bl);}
 .section{border-bottom:1px solid var(--bl);}
 .section:last-child{border-bottom:none;}
-.sec-toggle{width:100%;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;background:none;border:none;cursor:pointer;font-size:12px;font-weight:700;color:var(--muted);text-align:left;transition:background .1s;}
+.sec-toggle{width:100%;padding:9px 14px;display:flex;align-items:center;justify-content:space-between;background:none;border:none;cursor:pointer;font-size:11px;font-weight:700;color:var(--muted);text-align:left;transition:background .1s;}
 .sec-toggle:hover{background:var(--bg);}
 .sec-toggle .arr{font-size:10px;transition:transform .2s;color:var(--subtle);}
 .sec-toggle.open .arr{transform:rotate(180deg);}
-.sec-body{display:none;padding:0 22px 16px;}
+.sec-body{display:none;padding:0 14px 12px;}
 .sec-body.open{display:block;}
 .cap-field{margin-bottom:10px;}
 .cap-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--subtle);margin-bottom:5px;}
@@ -174,7 +173,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
 .visual-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
 .visual-shot{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:3px;}
 .visual-desc{font-size:13px;color:var(--text);line-height:1.5;}
-.brief-footer{padding:12px 22px;border-top:1px solid var(--bl);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.brief-footer{padding:9px 14px;border-top:1px solid var(--bl);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .inspo-link{font-size:12px;font-weight:700;color:var(--blue);text-decoration:none;margin-left:auto;}
 .inspo-link:hover{text-decoration:underline;}
 
@@ -227,30 +226,30 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
 .btn-restore:hover{text-decoration:underline;}
 
 /* CREATIVE LAB */
-.lab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+.lab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
 .lab-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
-.lab-card-top{padding:16px 18px 12px;}
-.lab-ad-name{font-size:13px;font-weight:800;color:var(--text);margin-bottom:10px;line-height:1.3;}
-.lab-hook{background:var(--bg);border-left:3px solid var(--accent);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:8px 12px;margin-bottom:12px;}
-.lab-hook-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin-bottom:3px;}
-.lab-hook-text{font-size:12.5px;font-style:italic;color:var(--text);line-height:1.5;}
-.lab-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
-.lab-pill{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;background:var(--bl);color:var(--muted);}
+.lab-card-top{padding:11px 13px 9px;}
+.lab-ad-name{font-size:12px;font-weight:800;color:var(--text);margin-bottom:7px;line-height:1.3;}
+.lab-hook{background:var(--bg);border-left:3px solid var(--accent);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:6px 10px;margin-bottom:9px;}
+.lab-hook-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin-bottom:2px;}
+.lab-hook-text{font-size:11.5px;font-style:italic;color:var(--text);line-height:1.45;}
+.lab-meta{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;}
+.lab-pill{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--bl);color:var(--muted);}
 .lab-pill.tof{background:var(--blue-s);color:var(--blue);}
 .lab-pill.mof{background:var(--accent-s);color:var(--accent);}
 .lab-pill.bof{background:var(--green-s);color:var(--green);}
 .lab-metrics{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--bl);border-bottom:1px solid var(--bl);}
-.lab-metric{padding:10px 12px;text-align:center;border-right:1px solid var(--bl);}
+.lab-metric{padding:7px 8px;text-align:center;border-right:1px solid var(--bl);}
 .lab-metric:last-child{border-right:none;}
-.lab-metric-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--subtle);margin-bottom:3px;}
-.lab-metric-val{font-size:16px;font-weight:900;letter-spacing:-.01em;}
+.lab-metric-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--subtle);margin-bottom:2px;}
+.lab-metric-val{font-size:13px;font-weight:900;letter-spacing:-.01em;}
 .lab-metric-val.red{color:var(--red);}
 .lab-metric-val.amber{color:var(--amber);}
 .lab-metric-val.green{color:var(--green);}
-.lab-read{padding:10px 18px 14px;display:flex;gap:8px;align-items:flex-start;}
+.lab-read{padding:8px 13px 11px;display:flex;gap:7px;align-items:flex-start;}
 .lab-read-icon{font-size:10px;font-weight:900;color:var(--accent);margin-top:2px;flex-shrink:0;}
-.lab-read-text{font-size:12px;color:var(--muted);line-height:1.55;}
-.lab-status-bar{padding:8px 18px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--bl);}
+.lab-read-text{font-size:11px;color:var(--muted);line-height:1.5;}
+.lab-status-bar{padding:6px 13px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--bl);}
 .lab-status-bar .cr-tag{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;}
 
 /* HOOK BANK */
@@ -287,7 +286,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
   <button class="nav-tab" onclick="showPage('lab',this)">Creative Lab</button>
   <button class="nav-tab" onclick="showPage('brief',this)">Creative Brief</button>
   <div class="nav-right">
-    <span class="nav-sync" id="nav-sync">Synced 12:22</span>
+    <span class="nav-sync" id="nav-sync">Synced 15:48</span>
     <span class="nav-date" id="nav-date"></span>
   </div>
 </nav>
@@ -308,7 +307,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
     <div class="metric-cell">
       <div class="mc-label">AOV — Yesterday</div>
       <div class="mc-val" id="m-aov">—</div>
-      <div class="mc-delta" id="m-aov-d">Target $52+</div>
+      <div class="mc-delta" id="m-aov-d">Target $60+</div>
     </div>
     <div class="metric-cell">
       <div class="mc-label">RPV — Yesterday</div>
@@ -333,13 +332,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
       <img src="claudio_icon.png" onerror="this.style.display='none';this.parentElement.textContent='C'">
     </div>
     <div style="flex:1">
-      <div class="read-label">Claudio's read — 27 Apr 2026</div>
-      <div class="read-text" id="read-text">Numbers are looking much healthier today — CPA $14.33, profit $101.91, spend $124.90. Best day in a while. The account is working but it's fragile — still running a thin creative bench with no new TOF ads live yet. ASC Broad is holding well, keep budget there. The priority this week is getting new creative filmed and tested before momentum stalls. You Will Switch By The End Of This Video is the brief to film first — strongest concept, clearest visual, most likely to become the next winner.</div>
+      <div class="read-label">Claudio's read — 11 May 2026 (data: 10 May)</div>
+      <div class="read-text" id="read-text">Family Story is carrying the account and the data is telling us something important — the brand story format converts better than the ingredient reveals. 45.1% hold, $16 CPA, it's the only ad in profit. The ingredient hooks get attention (Fire Match at 31.7%) but they're not closing. The fix isn't more ingredient ads — it's more emotional investment before the ask. A new Family Story variation using the proven "taking on a billion dollar industry" hook is the #1 creative priority this week. Come Make A Tampon is done — pause it today.</div>
       <div class="read-actions">
-        <span class="read-action urgent">TOF CPA $45.51 🔴 — 1 ad, fatigue confirmed</span>
-        <span class="read-action good">ASC CPA $20.64 — stable, trend improving</span>
-        <span class="read-action urgent">Film today: Cut It Open → Gynaecologist</span>
-        <span class="read-action">MOF not active — later problem</span>
+        <span class="read-action good">Film: New Family Story — "taking on a billion dollar industry" variation</span>
+        <span class="read-action urgent">Pause: Come Make A Tampon — $132 CPA (3d), 0 conversions. Thomas to action now</span>
+        <span class="read-action good">Scale: Family Story ASC — 25-30% budget increase</span>
+        <span class="read-action urgent">Watch: Come Make A Pad — yellow at $28.75, 7d trending red</span>
+        <span class="read-action good">Fix: Fire Match — rebuild body with symptom bridge, hook already works at 31.7%</span>
       </div>
     </div>
   </div>
@@ -385,7 +385,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
       <div style="background:rgba(134,239,172,.08);border:1px solid #86efac;border-radius:var(--r-sm);padding:12px;">
         <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin-bottom:4px;">TOF — Top of Funnel</div>
-        <div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">10 briefs ready</div>
+        <div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">17 briefs · 3 film now</div>
         <div style="font-size:11px;color:rgba(255,255,255,.5);">Interruption + awareness. Film these first.</div>
       </div>
       <div style="background:rgba(134,239,172,.08);border:1px solid #86efac;border-radius:var(--r-sm);padding:12px;">
@@ -402,13 +402,461 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--text);heigh
   </div>
 
   <!-- TOF SECTION HEADER -->
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--bl);">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--bl);">
     <span style="font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;background:var(--accent-s);color:var(--accent);border-radius:4px;padding:3px 10px;">TOF</span>
     <span style="font-size:13px;font-weight:800;">Top of Funnel — Interruption &amp; Awareness</span>
     <span style="font-size:11px;color:var(--muted);margin-left:auto;">Unaware audience. Hook first, brand second.</span>
   </div>
 
-  <!-- BRIEF 01 -->
+    <!-- FILM NOW SECTION HEADER -->
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #86efac;">
+    <span style="font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;background:#f0fdf4;color:#16a34a;border-radius:4px;padding:3px 10px;">Film Now</span>
+    <span style="font-size:13px;font-weight:800;">Priority — Film This Week</span>
+    <span style="font-size:11px;color:var(--muted);margin-left:auto;">Based on current account data</span>
+  </div>
+
+<!-- BRIEF 18 — TOF -->
+  <div class="brief-card" id="bc-18" style="border-left-color:#2563eb;">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
+      <div class="brief-num-row">
+        <span class="brief-num" style="color:#2563eb;background:#eff6ff;">18</span>
+        <span class="brief-status bs-todo" id="bs-18">To Film</span>
+        <span style="font-size:9px;font-weight:700;color:#2563eb;background:#eff6ff;border-radius:20px;padding:2px 7px;margin-left:4px;">TOF</span>
+      </div>
+      <div class="brief-title">Let's Bake A Pad</div>
+      <div class="brief-why">Extension of the Come Make A franchise — same shock-reveal format, completely fresh execution. The recipe/baking angle makes the ingredients expose more visceral: you're literally watching someone add bleach, plastic, and synthetic fragrance into a "recipe." Come Make A Pad is at $97 CPA and needs replacing. This is the next TOF creative to test.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption — ready to paste <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="cap-field"><div class="cap-label">Primary Text</div><div class="cap-text" id="b18c1">I decided to bake a conventional pad. You know, like a recipe.
+
+Chlorine bleach. Synthetic polymer gel. Plastic fibres. Artificial fragrance — which legally hides up to 3,000 undisclosed chemicals.
+
+That's what's sitting against your most absorptive skin. Every month.
+
+Femmé is certified organic cotton. One ingredient. Link below 👇</div><button class="copy-btn" onclick="copyEl('b18c1')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Headline</div><div class="cap-text" id="b18c2">What's actually in your pad? We baked one.</div><button class="copy-btn" onclick="copyEl('b18c2')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Description</div><div class="cap-text" id="b18c3">Certified organic cotton. Nothing else.</div><button class="copy-btn" onclick="copyEl('b18c3')">Copy ↗</button></div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Script — read aloud as voiceover <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="script-lines">
+            <div class="sl sl-d">[OPEN: mini oven on bench. Hands place an empty baking tray inside. Camera pulls back to show ingredients lined up beside it.]</div>
+            <div class="sl sl-s">I wanted to know what was actually in my pad. So I made one.</div>
+            <div class="sl sl-d">[Hands pick up first ingredient — small bottle labelled CHLORINE BLEACH. Add to tray.]</div>
+            <div class="sl sl-s">Chlorine bleach — used to whiten the fibres.</div>
+            <div class="sl sl-d">[Add second — SYNTHETIC POLYMER GEL.]</div>
+            <div class="sl sl-s">Synthetic polymer gel — the absorbent core. Petroleum-derived.</div>
+            <div class="sl sl-d">[Add third — PLASTIC FIBRES.]</div>
+            <div class="sl sl-s">Plastic fibres — the top sheet that touches your skin.</div>
+            <div class="sl sl-d">[Add fourth — ARTIFICIAL FRAGRANCE.]</div>
+            <div class="sl sl-s">And fragrance. Which is a legal loophole — one word that can hide up to 3,000 undisclosed chemicals.</div>
+            <div class="sl sl-d">[Close oven door. Timer appears on screen. Ticks down 5 seconds.]</div>
+            <div class="sl sl-s">That's what's sitting against your most absorptive skin. Every single month.</div>
+            <div class="sl sl-d">[Pull out conventional pad. Place on bench. Hold 2 seconds.]</div>
+            <div class="sl sl-d">[CUT: Femmé pad on clean bench — single ingredient label facing camera.]</div>
+            <div class="sl sl-s">Femmé is one ingredient. Certified organic cotton. Nothing baked in.</div>
+            <span class="sl-tag">On-screen overlays</span>
+            <div class="sl sl-o">Chlorine bleach ✗ · Synthetic polymer gel ✗ · Plastic fibres ✗ · Fragrance (= 3,000 chemicals?) ✗</div>
+            <div class="sl sl-o">Against your most absorptive skin. Every month.</div>
+            <div class="sl sl-o">Femmé: certified organic cotton. One ingredient. ✓</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Visual Direction <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Opening (0–3 sec)</div><div class="visual-desc">Mini oven on a clean white bench. Hands open the oven door. Small labelled ingredient bottles lined up beside it. Camera holds — this is the scroll-stop. No words for the first 2 seconds.</div></div>
+          <div class="visual-item"><div class="visual-shot">Ingredient sequence</div><div class="visual-desc">Hands add each ingredient one at a time into the tray. Each bottle has a clear handwritten label. Text overlay appears as each ingredient drops in. Quick pace — one ingredient every 2–3 seconds.</div></div>
+          <div class="visual-item"><div class="visual-shot">Oven moment</div><div class="visual-desc">Close oven door. Overhead shot of oven. On-screen timer counts down. Cut to hand pulling out conventional pad on tray. Hold 2 seconds — no words.</div></div>
+          <div class="visual-item"><div class="visual-shot">Brand reveal</div><div class="visual-desc">Cut to Femmé pad on clean bench. Flip to show clean label. Single ingredient visible. Hold 3 seconds.</div></div>
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. White bench. Natural light. Bold text overlays (CapCut). Vertical 9:16. ~35 seconds. Destination: TOF landing page.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(18,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(18,'done')">Mark Done ✓</button>
+    </div>
+  </div>
+
+  
+<!-- BRIEF 19 — TOF -->
+  <div class="brief-card" id="bc-19" style="border-left-color:#2563eb;">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
+      <div class="brief-num-row">
+        <span class="brief-num" style="color:#2563eb;background:#eff6ff;">19</span>
+        <span class="brief-status bs-todo" id="bs-19">To Film</span>
+        <span style="font-size:9px;font-weight:700;color:#2563eb;background:#eff6ff;border-radius:20px;padding:2px 7px;margin-left:4px;">TOF</span>
+      </div>
+      <div class="brief-title">Let's Bake A Tampon</div>
+      <div class="brief-why">Same format as Brief 18 but tampon-specific. Come Make A Tampon is the account's current best performer at $12.76 CPA — this is the freshest variation of that winning concept. Film both Bake briefs in the same session, same setup.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption — ready to paste <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="cap-field"><div class="cap-label">Primary Text</div><div class="cap-text" id="b19c1">I decided to bake a conventional tampon. Like a recipe.
+
+Rayon fibres — synthetic, petroleum-derived. Chlorine bleach — to whiten them. Dioxins — a byproduct that stays in the fibres. Fragrance — hiding chemicals nobody can name.
+
+This goes inside your body. Every month.
+
+Femmé is certified organic cotton. One ingredient. Link below 👇</div><button class="copy-btn" onclick="copyEl('b19c1')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Headline</div><div class="cap-text" id="b19c2">What's actually in your tampon? We baked one.</div><button class="copy-btn" onclick="copyEl('b19c2')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Description</div><div class="cap-text" id="b19c3">Certified organic cotton. Nothing else.</div><button class="copy-btn" onclick="copyEl('b19c3')">Copy ↗</button></div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Script — read aloud as voiceover <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="script-lines">
+            <div class="sl sl-d">[OPEN: mini oven on bench. Empty baking tray inside. Ingredient bottles lined up beside it.]</div>
+            <div class="sl sl-s">I wanted to know what was actually in my tampon. So I made one.</div>
+            <div class="sl sl-d">[Hands pick up RAYON FIBRES — add to tray.]</div>
+            <div class="sl sl-s">Rayon — synthetic fibres made from wood pulp. Petroleum-derived. Not cotton.</div>
+            <div class="sl sl-d">[Add CHLORINE BLEACH.]</div>
+            <div class="sl sl-s">Then bleached with chlorine — to make them look white and clean.</div>
+            <div class="sl sl-d">[Add DIOXINS label — small vial.]</div>
+            <div class="sl sl-s">That process leaves behind dioxins. Which are known carcinogens. Still in the fibres.</div>
+            <div class="sl sl-d">[Add ARTIFICIAL FRAGRANCE.]</div>
+            <div class="sl sl-s">And fragrance — one word hiding up to 3,000 undisclosed chemicals. On something that goes inside your body.</div>
+            <div class="sl sl-d">[Close oven. Timer ticks. Pull out conventional tampon on tray. Hold.]</div>
+            <div class="sl sl-s">This is inside your body. Every month. For days at a time.</div>
+            <div class="sl sl-d">[CUT: Femmé tampon on clean bench. Single ingredient label visible.]</div>
+            <div class="sl sl-s">Femmé is certified organic cotton. One ingredient. Nothing baked in.</div>
+            <span class="sl-tag">On-screen overlays</span>
+            <div class="sl sl-o">Rayon (synthetic) ✗ · Chlorine bleach ✗ · Dioxins ✗ · Fragrance (= ?) ✗</div>
+            <div class="sl sl-o">Inside your body. Every month.</div>
+            <div class="sl sl-o">Femmé: certified organic cotton. One ingredient. ✓</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Visual Direction <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Opening (0–3 sec)</div><div class="visual-desc">Same setup as Brief 18 — mini oven, white bench, labelled bottles. Film both briefs in the same session.</div></div>
+          <div class="visual-item"><div class="visual-shot">Ingredient sequence</div><div class="visual-desc">Rayon fibres (loose, slightly alarming looking) → Chlorine bleach bottle → small dioxins vial → fragrance bottle. Each added to tray with text overlay. Pace is quicker than the pad version — tampons go inside the body so the reveal feels more urgent.</div></div>
+          <div class="visual-item"><div class="visual-shot">Oven moment</div><div class="visual-desc">Close oven door. Timer counts down. Hand pulls out conventional tampon on tray — hold 3 seconds. Let the silence do the work.</div></div>
+          <div class="visual-item"><div class="visual-shot">Brand reveal</div><div class="visual-desc">Femmé tampon on clean bench. Cottonlock veil visible if possible. Clean label. Hold.</div></div>
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. White bench. Natural light. Bold text overlays. Vertical 9:16. ~35 seconds. Destination: TOF landing page.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(19,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(19,'done')">Mark Done ✓</button>
+    </div>
+  </div>
+
+
+  
+<!-- MOF BRIEF 17 -->
+  <div class="brief-card" id="bc-17" style="border-left-color:#f97316;">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
+      <div class="brief-num-row">
+        <span class="brief-num" style="color:#f97316;background:#fff7ed;">17</span>
+        <span class="brief-status bs-todo" id="bs-17">To Film</span>
+        <span style="font-size:9px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 7px;margin-left:4px;">MOF</span>
+      </div>
+      <div class="brief-title">Family Story — MOF Variation</div>
+      <div class="brief-why">Family Story hit 5.97x ROAS and $6.65 CPA on 29 Apr — the best single-ad day in the account. 43% hold rate means people are watching it all the way through. One ad carrying all MOF conversions is a structural risk — when it fatigues, MOF revenue disappears with it. This variation keeps the same warm audience and same emotional core but tests a different angle: "I stay switched because of my daughter." Same hook category, different driver.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption <span class="arr">▾</span></button>
+        <div class="sec-body">
+          <div class="cap-field">
+            <div class="cap-label">Primary Text</div>
+            <div class="cap-text" id="mof17-cap">I changed my period care for myself. I stay switched because of my daughter.
+
+In a few years she'll start her period. And I refuse to put her on conventional pads knowing what's in them — bleached, synthetic, full of ingredients that don't belong anywhere near her body.
+
+I'd rather she starts organic from the beginning. With something that actually works.
+
+Femmé Organic — certified organic cotton. The switch that changes generations.
+
+Build your routine 👇</div>
+            <button class="copy-btn" onclick="copyEl('mof17-cap')">Copy</button>
+          </div>
+          <div class="cap-field">
+            <div class="cap-label">Headline</div>
+            <div class="cap-text">The switch that starts a habit.</div>
+          </div>
+          <div class="cap-field">
+            <div class="cap-label">Description</div>
+            <div class="cap-text">One change. Pass it forward.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Script / Visual Direction <span class="arr">▾</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless voiceover over product B-roll. Warm, calm delivery — not clinical or fear-based. Vertical 9:16. ~40 seconds. Run to warm audiences only — video viewers 50%+, site visitors 30d, ad engagers, Instagram profile visitors.</div></div>
+          <div class="visual-item"><div class="visual-shot">Hook (0–3 sec)</div><div class="visual-desc">Femmé pad and tampon on a clean bathroom bench. Hands arrange them naturally. Voiceover starts immediately: "I changed my period care for myself. I stay switched because of my daughter." Hold 2 seconds on the products.</div></div>
+          <div class="visual-item"><div class="visual-shot">Script</div><div class="visual-desc">I changed my period care for myself. I stay switched because of my daughter. / In a few years she'll start her period. And I refuse to put her on conventional pads — bleached synthetic fibres, plastic gel, fragrance hiding who knows what — against the most absorptive skin on her body, every month, for decades. / I want her to start organic from the beginning. / Femmé Organic — certified organic cotton. Years of sourcing and sampling to get this right. No bleach, no synthetics. Same protection, nothing hidden. / The switch you make for yourself. That you pass forward. / Build your routine — link below.</div></div>
+          <div class="visual-item"><div class="visual-shot">Shot sequence</div><div class="visual-desc">Full routine flat lay → Femmé pad close-up → label visible → product on bathroom bench → intimate wash alongside → final full routine shot.</div></div>
+          <div class="visual-item"><div class="visual-shot">Text overlays</div><div class="visual-desc">Minimal overlays — let the voiceover carry it. "certified organic cotton ✓" at the product reveal. "The switch you pass forward." as closing card before CTA. Warm tone throughout — no red flags or scare typography.</div></div>
+          <div class="visual-item"><div class="visual-shot">Destination</div><div class="visual-desc">Bundle builder — same as Brief 14. Warm audience, send straight to purchase.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(17,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(17,'done')">Mark Done ✓</button>
+    </div>
+  </div>
+
+  
+  <!-- TOF SECTION HEADER -->
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--bl);">
+    <span style="font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;background:var(--accent-s);color:var(--accent);border-radius:4px;padding:3px 10px;">TOF</span>
+    <span style="font-size:13px;font-weight:800;">Top of Funnel — Interruption &amp; Awareness</span>
+    <span style="font-size:11px;color:var(--muted);margin-left:auto;">Unaware audience. Hook first, brand second.</span>
+  </div>
+
+<!-- BRIEF 03 -->
+  <div class="brief-card" id="bc-3">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
+      <div class="brief-num-row"><span class="brief-num">03</span><span class="brief-status bs-todo" id="bs-3">To Film</span></div>
+      <div class="brief-title">A Gynaecologist Told Me</div>
+      <div class="brief-why">Authority framing (medical source) lowers resistance from audiences who dismiss ingredient claims as marketing. Untested angle per J-Dog — the account currently runs only expose/fear and symptom-led. If authority outperforms, it opens a different creative category. Run as a test against Come Make A Pad — different emotional entry point, same body-safety insight.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption — ready to paste <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="cap-field"><div class="cap-label">Primary Text</div><div class="cap-text" id="b3c1">A gynaecologist told me something about pads that I couldn't stop thinking about.
+
+The vulvar area has some of the highest absorption rates in the body. Hours of contact = hours of exposure to whatever is in your pad.
+
+Femmé: certified organic cotton. One ingredient. Nothing hidden. Link below 👇</div><button class="copy-btn" onclick="copyEl('b3c1')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Headline</div><div class="cap-text" id="b3c2">Even gynaecologists are making the switch.</div><button class="copy-btn" onclick="copyEl('b3c2')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Description</div><div class="cap-text" id="b3c3">Certified organic cotton. 30-Day Body-Safe Guarantee.</div><button class="copy-btn" onclick="copyEl('b3c3')">Copy ↗</button></div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Script — read aloud as voiceover <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="script-lines">
+            <div class="sl sl-d">[OPEN: tight close-up on handwritten notes or phone notes app. Words visible: "gynaecologist said…". Camera slowly pulls back. Hands only. Very still. Hold 3 seconds.]</div>
+            <div class="sl sl-s">A gynaecologist told me something about pads that I couldn't stop thinking about.</div>
+            <div class="sl sl-d">[Hold 2 seconds.]</div>
+            <div class="sl sl-s">She said the vulvar area has some of the highest absorption rates in the whole body. Anything you put against it — especially for hours at a time — doesn't just sit on the surface.</div>
+            <div class="sl sl-d">[CUT: conventional pad — hands turn to ingredient list. Slow pan.]</div>
+            <div class="sl sl-s">So when a conventional pad contains chlorine-bleached fibres, synthetic polymer gel, and fragrance — and you're wearing it for five hours every day of your period — that exposure adds up.</div>
+            <div class="sl sl-d">[CUT: slow zoom into FRAGRANCE on the packaging.]</div>
+            <div class="sl sl-s">She wasn't telling me to panic. Just — know what you're using. Because most women have never thought to read the label.</div>
+            <div class="sl sl-d">[CUT: Femmé pad placed next to conventional.]</div>
+            <div class="sl sl-s">Femmé is certified organic cotton. No synthetic fibres. No chlorine bleach. No fragrance. One ingredient. That's all.</div>
+            <div class="sl sl-d">[CUT: flip Femmé pack — label visible. Hold 3 seconds.]</div>
+            <div class="sl sl-s">I just think it's worth knowing what you're putting on your body. Especially there.</div>
+            <div class="sl sl-s">Over 10,000 five-star reviews. Australian-made. 30-day money-back guarantee. Tap below.</div>
+            <span class="sl-tag">On-screen overlays</span>
+            <div class="sl sl-o">A gynaecologist told me something I couldn't stop thinking about.</div>
+            <div class="sl sl-o">Vulvar area = highest absorption in the body</div>
+            <div class="sl sl-o">Hours of contact = hours of exposure</div>
+            <div class="sl sl-o">Femmé: 100% certified organic cotton. One ingredient.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Visual Direction <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Opening hook (0–4 sec)</div><div class="visual-desc">Tight close-up on handwritten notes or notes app. Words visible: "gynaecologist said…". Camera pulls back slowly. Still, quiet energy. Completely different opening to briefs 01 and 02.</div></div>
+          <div class="visual-item"><div class="visual-shot">Problem section</div><div class="visual-desc">Hands turn conventional pad to ingredient list. Slow zoom into FRAGRANCE. Hold. Don't rush — the slow burn builds more trust than fast cuts here.</div></div>
+          <div class="visual-item"><div class="visual-shot">Brand reveal</div><div class="visual-desc">Femmé pad beside conventional — calm, no urgency. Flip to back label. Hold the clean single-ingredient label for 3 full seconds.</div></div>
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. Slower pacing than 01 and 02. Builds trust through calm authority. Vertical 9:16. ~45 seconds.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(3,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(3,'done')">Mark Done ✓</button>
+    </div>
+  </div>
+
+  
+<!-- BRIEF 07 -->
+  <div class="brief-card" id="bc-7">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
+      <div class="brief-num-row"><span class="brief-num">07</span><span class="brief-status bs-todo" id="bs-7">To Film</span></div>
+      <div class="brief-title">They've Been Lying To You About This Product</div>
+      <div class="brief-why">Deception framing creates moral tension from the first word — impossible to scroll past without knowing what the lie is. Same underlying insight as Come Make A Pad ($15.86 CPA) but leads with institutional betrayal instead of personal discovery. Broadens the expose creative category with a different emotional register — outrage vs curiosity. Variation prevents any single hook from fatiguing.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption — ready to paste <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="cap-field"><div class="cap-label">Primary Text</div><div class="cap-text" id="b7c1">The period care industry has been lying to you about what's in your products.
+
+Not all of it has to go on the label. Which means most women have no idea they've been using bleach, synthetic fibres and hormone-disrupting chemicals against their most sensitive skin — for years.
+
+Femmé Organic: everything disclosed, nothing hidden. Certified organic cotton — and nothing else.
+
+30 Day Body-Safe Guarantee 👇</div><button class="copy-btn" onclick="copyEl('b7c1')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Headline</div><div class="cap-text" id="b7c2">They don't have to put it on the label.</div><button class="copy-btn" onclick="copyEl('b7c2')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Description</div><div class="cap-text" id="b7c3">Certified organic cotton. Full transparency. Nothing hidden.</div><button class="copy-btn" onclick="copyEl('b7c3')">Copy ↗</button></div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Script — read aloud as voiceover <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="script-lines">
+            <div class="sl sl-d">[OPEN: close-up on conventional pad/tampon packaging. Hands turning it over to the ingredient label.]</div>
+            <div class="sl sl-s">The period care industry has been lying to you about what's in your products.</div>
+            <div class="sl sl-d">[Hold on label. Slow zoom.]</div>
+            <div class="sl sl-s">Not all ingredients have to be disclosed. So most brands don't. Which means you've probably never known that your pad contains chlorine-bleached fibres, synthetic polymer gel, and fragrance.</div>
+            <div class="sl sl-o">not required to disclose 🚩</div>
+            <div class="sl sl-d">[CUT: close-up on FRAGRANCE on label, then zoom out to full product.]</div>
+            <div class="sl sl-s">These are known hormone disruptors. And you've been wearing them against your most sensitive skin for years.</div>
+            <div class="sl sl-d">[CUT: Femmé packaging — flip to ingredient list.]</div>
+            <div class="sl sl-s">Femmé Organic discloses everything. Because there's nothing to hide. Certified organic cotton — that's the full list.</div>
+            <div class="sl sl-o">100% certified organic cotton. nothing hidden. ✓</div>
+            <div class="sl sl-s">You deserved to know sooner. Tap below.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Visual Direction <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Opening (0–3 sec)</div><div class="visual-desc">Hands holding conventional product, turning to ingredient label. Slow, deliberate. The visual implies investigation — creates tension before voiceover starts.</div></div>
+          <div class="visual-item"><div class="visual-shot">Deception section</div><div class="visual-desc">Slow zoom on ingredient label. Highlight FRAGRANCE, RAYON or bleaching references. Red text overlays. Let it sit — don't rush past.</div></div>
+          <div class="visual-item"><div class="visual-shot">Brand reveal</div><div class="visual-desc">Femmé packaging — flip to back. Show the clean, short ingredient list. Hold. The contrast with the conventional label is the whole point.</div></div>
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. Slow, investigative pacing. Vertical 9:16. ~40 seconds.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(7,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(7,'done')">Mark Done ✓</button>
+    </div>
+  </div>
+
+  
+<!-- BRIEF 02 -->
+  <div class="brief-card" id="bc-2">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
+      <div class="brief-num-row"><span class="brief-num">02</span><span class="brief-status bs-todo" id="bs-2">To Film</span></div>
+      <div class="brief-title">Cut It Open</div>
+      <div class="brief-why">Same format architecture as Come Make A Pad ($15.86 CPA) — shock visual, hands-only, faceless, voiceover. Cutting the pad open delivers visual proof that no verbal claim can match. J-Dog recommends building multiple variations of the winning format before scale fatigue hits — this is the physical-reveal variation of that playbook.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption — ready to paste <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="cap-field"><div class="cap-label">Primary Text</div><div class="cap-text" id="b2c1">I cut open a conventional pad to see what's inside.
+
+The white mesh layer is plastic. The gel is synthetic polymer. And all of it bleached with chlorine — sitting against your most sensitive skin every month.
+
+Femmé uses one ingredient: certified organic cotton. Nothing else. Link below 👇</div><button class="copy-btn" onclick="copyEl('b2c1')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Headline</div><div class="cap-text" id="b2c2">Cut it open. Then you'll understand.</div><button class="copy-btn" onclick="copyEl('b2c2')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Description</div><div class="cap-text" id="b2c3">Certified organic cotton. No bleach. No plastic. Nothing hidden.</div><button class="copy-btn" onclick="copyEl('b2c3')">Copy ↗</button></div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Script — read aloud as voiceover <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="script-lines">
+            <div class="sl sl-d">[OPEN: hands pick up conventional pad. Scissors cut it open down the middle — slow, deliberate. Pull the two layers apart. Plastic mesh visible. Gel beads visible. Hold 4 seconds. No words.]</div>
+            <div class="sl sl-s">I cut open a conventional pad. This is what's inside it.</div>
+            <div class="sl sl-s">That white mesh layer? That's plastic. Same material used in plastic packaging.</div>
+            <div class="sl sl-s">And that gel in the middle — that's synthetic polymer. Sitting against your skin for five hours every day of your period.</div>
+            <div class="sl sl-d">[CUT: slow zoom into inside of pad.]</div>
+            <div class="sl sl-s">Did you know your intimate area has one of the highest absorption rates in the body? So whatever is in this pad doesn't just sit on the surface.</div>
+            <div class="sl sl-s">Conventional pads are also bleached with chlorine. That bleaching leaves chemical residues classified as hormone disruptors. Every month. For years.</div>
+            <div class="sl sl-d">[CUT: Femmé pad placed next to cut-open conventional one. Visual contrast.]</div>
+            <div class="sl sl-s">That's where Femmé comes in. Certified organic cotton. No plastic mesh. No synthetic gel. No chlorine bleach. Same protection — one ingredient.</div>
+            <div class="sl sl-d">[CUT: flip Femmé pack — clean label. Hold.]</div>
+            <div class="sl sl-s">Certified organic cotton. That's actually the whole thing.</div>
+            <div class="sl sl-s">Over 10,000 five-star reviews. Ships to your door. 30-day money-back guarantee. Tap below.</div>
+            <span class="sl-tag">On-screen overlays</span>
+            <div class="sl sl-o">This is what's inside your pad.</div>
+            <div class="sl sl-o">Plastic mesh · synthetic polymer gel · chlorine bleach</div>
+            <div class="sl sl-o">Femmé: certified organic cotton. One ingredient.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Visual Direction <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Opening hook (0–5 sec)</div><div class="visual-desc">Hands hold a conventional pad. Scissors cut it open down the middle — slow and deliberate. Pull the two halves apart. Camera close on the inside — white plastic mesh and gel beads clearly visible. Hold 4 seconds. Complete silence.</div></div>
+          <div class="visual-item"><div class="visual-shot">Problem section</div><div class="visual-desc">Keep camera close on the inside of the cut-open pad throughout. Point to the mesh, point to the gel. Let the viewer see what you're describing.</div></div>
+          <div class="visual-item"><div class="visual-shot">Brand reveal</div><div class="visual-desc">Place Femmé pad next to the cut-open conventional one. Flip Femmé to show back label. Product alone, natural light, final frame.</div></div>
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. White bench. Close-up lens for the cut section. Vertical 9:16. ~40 seconds.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(2,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(2,'done')">Mark Done ✓</button>
+    </div>
+  </div>
+
+  
+<!-- BRIEF 04 -->
+  <div class="brief-card" id="bc-4">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
+      <div class="brief-num-row"><span class="brief-num">04</span><span class="brief-status bs-todo" id="bs-4">To Film</span></div>
+      <div class="brief-title">You Will Switch By The End Of This Video</div>
+      <div class="brief-why">Hook creates an implicit retention contract — "you will switch" is a promise that forces the viewer to watch to see if it's true. J-Dog's top TOF performers need 25%+ hook rates; a bold challenge hook + blood visual targets 30%+. Combines strong visual interrupt (used pads on white bench) with social proof tension (prove it). Highest scroll-stop potential in the batch.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption — ready to paste <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="cap-field"><div class="cap-label">Primary Text</div><div class="cap-text" id="b4c1">You will switch by the end of this video.
+
+Most pads look identical on the outside. Pull one apart and it's a different story — synthetic gel, plastic mesh, chlorine-bleached fibres sitting against your skin for hours.
+
+Femmé Organic: certified organic cotton. Pull it apart. Just cotton.
+
+Try it for yourself — 30 Day Body-Safe Guarantee 👇</div><button class="copy-btn" onclick="copyEl('b4c1')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Headline</div><div class="cap-text" id="b4c2">What's really inside your pad?</div><button class="copy-btn" onclick="copyEl('b4c2')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Description</div><div class="cap-text" id="b4c3">Certified organic cotton. No bleach. No plastic mesh. No synthetics.</div><button class="copy-btn" onclick="copyEl('b4c3')">Copy ↗</button></div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Script — read aloud as voiceover <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="script-lines">
+            <div class="sl sl-d">[OPEN: two pads side by side on a white bench, both with period blood. Hold 2 seconds. Text overlay appears.]</div>
+            <div class="sl sl-o">you will switch by the end of this video 👀</div>
+            <div class="sl sl-s">These two pads look the same from the outside.</div>
+            <div class="sl sl-d">[Hands reach in — begin pulling conventional pad apart slowly. Camera close.]</div>
+            <div class="sl sl-s">Pull this one open — synthetic polymer gel, plastic mesh, chlorine-bleached fibres. Against your skin. For hours.</div>
+            <div class="sl sl-d">[CUT: slow zoom on plastic mesh and gel material. Hold.]</div>
+            <div class="sl sl-o">chlorine bleach 🚩 synthetic gel 🚩 plastic mesh 🚩</div>
+            <div class="sl sl-s">Now this one.</div>
+            <div class="sl sl-d">[Hands pull Femmé pad apart — only cotton visible. Slow, deliberate.]</div>
+            <div class="sl sl-s">Just cotton. Certified organic. That's it.</div>
+            <div class="sl sl-o">certified organic cotton ✓ nothing else ✓</div>
+            <div class="sl sl-s">30-Day Body-Safe Guarantee. Tap below.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Visual Direction <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Opening (0–3 sec)</div><div class="visual-desc">Two pads side by side on white bench, both with blood. Hold still — let the visual do the work. Text overlay drops in after 1 second. Don't rush.</div></div>
+          <div class="visual-item"><div class="visual-shot">Pull-apart sequence</div><div class="visual-desc">Slow, deliberate pull of conventional pad. Camera close on the inside — gel beads, plastic mesh clearly visible. This is the moment. Don't cut away too fast.</div></div>
+          <div class="visual-item"><div class="visual-shot">Femmé reveal</div><div class="visual-desc">Same pull on Femmé pad — clean cotton only. The contrast is the whole ad. Let it sit for 2 seconds minimum.</div></div>
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. White bench, clean background. Vertical 9:16. ~30–40 seconds. CapCut text overlays in red for bad ingredients, green for good.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(4,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(4,'done')">Mark Done ✓</button>
+    </div>
+  </div>
+
+  
+<!-- BRIEF 01 -->
   <div class="brief-card" id="bc-1">
     <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row">
@@ -475,184 +923,8 @@ Femmé is certified organic cotton — same protection, nothing hidden. Link bel
     </div>
   </div>
 
-  <!-- BRIEF 02 -->
-  <div class="brief-card" id="bc-2">
-    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
-      <div class="brief-num-row"><span class="brief-num">02</span><span class="brief-status bs-todo" id="bs-2">To Film</span></div>
-      <div class="brief-title">Cut It Open</div>
-      <div class="brief-why">Same format architecture as Come Make A Pad ($15.86 CPA) — shock visual, hands-only, faceless, voiceover. Cutting the pad open delivers visual proof that no verbal claim can match. J-Dog recommends building multiple variations of the winning format before scale fatigue hits — this is the physical-reveal variation of that playbook.</div>
-    </div>
-    <div class="brief-sections">
-      <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Caption — ready to paste <span class="arr">▼</span></button>
-        <div class="sec-body">
-          <div class="cap-field"><div class="cap-label">Primary Text</div><div class="cap-text" id="b2c1">I cut open a conventional pad to see what's inside.
-
-The white mesh layer is plastic. The gel is synthetic polymer. And all of it bleached with chlorine — sitting against your most sensitive skin every month.
-
-Femmé uses one ingredient: certified organic cotton. Nothing else. Link below 👇</div><button class="copy-btn" onclick="copyEl('b2c1')">Copy ↗</button></div>
-          <div class="cap-field"><div class="cap-label">Headline</div><div class="cap-text" id="b2c2">Cut it open. Then you'll understand.</div><button class="copy-btn" onclick="copyEl('b2c2')">Copy ↗</button></div>
-          <div class="cap-field"><div class="cap-label">Description</div><div class="cap-text" id="b2c3">Certified organic cotton. No bleach. No plastic. Nothing hidden.</div><button class="copy-btn" onclick="copyEl('b2c3')">Copy ↗</button></div>
-        </div>
-      </div>
-      <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Script — read aloud as voiceover <span class="arr">▼</span></button>
-        <div class="sec-body">
-          <div class="script-lines">
-            <div class="sl sl-d">[OPEN: hands pick up conventional pad. Scissors cut it open down the middle — slow, deliberate. Pull the two layers apart. Plastic mesh visible. Gel beads visible. Hold 4 seconds. No words.]</div>
-            <div class="sl sl-s">I cut open a conventional pad. This is what's inside it.</div>
-            <div class="sl sl-s">That white mesh layer? That's plastic. Same material used in plastic packaging.</div>
-            <div class="sl sl-s">And that gel in the middle — that's synthetic polymer. Sitting against your skin for five hours every day of your period.</div>
-            <div class="sl sl-d">[CUT: slow zoom into inside of pad.]</div>
-            <div class="sl sl-s">Did you know your intimate area has one of the highest absorption rates in the body? So whatever is in this pad doesn't just sit on the surface.</div>
-            <div class="sl sl-s">Conventional pads are also bleached with chlorine. That bleaching leaves chemical residues classified as hormone disruptors. Every month. For years.</div>
-            <div class="sl sl-d">[CUT: Femmé pad placed next to cut-open conventional one. Visual contrast.]</div>
-            <div class="sl sl-s">That's where Femmé comes in. Certified organic cotton. No plastic mesh. No synthetic gel. No chlorine bleach. Same protection — one ingredient.</div>
-            <div class="sl sl-d">[CUT: flip Femmé pack — clean label. Hold.]</div>
-            <div class="sl sl-s">Certified organic cotton. That's actually the whole thing.</div>
-            <div class="sl sl-s">Over 10,000 five-star reviews. Ships to your door. 30-day money-back guarantee. Tap below.</div>
-            <span class="sl-tag">On-screen overlays</span>
-            <div class="sl sl-o">This is what's inside your pad.</div>
-            <div class="sl sl-o">Plastic mesh · synthetic polymer gel · chlorine bleach</div>
-            <div class="sl sl-o">Femmé: certified organic cotton. One ingredient.</div>
-          </div>
-        </div>
-      </div>
-      <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Visual Direction <span class="arr">▼</span></button>
-        <div class="sec-body">
-          <div class="visual-item"><div class="visual-shot">Opening hook (0–5 sec)</div><div class="visual-desc">Hands hold a conventional pad. Scissors cut it open down the middle — slow and deliberate. Pull the two halves apart. Camera close on the inside — white plastic mesh and gel beads clearly visible. Hold 4 seconds. Complete silence.</div></div>
-          <div class="visual-item"><div class="visual-shot">Problem section</div><div class="visual-desc">Keep camera close on the inside of the cut-open pad throughout. Point to the mesh, point to the gel. Let the viewer see what you're describing.</div></div>
-          <div class="visual-item"><div class="visual-shot">Brand reveal</div><div class="visual-desc">Place Femmé pad next to the cut-open conventional one. Flip Femmé to show back label. Product alone, natural light, final frame.</div></div>
-          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. White bench. Close-up lens for the cut section. Vertical 9:16. ~40 seconds.</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="brief-footer">
-      <button class="btn btn-primary" onclick="setBriefStatus(2,'filming')">Mark Filming</button>
-      <button class="btn btn-done" onclick="setBriefStatus(2,'done')">Mark Done ✓</button>
-    </div>
-  </div>
-
-  <!-- BRIEF 03 -->
-  <div class="brief-card" id="bc-3">
-    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
-      <div class="brief-num-row"><span class="brief-num">03</span><span class="brief-status bs-todo" id="bs-3">To Film</span></div>
-      <div class="brief-title">A Gynaecologist Told Me</div>
-      <div class="brief-why">Authority framing (medical source) lowers resistance from audiences who dismiss ingredient claims as marketing. Untested angle per J-Dog — the account currently runs only expose/fear and symptom-led. If authority outperforms, it opens a different creative category. Run as a test against Come Make A Pad — different emotional entry point, same body-safety insight.</div>
-    </div>
-    <div class="brief-sections">
-      <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Caption — ready to paste <span class="arr">▼</span></button>
-        <div class="sec-body">
-          <div class="cap-field"><div class="cap-label">Primary Text</div><div class="cap-text" id="b3c1">A gynaecologist told me something about pads that I couldn't stop thinking about.
-
-The vulvar area has some of the highest absorption rates in the body. Hours of contact = hours of exposure to whatever is in your pad.
-
-Femmé: certified organic cotton. One ingredient. Nothing hidden. Link below 👇</div><button class="copy-btn" onclick="copyEl('b3c1')">Copy ↗</button></div>
-          <div class="cap-field"><div class="cap-label">Headline</div><div class="cap-text" id="b3c2">Even gynaecologists are making the switch.</div><button class="copy-btn" onclick="copyEl('b3c2')">Copy ↗</button></div>
-          <div class="cap-field"><div class="cap-label">Description</div><div class="cap-text" id="b3c3">Certified organic cotton. 30-Day Body-Safe Guarantee.</div><button class="copy-btn" onclick="copyEl('b3c3')">Copy ↗</button></div>
-        </div>
-      </div>
-      <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Script — read aloud as voiceover <span class="arr">▼</span></button>
-        <div class="sec-body">
-          <div class="script-lines">
-            <div class="sl sl-d">[OPEN: tight close-up on handwritten notes or phone notes app. Words visible: "gynaecologist said…". Camera slowly pulls back. Hands only. Very still. Hold 3 seconds.]</div>
-            <div class="sl sl-s">A gynaecologist told me something about pads that I couldn't stop thinking about.</div>
-            <div class="sl sl-d">[Hold 2 seconds.]</div>
-            <div class="sl sl-s">She said the vulvar area has some of the highest absorption rates in the whole body. Anything you put against it — especially for hours at a time — doesn't just sit on the surface.</div>
-            <div class="sl sl-d">[CUT: conventional pad — hands turn to ingredient list. Slow pan.]</div>
-            <div class="sl sl-s">So when a conventional pad contains chlorine-bleached fibres, synthetic polymer gel, and fragrance — and you're wearing it for five hours every day of your period — that exposure adds up.</div>
-            <div class="sl sl-d">[CUT: slow zoom into FRAGRANCE on the packaging.]</div>
-            <div class="sl sl-s">She wasn't telling me to panic. Just — know what you're using. Because most women have never thought to read the label.</div>
-            <div class="sl sl-d">[CUT: Femmé pad placed next to conventional.]</div>
-            <div class="sl sl-s">Femmé is certified organic cotton. No synthetic fibres. No chlorine bleach. No fragrance. One ingredient. That's all.</div>
-            <div class="sl sl-d">[CUT: flip Femmé pack — label visible. Hold 3 seconds.]</div>
-            <div class="sl sl-s">I just think it's worth knowing what you're putting on your body. Especially there.</div>
-            <div class="sl sl-s">Over 10,000 five-star reviews. Australian-made. 30-day money-back guarantee. Tap below.</div>
-            <span class="sl-tag">On-screen overlays</span>
-            <div class="sl sl-o">A gynaecologist told me something I couldn't stop thinking about.</div>
-            <div class="sl sl-o">Vulvar area = highest absorption in the body</div>
-            <div class="sl sl-o">Hours of contact = hours of exposure</div>
-            <div class="sl sl-o">Femmé: 100% certified organic cotton. One ingredient.</div>
-          </div>
-        </div>
-      </div>
-      <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Visual Direction <span class="arr">▼</span></button>
-        <div class="sec-body">
-          <div class="visual-item"><div class="visual-shot">Opening hook (0–4 sec)</div><div class="visual-desc">Tight close-up on handwritten notes or notes app. Words visible: "gynaecologist said…". Camera pulls back slowly. Still, quiet energy. Completely different opening to briefs 01 and 02.</div></div>
-          <div class="visual-item"><div class="visual-shot">Problem section</div><div class="visual-desc">Hands turn conventional pad to ingredient list. Slow zoom into FRAGRANCE. Hold. Don't rush — the slow burn builds more trust than fast cuts here.</div></div>
-          <div class="visual-item"><div class="visual-shot">Brand reveal</div><div class="visual-desc">Femmé pad beside conventional — calm, no urgency. Flip to back label. Hold the clean single-ingredient label for 3 full seconds.</div></div>
-          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. Slower pacing than 01 and 02. Builds trust through calm authority. Vertical 9:16. ~45 seconds.</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="brief-footer">
-      <button class="btn btn-primary" onclick="setBriefStatus(3,'filming')">Mark Filming</button>
-      <button class="btn btn-done" onclick="setBriefStatus(3,'done')">Mark Done ✓</button>
-    </div>
-  </div>
-
-  <!-- BRIEF 04 -->
-  <div class="brief-card" id="bc-4">
-    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
-      <div class="brief-num-row"><span class="brief-num">04</span><span class="brief-status bs-todo" id="bs-4">To Film</span></div>
-      <div class="brief-title">You Will Switch By The End Of This Video</div>
-      <div class="brief-why">Hook creates an implicit retention contract — "you will switch" is a promise that forces the viewer to watch to see if it's true. J-Dog's top TOF performers need 25%+ hook rates; a bold challenge hook + blood visual targets 30%+. Combines strong visual interrupt (used pads on white bench) with social proof tension (prove it). Highest scroll-stop potential in the batch.</div>
-    </div>
-    <div class="brief-sections">
-      <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Caption — ready to paste <span class="arr">▼</span></button>
-        <div class="sec-body">
-          <div class="cap-field"><div class="cap-label">Primary Text</div><div class="cap-text" id="b4c1">You will switch by the end of this video.
-
-Most pads look identical on the outside. Pull one apart and it's a different story — synthetic gel, plastic mesh, chlorine-bleached fibres sitting against your skin for hours.
-
-Femmé Organic: certified organic cotton. Pull it apart. Just cotton.
-
-Try it for yourself — 30 Day Body-Safe Guarantee 👇</div><button class="copy-btn" onclick="copyEl('b4c1')">Copy ↗</button></div>
-          <div class="cap-field"><div class="cap-label">Headline</div><div class="cap-text" id="b4c2">What's really inside your pad?</div><button class="copy-btn" onclick="copyEl('b4c2')">Copy ↗</button></div>
-          <div class="cap-field"><div class="cap-label">Description</div><div class="cap-text" id="b4c3">Certified organic cotton. No bleach. No plastic mesh. No synthetics.</div><button class="copy-btn" onclick="copyEl('b4c3')">Copy ↗</button></div>
-        </div>
-      </div>
-      <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Script — read aloud as voiceover <span class="arr">▼</span></button>
-        <div class="sec-body">
-          <div class="script-lines">
-            <div class="sl sl-d">[OPEN: two pads side by side on a white bench, both with period blood. Hold 2 seconds. Text overlay appears.]</div>
-            <div class="sl sl-o">you will switch by the end of this video 👀</div>
-            <div class="sl sl-s">These two pads look the same from the outside.</div>
-            <div class="sl sl-d">[Hands reach in — begin pulling conventional pad apart slowly. Camera close.]</div>
-            <div class="sl sl-s">Pull this one open — synthetic polymer gel, plastic mesh, chlorine-bleached fibres. Against your skin. For hours.</div>
-            <div class="sl sl-d">[CUT: slow zoom on plastic mesh and gel material. Hold.]</div>
-            <div class="sl sl-o">chlorine bleach 🚩 synthetic gel 🚩 plastic mesh 🚩</div>
-            <div class="sl sl-s">Now this one.</div>
-            <div class="sl sl-d">[Hands pull Femmé pad apart — only cotton visible. Slow, deliberate.]</div>
-            <div class="sl sl-s">Just cotton. Certified organic. That's it.</div>
-            <div class="sl sl-o">certified organic cotton ✓ nothing else ✓</div>
-            <div class="sl sl-s">30-Day Body-Safe Guarantee. Tap below.</div>
-          </div>
-        </div>
-      </div>
-      <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Visual Direction <span class="arr">▼</span></button>
-        <div class="sec-body">
-          <div class="visual-item"><div class="visual-shot">Opening (0–3 sec)</div><div class="visual-desc">Two pads side by side on white bench, both with blood. Hold still — let the visual do the work. Text overlay drops in after 1 second. Don't rush.</div></div>
-          <div class="visual-item"><div class="visual-shot">Pull-apart sequence</div><div class="visual-desc">Slow, deliberate pull of conventional pad. Camera close on the inside — gel beads, plastic mesh clearly visible. This is the moment. Don't cut away too fast.</div></div>
-          <div class="visual-item"><div class="visual-shot">Femmé reveal</div><div class="visual-desc">Same pull on Femmé pad — clean cotton only. The contrast is the whole ad. Let it sit for 2 seconds minimum.</div></div>
-          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. White bench, clean background. Vertical 9:16. ~30–40 seconds. CapCut text overlays in red for bad ingredients, green for good.</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="brief-footer">
-      <button class="btn btn-primary" onclick="setBriefStatus(4,'filming')">Mark Filming</button>
-      <button class="btn btn-done" onclick="setBriefStatus(4,'done')">Mark Done ✓</button>
-    </div>
-  </div>
-
-  <!-- BRIEF 05 -->
+  
+<!-- BRIEF 05 -->
   <div class="brief-card" id="bc-5">
     <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row"><span class="brief-num">05</span><span class="brief-status bs-todo" id="bs-5">To Film</span></div>
@@ -707,7 +979,8 @@ Femmé Organic: certified organic cotton. Nothing else.
     </div>
   </div>
 
-  <!-- BRIEF 06 -->
+  
+<!-- BRIEF 06 -->
   <div class="brief-card" id="bc-6">
     <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row"><span class="brief-num">06</span><span class="brief-status bs-todo" id="bs-6">To Film</span></div>
@@ -761,68 +1034,69 @@ Heavy days sorted. 30 Day Body-Safe Guarantee 👇</div><button class="copy-btn"
     </div>
   </div>
 
-  <!-- BRIEF 07 -->
-  <div class="brief-card" id="bc-7">
+  
+<!-- BRIEF 16 -->
+  <div class="brief-card" id="bc-16" style="border-left-color:#6b7280;">
     <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
-      <div class="brief-num-row"><span class="brief-num">07</span><span class="brief-status bs-todo" id="bs-7">To Film</span></div>
-      <div class="brief-title">They've Been Lying To You About This Product</div>
-      <div class="brief-why">Deception framing creates moral tension from the first word — impossible to scroll past without knowing what the lie is. Same underlying insight as Come Make A Pad ($15.86 CPA) but leads with institutional betrayal instead of personal discovery. Broadens the expose creative category with a different emotional register — outrage vs curiosity. Variation prevents any single hook from fatiguing.</div>
+      <div class="brief-num-row">
+        <span class="brief-num" style="color:#2563eb;background:#eff6ff;">16</span>
+        <span class="brief-status bs-todo" id="bs-16">To Film</span>
+        <span style="font-size:9px;font-weight:700;color:#2563eb;background:#eff6ff;border-radius:20px;padding:2px 7px;margin-left:4px;">TOF</span>
+      </div>
+      <div class="brief-title">Come Make A Pad — Variation</div>
+      <div class="brief-why">J-Dog's top action for 28 Apr: Come Make A Pad is the account engine at $15.86 CPA — scale it 25-30% and build variations before fatigue hits. This is the customer-discovery variation: same format (shock reveal, faceless voiceover, hands-only) but the hook shifts from founder credentials to personal realisation. Different emotional entry point, same format that's already winning.</div>
     </div>
     <div class="brief-sections">
       <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Caption — ready to paste <span class="arr">▼</span></button>
+        <button class="sec-toggle" onclick="secToggle(this)">Caption <span class="arr">▾</span></button>
         <div class="sec-body">
-          <div class="cap-field"><div class="cap-label">Primary Text</div><div class="cap-text" id="b7c1">The period care industry has been lying to you about what's in your products.
+          <div class="cap-field">
+            <div class="cap-label">Primary Text</div>
+            <div class="cap-text" id="tof16-cap">I used to think a pad was just a pad.
 
-Not all of it has to go on the label. Which means most women have no idea they've been using bleach, synthetic fibres and hormone-disrupting chemicals against their most sensitive skin — for years.
+Then I found out what's actually in them. Chlorine-bleached fibres. Synthetic polymer gel. Plastic mesh. All of it sitting against the most absorptive skin on your body — for hours every day of your cycle.
 
-Femmé Organic: everything disclosed, nothing hidden. Certified organic cotton — and nothing else.
+I stopped using conventional pads that day.
 
-30 Day Body-Safe Guarantee 👇</div><button class="copy-btn" onclick="copyEl('b7c1')">Copy ↗</button></div>
-          <div class="cap-field"><div class="cap-label">Headline</div><div class="cap-text" id="b7c2">They don't have to put it on the label.</div><button class="copy-btn" onclick="copyEl('b7c2')">Copy ↗</button></div>
-          <div class="cap-field"><div class="cap-label">Description</div><div class="cap-text" id="b7c3">Certified organic cotton. Full transparency. Nothing hidden.</div><button class="copy-btn" onclick="copyEl('b7c3')">Copy ↗</button></div>
-        </div>
-      </div>
-      <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Script — read aloud as voiceover <span class="arr">▼</span></button>
-        <div class="sec-body">
-          <div class="script-lines">
-            <div class="sl sl-d">[OPEN: close-up on conventional pad/tampon packaging. Hands turning it over to the ingredient label.]</div>
-            <div class="sl sl-s">The period care industry has been lying to you about what's in your products.</div>
-            <div class="sl sl-d">[Hold on label. Slow zoom.]</div>
-            <div class="sl sl-s">Not all ingredients have to be disclosed. So most brands don't. Which means you've probably never known that your pad contains chlorine-bleached fibres, synthetic polymer gel, and fragrance.</div>
-            <div class="sl sl-o">not required to disclose 🚩</div>
-            <div class="sl sl-d">[CUT: close-up on FRAGRANCE on label, then zoom out to full product.]</div>
-            <div class="sl sl-s">These are known hormone disruptors. And you've been wearing them against your most sensitive skin for years.</div>
-            <div class="sl sl-d">[CUT: Femmé packaging — flip to ingredient list.]</div>
-            <div class="sl sl-s">Femmé Organic discloses everything. Because there's nothing to hide. Certified organic cotton — that's the full list.</div>
-            <div class="sl sl-o">100% certified organic cotton. nothing hidden. ✓</div>
-            <div class="sl sl-s">You deserved to know sooner. Tap below.</div>
+Femmé Organic — certified organic cotton. No bleach. No synthetics. Same protection, nothing hidden.
+
+30-Day Body-Safe Guarantee 👇</div>
+            <button class="copy-btn" onclick="copyEl('tof16-cap')">Copy</button>
+          </div>
+          <div class="cap-field">
+            <div class="cap-label">Headline</div>
+            <div class="cap-text">A pad is not just a pad.</div>
+          </div>
+          <div class="cap-field">
+            <div class="cap-label">Description</div>
+            <div class="cap-text">Certified organic cotton. No bleach. No nasties.</div>
           </div>
         </div>
       </div>
       <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Visual Direction <span class="arr">▼</span></button>
+        <button class="sec-toggle" onclick="secToggle(this)">Script / Visual Direction <span class="arr">▾</span></button>
         <div class="sec-body">
-          <div class="visual-item"><div class="visual-shot">Opening (0–3 sec)</div><div class="visual-desc">Hands holding conventional product, turning to ingredient label. Slow, deliberate. The visual implies investigation — creates tension before voiceover starts.</div></div>
-          <div class="visual-item"><div class="visual-shot">Deception section</div><div class="visual-desc">Slow zoom on ingredient label. Highlight FRAGRANCE, RAYON or bleaching references. Red text overlays. Let it sit — don't rush past.</div></div>
-          <div class="visual-item"><div class="visual-shot">Brand reveal</div><div class="visual-desc">Femmé packaging — flip to back. Show the clean, short ingredient list. Hold. The contrast with the conventional label is the whole point.</div></div>
-          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. Slow, investigative pacing. Vertical 9:16. ~40 seconds.</div></div>
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. Voiceover recorded on phone, natural delivery. Over product B-roll. Vertical 9:16. ~40 seconds. Same format as Come Make A Pad.</div></div>
+          <div class="visual-item"><div class="visual-shot">Opening frame (0–2 sec)</div><div class="visual-desc">Conventional pad flat on white bench, packaging face-up. Hands reach in and turn it over to the ingredient label. Camera holds close. No words yet. Slow and deliberate.</div></div>
+          <div class="visual-item"><div class="visual-shot">Script</div><div class="visual-desc">I used to think a pad was just a pad. / Grabbed whatever was cheapest off the shelf every month. Never once read the label. / Then someone told me what was in them. / Chlorine-bleached fibres. Synthetic polymer gel. Plastic mesh. / All of it sitting against the most absorptive skin on your body — for hours every day of your cycle. Every month. For years. / I stopped using conventional pads that day. / Femmé Organic is certified organic cotton. No bleach. No synthetic fibres. No plastic gel. Same protection. Nothing hidden. / 30-Day Body-Safe Guarantee. Tap below.</div></div>
+          <div class="visual-item"><div class="visual-shot">Shot sequence</div><div class="visual-desc">Conventional pad (face up) → turn over to ingredient label → zoom in on FRAGRANCE / RAYON → cut to Femmé pad placement beside conventional → Femmé label close-up (clean, short) → final product close-up.</div></div>
+          <div class="visual-item"><div class="visual-shot">Text overlays</div><div class="visual-desc">"chlorine bleach 🚩" / "synthetic polymer gel 🚩" / "plastic mesh 🚩" appear as each ingredient is named. Switch to "100% certified organic cotton ✓" at the Femmé reveal. Clean white CapCut text throughout.</div></div>
         </div>
       </div>
     </div>
     <div class="brief-footer">
-      <button class="btn btn-primary" onclick="setBriefStatus(7,'filming')">Mark Filming</button>
-      <button class="btn btn-done" onclick="setBriefStatus(7,'done')">Mark Done ✓</button>
+      <button class="btn btn-primary" onclick="setBriefStatus(16,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(16,'done')">Mark Done ✓</button>
     </div>
   </div>
 
-  <div class="brief-card" id="bc-13" style="border-left-color:#2563eb;">
+  
+<div class="brief-card" id="bc-13" style="display:none" style="border-left-color:#2563eb;">
     <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row">
         <span class="brief-num" style="color:#2563eb;background:#eff6ff;">13</span>
         <span class="brief-status bs-todo" id="bs-13">To Film</span>
-        <span style="font-size:10px;font-weight:700;color:#2563eb;background:#eff6ff;border-radius:20px;padding:2px 10px;margin-left:4px;">TOF</span>
+        <span style="font-size:9px;font-weight:700;color:#2563eb;background:#eff6ff;border-radius:20px;padding:2px 7px;margin-left:4px;">TOF</span>
       </div>
       <div class="brief-title">The Founder Switch Story — TOF</div>
       <div class="brief-why">Tests whether founder credibility (Italy/Spain sourcing, 100 rounds of sampling) lifts conversion vs the pure expose angle of Come Make A Pad ($15.86 CPA). Same faceless voiceover-over-product format — only the hook angle changes. Hook leads with fear ("I put bleach on my body for years") then pivots to manufacturing proof as the differentiator. Drives to TOF landing page, not product page.</div>
@@ -870,13 +1144,14 @@ Shop now 👇</div>
     </div>
   </div>
 
-  <!-- BRIEF 15 -->
-  <div class="brief-card" id="bc-15" style="border-left-color:#2563eb;">
+  
+<!-- BRIEF 15 -->
+  <div class="brief-card" id="bc-15" style="display:none" style="border-left-color:#2563eb;">
     <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row">
         <span class="brief-num" style="color:#2563eb;background:#eff6ff;">15</span>
         <span class="brief-status bs-todo" id="bs-15">To Film</span>
-        <span style="font-size:10px;font-weight:700;color:#2563eb;background:#eff6ff;border-radius:20px;padding:2px 10px;margin-left:4px;">TOF</span>
+        <span style="font-size:9px;font-weight:700;color:#2563eb;background:#eff6ff;border-radius:20px;padding:2px 7px;margin-left:4px;">TOF</span>
       </div>
       <div class="brief-title">Crash Out — Pixar 3D Animated</div>
       <div class="brief-why">Every TOF ad in the account currently runs the expose/fear angle. This tests a completely different emotional register — comedy + relatability — to find a second creative category. Pixar 3D animation is a visual novelty that neither real-product nor flat-lay creative can match: algorithm treats it as entirely new creative and distributes to fresh audiences. Humor-led creative also has longer fatigue cycles than fear-based content.</div>
@@ -930,62 +1205,15 @@ Shop now 👇</div>
     </div>
   </div>
 
-  <!-- BRIEF 16 -->
-  <div class="brief-card" id="bc-16" style="border-left-color:#2563eb;">
-    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
-      <div class="brief-num-row">
-        <span class="brief-num" style="color:#2563eb;background:#eff6ff;">16</span>
-        <span class="brief-status bs-todo" id="bs-16">To Film</span>
-        <span style="font-size:10px;font-weight:700;color:#2563eb;background:#eff6ff;border-radius:20px;padding:2px 10px;margin-left:4px;">TOF</span>
-      </div>
-      <div class="brief-title">Come Make A Pad — Variation</div>
-      <div class="brief-why">J-Dog's top action for 28 Apr: Come Make A Pad is the account engine at $15.86 CPA — scale it 25-30% and build variations before fatigue hits. This is the customer-discovery variation: same format (shock reveal, faceless voiceover, hands-only) but the hook shifts from founder credentials to personal realisation. Different emotional entry point, same format that's already winning.</div>
-    </div>
-    <div class="brief-sections">
-      <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Caption <span class="arr">▾</span></button>
-        <div class="sec-body">
-          <div class="cap-field">
-            <div class="cap-label">Primary Text</div>
-            <div class="cap-text" id="tof16-cap">I used to think a pad was just a pad.
-
-Then I found out what's actually in them. Chlorine-bleached fibres. Synthetic polymer gel. Plastic mesh. All of it sitting against the most absorptive skin on your body — for hours every day of your cycle.
-
-I stopped using conventional pads that day.
-
-Femmé Organic — certified organic cotton. No bleach. No synthetics. Same protection, nothing hidden.
-
-30-Day Body-Safe Guarantee 👇</div>
-            <button class="copy-btn" onclick="copyEl('tof16-cap')">Copy</button>
-          </div>
-          <div class="cap-field">
-            <div class="cap-label">Headline</div>
-            <div class="cap-text">A pad is not just a pad.</div>
-          </div>
-          <div class="cap-field">
-            <div class="cap-label">Description</div>
-            <div class="cap-text">Certified organic cotton. No bleach. No nasties.</div>
-          </div>
-        </div>
-      </div>
-      <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Script / Visual Direction <span class="arr">▾</span></button>
-        <div class="sec-body">
-          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless — hands only. Voiceover recorded on phone, natural delivery. Over product B-roll. Vertical 9:16. ~40 seconds. Same format as Come Make A Pad.</div></div>
-          <div class="visual-item"><div class="visual-shot">Opening frame (0–2 sec)</div><div class="visual-desc">Conventional pad flat on white bench, packaging face-up. Hands reach in and turn it over to the ingredient label. Camera holds close. No words yet. Slow and deliberate.</div></div>
-          <div class="visual-item"><div class="visual-shot">Script</div><div class="visual-desc">I used to think a pad was just a pad. / Grabbed whatever was cheapest off the shelf every month. Never once read the label. / Then someone told me what was in them. / Chlorine-bleached fibres. Synthetic polymer gel. Plastic mesh. / All of it sitting against the most absorptive skin on your body — for hours every day of your cycle. Every month. For years. / I stopped using conventional pads that day. / Femmé Organic is certified organic cotton. No bleach. No synthetic fibres. No plastic gel. Same protection. Nothing hidden. / 30-Day Body-Safe Guarantee. Tap below.</div></div>
-          <div class="visual-item"><div class="visual-shot">Shot sequence</div><div class="visual-desc">Conventional pad (face up) → turn over to ingredient label → zoom in on FRAGRANCE / RAYON → cut to Femmé pad placement beside conventional → Femmé label close-up (clean, short) → final product close-up.</div></div>
-          <div class="visual-item"><div class="visual-shot">Text overlays</div><div class="visual-desc">"chlorine bleach 🚩" / "synthetic polymer gel 🚩" / "plastic mesh 🚩" appear as each ingredient is named. Switch to "100% certified organic cotton ✓" at the Femmé reveal. Clean white CapCut text throughout.</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="brief-footer">
-      <button class="btn btn-primary" onclick="setBriefStatus(16,'filming')">Mark Filming</button>
-      <button class="btn btn-done" onclick="setBriefStatus(16,'done')">Mark Done ✓</button>
-    </div>
+  
+  <!-- MOF SECTION HEADER -->
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--bl);margin-top:20px;">
+    <span style="font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;background:var(--blue-s);color:var(--blue);border-radius:4px;padding:3px 10px;">MOF</span>
+    <span style="font-size:13px;font-weight:800;">Middle of Funnel — Differentiation &amp; Proof</span>
+    <span style="font-size:11px;color:var(--muted);margin-left:auto;">Warm audience. Trust, proof, comparison.</span>
   </div>
 
-  <!-- BRIEF 08 -->
+<!-- BRIEF 08 -->
   <div class="brief-card" id="bc-8">
     <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row"><span class="brief-num">08</span><span class="brief-status bs-todo" id="bs-8">To Film</span></div>
@@ -1038,20 +1266,14 @@ Build your routine →</div><button class="copy-btn" onclick="copyEl('b8c1')">Co
     </div>
   </div>
 
-  <!-- MOF SECTION HEADER -->
-  <div style="display:flex;align-items:center;gap:10px;margin-top:36px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--bl);">
-    <span style="font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;background:#fff7ed;color:#f97316;border-radius:4px;padding:3px 10px;">MOF</span>
-    <span style="font-size:13px;font-weight:800;">Middle of Funnel — Proof &amp; Trust</span>
-    <span style="font-size:11px;color:var(--muted);margin-left:auto;">Warm audience. They know the problem. Give them a reason to choose Femmé.</span>
-  </div>
-
-  <!-- MOF BRIEF 09 -->
+  
+<!-- MOF BRIEF 09 -->
   <div class="brief-card" id="bc-9" style="border-left-color:#f97316;">
     <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row">
         <span class="brief-num" style="color:#f97316;background:#fff7ed;">09</span>
         <span class="brief-status bs-todo" id="bs-9">To Film</span>
-        <span style="font-size:10px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 10px;margin-left:4px;">MOF</span>
+        <span style="font-size:9px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 7px;margin-left:4px;">MOF</span>
       </div>
       <div class="brief-title">Ingredient Comparison — Conventional vs Femmé</div>
       <div class="brief-why">Warm audiences from TOF ads know the problem — they need proof that Femmé is the answer. Side-by-side ingredient labels require zero claims: the labels say everything. Untested format in the current account — no comparison creative running. If the contrast visual converts, it gives a second proof mechanism alongside Family Story (4.24x ROAS). Runs to warm audiences only.</div>
@@ -1089,13 +1311,14 @@ Build your routine →</div><button class="copy-btn" onclick="copyEl('b8c1')">Co
     </div>
   </div>
 
-  <!-- MOF BRIEF 10 -->
+  
+<!-- MOF BRIEF 10 -->
   <div class="brief-card" id="bc-10" style="border-left-color:#f97316;">
     <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row">
         <span class="brief-num" style="color:#f97316;background:#fff7ed;">10</span>
         <span class="brief-status bs-todo" id="bs-10">To Film</span>
-        <span style="font-size:10px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 10px;margin-left:4px;">MOF</span>
+        <span style="font-size:9px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 7px;margin-left:4px;">MOF</span>
       </div>
       <div class="brief-title">3 Months After Switching — The Switch Story</div>
       <div class="brief-why">Warm audience question: "what will actually change if I switch?" This brief answers it with a timeline. Pure text-on-screen — zero production, fastest brief to execute in the batch. J-Dog flagged hero dependency (Family Story doing all the work) as the biggest structural MOF risk; this is the quickest way to add a second MOF creative to the account.</div>
@@ -1131,13 +1354,14 @@ Build your routine →</div><button class="copy-btn" onclick="copyEl('b8c1')">Co
     </div>
   </div>
 
-  <!-- MOF BRIEF 11 -->
+  
+<!-- MOF BRIEF 11 -->
   <div class="brief-card" id="bc-11" style="border-left-color:#f97316;">
     <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row">
         <span class="brief-num" style="color:#f97316;background:#fff7ed;">11</span>
         <span class="brief-status bs-todo" id="bs-11">To Film</span>
-        <span style="font-size:10px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 10px;margin-left:4px;">MOF</span>
+        <span style="font-size:9px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 7px;margin-left:4px;">MOF</span>
       </div>
       <div class="brief-title">The Guarantee — 30 Days, No Risk</div>
       <div class="brief-why">Family Story MOF at 4.24x ROAS is the account hero — but one creative carrying all MOF conversions is a structural risk. The guarantee ad targets the same warm audience with a different conversion mechanism: remove risk instead of deliver inspiration. Runs to website visitors 30d and ad engagers who've seen the brand but not bought. Zero production — fastest to launch alongside the hero.</div>
@@ -1173,12 +1397,13 @@ Build your routine →</div><button class="copy-btn" onclick="copyEl('b8c1')">Co
     </div>
   </div>
 
-  <div class="brief-card" id="bc-12" style="border-left-color:#f97316;">
+  
+<div class="brief-card" id="bc-12" style="border-left-color:#f97316;">
     <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row">
         <span class="brief-num" style="color:#f97316;background:#fff7ed;">12</span>
         <span class="brief-status bs-todo" id="bs-12">To Film</span>
-        <span style="font-size:10px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 10px;margin-left:4px;">MOF</span>
+        <span style="font-size:9px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 7px;margin-left:4px;">MOF</span>
       </div>
       <div class="brief-title">Pad Review Compilation — Real Results</div>
       <div class="brief-why">J-Dog data: review compilations average 42% hook rate — strong scroll-stop — but only 6.8% hold at 50% scroll depth. The hook works, the retention doesn't. This brief is engineered to hold: one static shot throughout (no cuts to reset retention), and reviews build sequentially (leak → irritation → comfort → habit). Target: beat J-Dog's 6.8% hold baseline. Run to warm audiences only.</div>
@@ -1228,12 +1453,53 @@ Make the switch 👇</div>
     </div>
   </div>
 
-  <div class="brief-card" id="bc-14" style="border-left-color:#f97316;">
+<!-- BRIEF 20 — MOF -->
+  <div class="brief-card" id="bc-20" style="border-left-color:#f97316;">
+    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
+      <div class="brief-num-row">
+        <span class="brief-num" style="color:#f97316;background:#fff7ed;">20</span>
+        <span class="brief-status bs-todo" id="bs-20">To Film</span>
+        <span style="font-size:9px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 7px;margin-left:4px;">MOF</span>
+      </div>
+      <div class="brief-title">Pimple Patches — Cycle Care MOF</div>
+      <div class="brief-why">10-second POV format using existing footage of a girl putting on patches. Goal isn't patch sales — it's getting warm audience to the Bundle Builder and buying into the full cycle care routine. Cycle framing connects patches to the broader Femmé range. Thomas flagged we need more MOF content.</div>
+    </div>
+    <div class="brief-sections">
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Caption — ready to paste <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="cap-field"><div class="cap-label">Primary Text</div><div class="cap-text" id="b20c1">Hormonal breakouts are part of the cycle. Now your pimple patches are too.
+
+Clean, invisible, and actually stay in place — for the skin days that come with your period.
+
+Your full cycle routine, below 👇</div><button class="copy-btn" onclick="copyEl('b20c1')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Headline</div><div class="cap-text" id="b20c2">Clean pimple patches for your cycle.</div><button class="copy-btn" onclick="copyEl('b20c2')">Copy ↗</button></div>
+          <div class="cap-field"><div class="cap-label">Description</div><div class="cap-text" id="b20c3">Invisible. Stays in place. Part of your Femmé routine.</div><button class="copy-btn" onclick="copyEl('b20c3')">Copy ↗</button></div>
+        </div>
+      </div>
+      <div class="section">
+        <button class="sec-toggle" onclick="secToggle(this)">Visual Direction <span class="arr">▼</span></button>
+        <div class="sec-body">
+          <div class="visual-item"><div class="visual-shot">Opening (0–2 sec)</div><div class="visual-desc">Text overlay appears immediately: "POV: you found pimple patches that are actually invisible". Girl on screen holding patches — relaxed, casual, not brand-y.</div></div>
+          <div class="visual-item"><div class="visual-shot">Mid (2–7 sec)</div><div class="visual-desc">She applies patches, holds up to camera, poses — showing they're invisible on skin. Keep it natural. No forced demo energy.</div></div>
+          <div class="visual-item"><div class="visual-shot">End frame (7–10 sec)</div><div class="visual-desc">Hold on patch on skin. Text overlay: "gentle. invisible. Femmé." Logo or subtle brand end card.</div></div>
+          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">10 seconds. Vertical 9:16. Native feel — not ad-y. Drive to Bundle Builder, not patches PDP. MOF warm audience only.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-footer">
+      <button class="btn btn-primary" onclick="setBriefStatus(20,'filming')">Mark Filming</button>
+      <button class="btn btn-done" onclick="setBriefStatus(20,'done')">Mark Done ✓</button>
+    </div>
+  </div>
+
+
+<div class="brief-card" id="bc-14" style="display:none" style="border-left-color:#f97316;">
     <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
       <div class="brief-num-row">
         <span class="brief-num" style="color:#f97316;background:#fff7ed;">14</span>
         <span class="brief-status bs-todo" id="bs-14">To Film</span>
-        <span style="font-size:10px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 10px;margin-left:4px;">MOF</span>
+        <span style="font-size:9px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 7px;margin-left:4px;">MOF</span>
       </div>
       <div class="brief-title">The Founder Switch Story — MOF</div>
       <div class="brief-why">J-Dog data shows Family Story MOF is the account hero at 4.24x ROAS — quality doubt is clearly the MOF conversion lever. This brief runs the same conversion insight (quality = years of R&D + manufacturing proof) in founder voiceover format. Same warm audience targeting as Family Story, different creative execution. If it performs comparably, the account has two MOF drivers instead of one hero carrying all the risk.</div>
@@ -1279,63 +1545,8 @@ Build your routine 👇</div>
     </div>
   </div>
 
-  <!-- MOF BRIEF 17 -->
-  <div class="brief-card" id="bc-17" style="border-left-color:#f97316;">
-    <div class="brief-top" onclick="toggleBrief(this.closest('.brief-card'))"><span class="brief-expand-arrow">▾</span>
-      <div class="brief-num-row">
-        <span class="brief-num" style="color:#f97316;background:#fff7ed;">17</span>
-        <span class="brief-status bs-todo" id="bs-17">To Film</span>
-        <span style="font-size:10px;font-weight:700;color:#f97316;background:#fff7ed;border-radius:20px;padding:2px 10px;margin-left:4px;">MOF</span>
-      </div>
-      <div class="brief-title">Family Story — MOF Variation</div>
-      <div class="brief-why">Family Story hit 5.97x ROAS and $6.65 CPA on 29 Apr — the best single-ad day in the account. 43% hold rate means people are watching it all the way through. One ad carrying all MOF conversions is a structural risk — when it fatigues, MOF revenue disappears with it. This variation keeps the same warm audience and same emotional core but tests a different angle: "I stay switched because of my daughter." Same hook category, different driver.</div>
-    </div>
-    <div class="brief-sections">
-      <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Caption <span class="arr">▾</span></button>
-        <div class="sec-body">
-          <div class="cap-field">
-            <div class="cap-label">Primary Text</div>
-            <div class="cap-text" id="mof17-cap">I changed my period care for myself. I stay switched because of my daughter.
-
-In a few years she'll start her period. And I refuse to put her on conventional pads knowing what's in them — bleached, synthetic, full of ingredients that don't belong anywhere near her body.
-
-I'd rather she starts organic from the beginning. With something that actually works.
-
-Femmé Organic — certified organic cotton. The switch that changes generations.
-
-Build your routine 👇</div>
-            <button class="copy-btn" onclick="copyEl('mof17-cap')">Copy</button>
-          </div>
-          <div class="cap-field">
-            <div class="cap-label">Headline</div>
-            <div class="cap-text">The switch that starts a habit.</div>
-          </div>
-          <div class="cap-field">
-            <div class="cap-label">Description</div>
-            <div class="cap-text">One change. Pass it forward.</div>
-          </div>
-        </div>
-      </div>
-      <div class="section">
-        <button class="sec-toggle" onclick="secToggle(this)">Script / Visual Direction <span class="arr">▾</span></button>
-        <div class="sec-body">
-          <div class="visual-item"><div class="visual-shot">Format</div><div class="visual-desc">Faceless voiceover over product B-roll. Warm, calm delivery — not clinical or fear-based. Vertical 9:16. ~40 seconds. Run to warm audiences only — video viewers 50%+, site visitors 30d, ad engagers, Instagram profile visitors.</div></div>
-          <div class="visual-item"><div class="visual-shot">Hook (0–3 sec)</div><div class="visual-desc">Femmé pad and tampon on a clean bathroom bench. Hands arrange them naturally. Voiceover starts immediately: "I changed my period care for myself. I stay switched because of my daughter." Hold 2 seconds on the products.</div></div>
-          <div class="visual-item"><div class="visual-shot">Script</div><div class="visual-desc">I changed my period care for myself. I stay switched because of my daughter. / In a few years she'll start her period. And I refuse to put her on conventional pads — bleached synthetic fibres, plastic gel, fragrance hiding who knows what — against the most absorptive skin on her body, every month, for decades. / I want her to start organic from the beginning. / Femmé Organic — certified organic cotton. Years of sourcing and sampling to get this right. No bleach, no synthetics. Same protection, nothing hidden. / The switch you make for yourself. That you pass forward. / Build your routine — link below.</div></div>
-          <div class="visual-item"><div class="visual-shot">Shot sequence</div><div class="visual-desc">Full routine flat lay → Femmé pad close-up → label visible → product on bathroom bench → intimate wash alongside → final full routine shot.</div></div>
-          <div class="visual-item"><div class="visual-shot">Text overlays</div><div class="visual-desc">Minimal overlays — let the voiceover carry it. "certified organic cotton ✓" at the product reveal. "The switch you pass forward." as closing card before CTA. Warm tone throughout — no red flags or scare typography.</div></div>
-          <div class="visual-item"><div class="visual-shot">Destination</div><div class="visual-desc">Bundle builder — same as Brief 14. Warm audience, send straight to purchase.</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="brief-footer">
-      <button class="btn btn-primary" onclick="setBriefStatus(17,'filming')">Mark Filming</button>
-      <button class="btn btn-done" onclick="setBriefStatus(17,'done')">Mark Done ✓</button>
-    </div>
-  </div>
-
-  <!-- ARCHIVE SECTION — populated by applyBriefStatuses() when briefs are marked done -->
+  
+<!-- ARCHIVE SECTION — populated by applyBriefStatuses() when briefs are marked done -->
   <div class="brief-archive-section" id="brief-archive" style="display:none">
     <div class="brief-archive-header">Archived — filmed &amp; live</div>
     <div id="brief-archive-list"></div>
@@ -1417,36 +1628,34 @@ tr:hover .edit-hint{display:block;}
       <div style="font-size:18px;font-weight:800;letter-spacing:-.01em">Creative Lab</div>
       <div style="font-size:12px;color:var(--muted);margin-top:2px">What's working, what to film, what to fix. Click any hook to edit.</div>
     </div>
-    <div style="font-size:11px;font-weight:700;color:var(--subtle);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:5px 12px;">J-Dog · 27 Apr 2026</div>
+    <div style="font-size:11px;font-weight:700;color:var(--subtle);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:5px 12px;">Updated · 11 May 2026</div>
   </div>
 
-  <!-- TODAY'S PRIORITY — single action card -->
+  <!-- TODAY'S CREATIVE PRIORITY -->
   <div style="background:#0f0e0d;border-radius:var(--r);padding:20px 24px;margin-bottom:16px;display:flex;align-items:flex-start;gap:20px;">
-    <div style="flex-shrink:0;width:40px;height:40px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">🎯</div>
+    <div style="flex-shrink:0;width:40px;height:40px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">🎬</div>
     <div>
-      <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:4px;">Today's one thing</div>
-      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:6px;">Film Cut It Open and Gynaecologist today — before Come Make A Pad fully burns out.</div>
-      <div style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.6;">Come Make A Pad was your only TOF ad. It held $23 CPA for two weeks — yesterday it crashed to $43. Classic fatigue. Film Cut It Open first (10 mins, bench + scissors + phone), then A Gynaecologist Told Me. Scripts are in the Creative Brief tab. Get both filmed today.</div>
+      <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:4px;">Creative priority this week</div>
+      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:6px;">Film Bake A Pad With Us + new Family Story variation.</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.6;">Family Story is the only converting concept right now — 45.1% hold, $16 CPA. It works because it builds emotional investment before the ask. Bake A Pad replaces the fatiguing Come Make A Pad franchise. Get both in market this week.</div>
     </div>
   </div>
 
-  <!-- ACTION CARDS -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:24px;">
+  <!-- FOCUS CARDS — creative + website only -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
     <div style="background:var(--green-s);border:1.5px solid #86efac;border-radius:var(--r);padding:16px;">
-      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--green);margin-bottom:10px;">⬆ Put money here</div>
-      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:10px;">ASC — Broad Audience</div>
-      <div style="font-size:11px;color:var(--green);line-height:1.6;">CPA $20.08, ROAS 3.58x yesterday. The only ad currently generating profitable purchases. Keep budget here while TOF is in transition.</div>
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--green);margin-bottom:10px;">🎬 Film this week</div>
+      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:8px;">1. Bake A Pad With Us</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:10px;">Mini oven concept. Pad version first, tampon version after. Fresh replacement for the Come Make A franchise.</div>
+      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:8px;">2. New Family Story</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.6;">Hook: "Taking on a billion dollar industry with just the two of us." Same emotional format as the winning ad — different story beat.</div>
     </div>
-    <div style="background:#fffbeb;border:1.5px solid #fcd34d;border-radius:var(--r);padding:16px;">
-      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--amber);margin-bottom:10px;">🔧 Do today</div>
-      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:10px;">Film two new TOF ads today</div>
-      <div style="font-size:11px;color:#92400e;line-height:1.6;">Come Make A Pad is fatiguing fast — CPA crashed to $43 yesterday. You have zero TOF backup when it dies. Cut It Open and Gynaecologist are both ready to film. 20 minutes each, no setup needed.</div>
-    </div>
-    <div style="background:var(--red-s);border:1.5px solid #fca5a5;border-radius:var(--r);padding:16px;">
-      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--red);margin-bottom:10px;">✓ Keep paused</div>
-      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:4px;">Come Make A Pad — TOF LP Copy</div>
-      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:10px;">Come Make A Pad + Green Screen</div>
-      <div style="font-size:11px;color:var(--red);line-height:1.6;">Both paused. Combined $334 spent, ROAS under 0.5x. Don't reactivate — these are done.</div>
+    <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);padding:16px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);margin-bottom:10px;">🌐 Website focus</div>
+      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:8px;">TOF Landing Page</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:10px;">Move Do You Experience This? above the first CTA. Move guarantee directly below Build Your Bundle. Remove the weak final Make The Switch section.</div>
+      <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:8px;">Product Pages</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.6;">Super/Mini tampons — finalise last Why You'll Love Them bullet. Remaining products: Liberate Bundle, individual pads.</div>
     </div>
   </div>
 
@@ -1454,8 +1663,8 @@ tr:hover .edit-hint{display:block;}
   <div onclick="showPage('site',document.querySelector('[onclick*=\'site\']'))" style="background:#1c1917;border-radius:var(--r);padding:14px 18px;margin-bottom:24px;display:flex;align-items:center;gap:12px;cursor:pointer;border:1px solid rgba(255,255,255,.08);">
     <div style="font-size:16px;line-height:1;flex-shrink:0;">⚠️</div>
     <div style="flex:1;">
-      <span style="font-size:12px;font-weight:800;color:#fff;">TOF Landing Page — 4 fixes pending</span>
-      <span style="font-size:11px;color:rgba(255,255,255,.4);margin-left:8px;">Replace bundle CTA · Fix dead clicks · Move builder up · Add guarantee</span>
+      <span style="font-size:12px;font-weight:800;color:#fff;">TOF Landing Page — fixes in progress</span>
+      <span style="font-size:11px;color:rgba(255,255,255,.4);margin-left:8px;">Move Do You Experience This? · Guarantee below CTA · Remove redundant Make The Switch</span>
     </div>
     <div style="font-size:10px;color:rgba(255,255,255,.3);flex-shrink:0;">See Site Fixes →</div>
   </div>
@@ -1467,27 +1676,27 @@ tr:hover .edit-hint{display:block;}
   </div>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px;" id="hook-analysis-grid">
     <div class="analysis-card" style="background:var(--surface);border:1.5px solid #86efac;border-radius:var(--r);padding:14px;position:relative;">
-      <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin-bottom:6px;">✓ Use more of this</div>
-      <div class="analysis-label hook-edit" contenteditable="true" spellcheck="false" style="font-size:14px;font-weight:900;color:var(--text);margin-bottom:6px;">Symptom-led</div>
-      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">Leads with pain — burning, irritation, discomfort. Stops people who recognise themselves. Your strongest converting angle. Film more of this exact approach.</div>
+      <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin-bottom:6px;">✓ Converts best</div>
+      <div class="analysis-label hook-edit" contenteditable="true" spellcheck="false" style="font-size:14px;font-weight:900;color:var(--text);margin-bottom:6px;">Brand story</div>
+      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">Family Story — 45.1% hold, $16 CPA. Builds emotional investment before the ask. People buy the mission. Make more of this.</div>
       <div class="edit-hint" style="display:none;position:absolute;top:8px;right:8px;font-size:9px;color:var(--subtle);">✏ editing</div>
     </div>
-    <div class="analysis-card" style="background:var(--surface);border:1.5px solid #fcd34d;border-radius:var(--r);padding:14px;position:relative;">
-      <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--amber);margin-bottom:6px;">⚡ Needs stronger body</div>
-      <div class="analysis-label hook-edit" contenteditable="true" spellcheck="false" style="font-size:14px;font-weight:900;color:var(--text);margin-bottom:6px;">Shocking claim</div>
-      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">Stops the scroll but loses people in the middle. The opening line works — the rest of the video needs to back it up harder. Rewrite what comes after the claim.</div>
-      <div class="edit-hint" style="display:none;position:absolute;top:8px;right:8px;font-size:9px;color:var(--subtle);">✏ editing</div>
-    </div>
-    <div class="analysis-card" style="background:var(--surface);border:1.5px solid #fcd34d;border-radius:var(--r);padding:14px;position:relative;">
-      <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--amber);margin-bottom:6px;">⚡ Fix the middle</div>
+    <div class="analysis-card" style="background:var(--surface);border:1.5px solid #86efac;border-radius:var(--r);padding:14px;position:relative;">
+      <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin-bottom:6px;">✓ Hook works — fix the body</div>
       <div class="analysis-label hook-edit" contenteditable="true" spellcheck="false" style="font-size:14px;font-weight:900;color:var(--text);margin-bottom:6px;">Visual shock</div>
-      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">First frame stops them — then they drop off. The opening visual is strong. Everything after it isn't keeping up. Add narration or text overlays to carry them through.</div>
+      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">Fire Match at 31.7% hook — highest stop rate in TOF. Hold crashes after. Strong opening needs a symptom bridge before the Femmé solution.</div>
+      <div class="edit-hint" style="display:none;position:absolute;top:8px;right:8px;font-size:9px;color:var(--subtle);">✏ editing</div>
+    </div>
+    <div class="analysis-card" style="background:var(--surface);border:1.5px solid #fcd34d;border-radius:var(--r);padding:14px;position:relative;">
+      <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--amber);margin-bottom:6px;">⚡ Getting tired</div>
+      <div class="analysis-label hook-edit" contenteditable="true" spellcheck="false" style="font-size:14px;font-weight:900;color:var(--text);margin-bottom:6px;">Ingredient reveal</div>
+      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">Come Make A Pad/Tampon franchise is fading. Hooks average 18-21%, conversion dropping. Bake A Pad is the fresh execution to test next.</div>
       <div class="edit-hint" style="display:none;position:absolute;top:8px;right:8px;font-size:9px;color:var(--subtle);">✏ editing</div>
     </div>
     <div class="analysis-card" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;position:relative;">
-      <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--subtle);margin-bottom:6px;">○ Not tested yet</div>
-      <div class="analysis-label hook-edit" contenteditable="true" spellcheck="false" style="font-size:14px;font-weight:900;color:var(--text);margin-bottom:6px;">Contradiction</div>
-      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">"You wouldn't drink bleach — so why wear it?" No data yet. Worth testing this week as a fresh angle.</div>
+      <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--subtle);margin-bottom:6px;">○ Untested angle</div>
+      <div class="analysis-label hook-edit" contenteditable="true" spellcheck="false" style="font-size:14px;font-weight:900;color:var(--text);margin-bottom:6px;">Symptom-first</div>
+      <div class="analysis-desc hook-edit" contenteditable="true" spellcheck="false" style="font-size:11px;color:var(--muted);line-height:1.5;">"POV: you've been told your period pain is just normal." Skips ingredient knowledge — leads with experience. Broadest possible audience entry point.</div>
       <div class="edit-hint" style="display:none;position:absolute;top:8px;right:8px;font-size:9px;color:var(--subtle);">✏ editing</div>
     </div>
   </div>
@@ -1809,7 +2018,7 @@ function labRow(ad, d) {
 }
 
 // ── PULSE_DATA_START ──
-const PULSE_DATA = {"cpa": 14.33, "aov": 48.59, "rpv": 2.06, "roas": null, "profit": 101.91, "revenue": null, "spend": 124.9, "sessions": 259};
+const PULSE_DATA = {"revenue": 461.17, "spend": 263.2, "profit": -50.99, "cpa": 29.24, "roas": 1.75, "aov": 47.15, "rpv": 1.16, "sessions": 324, "ads": [{"name": "Family Story - ASC", "spend": 44, "hook": 21.5, "hold": 46.1, "cpa": 22.13, "roas": 2.08}, {"name": "Let's bake a supermarket Pad - TOF", "spend": 43, "hook": 16.7, "hold": 15.9, "cpa": 14.22, "roas": 3.01}, {"name": "Come Make A Pad - TOF", "spend": 114, "hook": 20.9, "hold": 26.1, "cpa": 113.55, "roas": 0.44}]};
 // ── PULSE_DATA_END ──
 
 // ── META_DATA_START ──
@@ -3185,11 +3394,11 @@ function renderPulseStrip() {
 
   // AOV
   if (aov !== null) {
-    const col = aov >= 52 ? 'green' : aov >= 40 ? 'amber' : 'red';
+    const col = aov >= 60 ? 'green' : aov >= 50 ? 'amber' : 'red';
     $('m-aov').className = 'mc-val ' + col;
     $('m-aov').textContent = '$' + aov.toFixed(2);
-    $('m-aov-d').textContent = aov >= 52 ? 'On target ✓' : 'Below $52 target';
-    $('m-aov-d').className = 'mc-delta ' + (aov >= 52 ? 'down' : 'up');
+    $('m-aov-d').textContent = aov >= 60 ? 'On target ✓' : 'Below $60 target';
+    $('m-aov-d').className = 'mc-delta ' + (aov >= 60 ? 'down' : 'up');
   } else {
     $('m-aov').className = 'mc-val';
     $('m-aov').textContent = '—';
@@ -3269,21 +3478,36 @@ function save(k,d){localStorage.setItem(k,JSON.stringify(d));}
 // ══════════════════════════════════════════════════════
 // ── JDOG_DATA_START ──
 const JDOG = {
-  date: '29 Apr 2026',
-  cpa: 21.06, cpaAvg3d: 19.90, cpaTrend: 'up',
-  roas: 3.53, roasTrend: 'down',
-  cvr: 2.30, cvrTarget: 2.5,
-  spend: 161.37, purchases: 9,
-  netProfit: 408.08,
-  aov: 63.27, sessions: 392,
-  read: "Family Story breakout day — $6.65 CPA, 5.97x ROAS, 43% hold rate. That's the best single-ad day in the account. Scale ASC budget $8-10 today. Come Make A Pad cooled hard — 1d CPA jumped to $31.95, ROAS only 1.62x. Don't panic yet, 7d CPA is still $19.38, but watch it closely. Come Make A Tampon showed a flash — $1.63 CPA on $2 spend, too small to call but flag it. Pause Inside Your Pads and Pad Burns Irritation today — 7d CPA $50.59+. RPV still red across all windows ($1.45 down to $1.08 on 14d) — store problem, not ads.",
-  readDate: '29 Apr 2026',
-  actions: [
-    {label:'Scale now: Family Story ASC — increase budget $8-10/day, CPA $6.65, ROAS 5.97x', type:'good'},
-    {label:'Watch: Come Make A Pad — 1d CPA $31.95 but 7d still $19.38. Hold, reassess tomorrow', type:'urgent'},
-    {label:'Pause now: Inside Your Pads + Pad Burns Irritation — 7d CPA $50.59+', type:'urgent'},
-    {label:'Watch: Come Make A Tampon — $1.63 CPA on $2 spend. Flag for more data', type:'good'},
-    {label:'Fix store: RPV red across all windows — bundle upsells still not converting', type:'urgent'}
+  "date": "18 May 2026",
+  "cpa": 29.24,
+  "roas": 1.75,
+  "spend": 263.2,
+  "revenue": 461.17,
+  "purchases": 9,
+  "netProfit": -50.99,
+  "read": "Account is losing $50.99/day. Come Make A Pad is burning $114 for 1 purchase \u2014 pause it today. Family Story and Bake A Pad are your only green ads. Shift budget from TOF into ASC and get the new AI ads live. Creative fatigue is the real problem.",
+  "readDate": "18 May 2026",
+  "actions": [
+    {
+      "label": "PAUSE: Come Make A Pad TOF \u2014 CPA $113.55, bleeding $114/day",
+      "type": "urgent"
+    },
+    {
+      "label": "SCALE: Bake A Supermarket Pad \u2014 CPA $14.22, increase budget 25-40%",
+      "type": "good"
+    },
+    {
+      "label": "WATCH: ASC campaign \u2014 7d CPA $33.56 trending red, hold for now",
+      "type": "watch"
+    },
+    {
+      "label": "FIX: Shift 40-50% of TOF budget into ASC until account recovers",
+      "type": "urgent"
+    },
+    {
+      "label": "TEST: Launch AI AD 1 and 2 \u2014 fresh creative urgently needed",
+      "type": "good"
+    }
   ]
 };
 // ── JDOG_DATA_END ──
@@ -3328,12 +3552,12 @@ const SEED_CRO = [
    why:'Cart upsell is the lowest-friction AOV lift available — no extra spend, just showing complementary products at peak intent. AOV is $57.09 which is healthy, but a well-placed upsell can push it past $70.',
    oldCopy:'Cart goes directly to checkout',
    newCopy:"Complete Your Kit\nMost customers also add:\n• Organic Panty Liners — $12.95\n• Overnight Pimple Patches — $14.95"},
-  {id:'c7',priority:'p2',done:false,doneAt:'',
+  {id:'c7',priority:'p2',done:true,doneAt:'2026-05-12',
    title:'All PDPs — add pad measurements',
    location:'Shopify → Products → [each pad product] → Description',
    why:"Customers need to know what they're buying. Missing dimensions creates hesitation pre-purchase, especially for first-time buyers switching from a familiar brand.",
    oldCopy:'(No measurements listed)',
-   newCopy:'Add length, width and absorbency level for each pad size'},
+   newCopy:'Regular 24cm, Super 28.5cm, Reusable 24cm — added to Absorbency Guide accordion on all pad PDPs'},
   {id:'c9',priority:'p1',done:false,doneAt:'',
    title:'Site-wide — fix JS script errors (Clarity: 4.74% of sessions)',
    location:'Shopify → Online Store → Themes → Edit code → Check for JS errors in browser console',
@@ -3553,7 +3777,8 @@ function renderClarity(data){
 const BRIEF_STAGE = {
   1:'TOF',2:'TOF',3:'TOF',4:'TOF',5:'TOF',6:'TOF',7:'TOF',
   8:'MOF',9:'MOF',10:'MOF',11:'MOF',12:'MOF',13:'TOF',14:'MOF',15:'TOF',
-  16:'TOF',17:'MOF'
+  16:'TOF',17:'MOF',
+  18:'TOF',19:'TOF',20:'MOF'
 };
 const BRIEF_TITLES = {
   1:'Why Are Companies Allowed To Sell Us This',
@@ -3572,7 +3797,10 @@ const BRIEF_TITLES = {
   14:'The Founder Switch Story — MOF',
   15:'Crash Out — Pixar 3D Animated',
   16:'Come Make A Pad — Variation',
-  17:'Family Story — MOF Variation'
+  17:'Family Story — MOF Variation',
+  18:'Let's Bake A Pad',
+  19:'Let's Bake A Tampon',
+  20:'Pimple Patches — Cycle Care MOF'
 };
 let briefStatuses = load('fe_brief_b01',{
   1:'todo',2:'todo',3:'todo',4:'todo',5:'todo',6:'todo',7:'todo',
@@ -3585,7 +3813,10 @@ let briefStatuses = load('fe_brief_b01',{
   14:{status:'done',doneAt:'29 Apr 2026'},
   15:'todo',
   16:'todo',
-  17:'todo'
+  17:'todo',
+  18:'todo',
+  19:'todo',
+  20:'todo'
 });
 function setBriefStatus(n,s){
   if(s==='done' && briefStatuses[n]!=='done'){
@@ -3599,7 +3830,7 @@ function applyBriefStatuses(){
   const archiveList=document.getElementById('brief-archive-list');
   const archiveSection=document.getElementById('brief-archive');
   const archiveItems=[];
-  [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17].forEach(n=>{
+  [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].forEach(n=>{
     const entry=briefStatuses[n];
     const s=typeof entry==='object'?entry.status:(entry||'todo');
     const card=document.getElementById('bc-'+n);
@@ -3730,28 +3961,52 @@ function toggleDoneList(){
 // ══════════════════════════════════════════════════════
 const LAB_ADS = [
   {
+    name: 'Family Story — Who We Are',
+    hook: '“Taking on a billion dollar industry with just the two of us.”',
+    angle: 'Brand story / challenger brand',
+    format: 'Mixed video — founder story format',
+    stage: 'tof',
+    hookRate: '17.9%', hookColor: 'amber',
+    holdRate: '45.1%', holdColor: 'green',
+    converting: 'Yes', convertColor: 'green',
+    status: 'working',
+    read: 'The only concept converting right now. 45.1% hold means people are watching all the way through — that’s emotional investment doing its job. This is a brand story format, not an ingredient reveal. People buy the mission before they buy the product. Need more variations of this format.'
+  },
+  {
     name: 'Come Make A Pad — TOF LP Copy 2',
-    hook: 'Visual: conventional pad being made — synthetic materials shown on screen.',
+    hook: '“Let’s make a supermarket pad.”',
     angle: 'Behind the scenes / ingredient reveal',
     format: 'Faceless voiceover + green screen',
     stage: 'tof',
-    ctr: '2.12%', ctrColor: 'green',
-    cpa: '$20.00', cpaColor: 'green',
-    spend: '$20.00', spendColor: 'amber',
-    status: 'scale',
-    read: 'Hero creative right now. 2.12% CTR, $20 CPA, 3.75x ROAS. Scale budget into this immediately.'
+    hookRate: '21.0%', hookColor: 'amber',
+    holdRate: '26.0%', holdColor: 'amber',
+    converting: 'Weak', convertColor: 'amber',
+    status: 'weak',
+    read: 'Hook is average at 21%, hold dropping. The ingredient-reveal format is getting tired in this execution. Bake A Pad is the fresh replacement — same concept, new energy.'
   },
   {
-    name: 'Pad Burns Irritation',
-    hook: '"If your pad is burning or causing irritation — that\'s not normal."',
-    angle: 'Symptom-led / body safety',
-    format: 'Faceless voiceover over product',
+    name: 'Come Make A Tampon — TOF',
+    hook: '“Let’s make a supermarket tampon.”',
+    angle: 'Behind the scenes / ingredient reveal',
+    format: 'Faceless voiceover + green screen',
     stage: 'tof',
-    ctr: '1.37%', ctrColor: 'amber',
-    cpa: '$22.00', cpaColor: 'green',
-    spend: '$22.00', spendColor: 'amber',
-    status: 'scale',
-    read: 'Solid performer. CPA at $22 and scaling. Keep pushing budget — watch CVR as spend opens up.'
+    hookRate: '18.6%', hookColor: 'amber',
+    holdRate: '18.5%', holdColor: 'red',
+    converting: 'No', convertColor: 'red',
+    status: 'weak',
+    read: '18.6% hook, 18.5% hold — people stop but don’t watch. The tampon angle needs a completely new execution. Bake A Tampon is the next test.'
+  },
+  {
+    name: 'Fire Match Test — Pad Video',
+    hook: '“Wait, there’s plastic in my pad?”',
+    angle: 'Shock reveal / visual proof',
+    format: 'Faceless product video',
+    stage: 'tof',
+    hookRate: '31.7%', hookColor: 'green',
+    holdRate: '12.3%', holdColor: 'red',
+    converting: 'No', convertColor: 'red',
+    status: 'testing',
+    read: 'Strongest hook in TOF at 31.7% — the opening visual works. Hold crashes to 12.3% after the reveal. The body of the ad loses people. Fix: after the plastic reveal, connect it to a body symptom before showing Femmé.'
   },
   {
     name: 'Tampon Reviews — Build Bundle',
@@ -3759,47 +4014,71 @@ const LAB_ADS = [
     angle: 'Trust / testimonial',
     format: 'Review compilation',
     stage: 'mof',
-    ctr: '0.74%', ctrColor: 'red',
-    cpa: '$32.00', cpaColor: 'amber',
-    spend: '$32.00', spendColor: 'amber',
-    status: 'pause',
-    read: 'CTR too low at 0.74%. Not stopping the scroll. Pause and reallocate budget to the two winners.'
+    hookRate: '28.6%', hookColor: 'green',
+    holdRate: '16.1%', holdColor: 'red',
+    converting: 'No', convertColor: 'red',
+    status: 'weak',
+    read: 'High hook (28.6%) but hold crashes and no conversions. People stop for the social proof format but don’t stay. Better suited as MOF for warm audiences, not cold TOF.'
   },
   {
-    name: 'Tampon Shedding 2026',
-    hook: '"Did you know conventional tampons shed synthetic fibres inside your body?"',
-    angle: 'Shocking fact / body safety',
+    name: 'Pad Burns Irritation',
+    hook: '“If your pad is burning or causing irritation — that’s not normal.”',
+    angle: 'Symptom-led / body safety',
     format: 'Faceless voiceover over product',
     stage: 'tof',
-    ctr: '—', ctrColor: 'red',
-    cpa: '—', cpaColor: 'red',
-    spend: '$1.00', spendColor: 'amber',
-    status: 'pause',
-    read: '6.1% hook rate — well below the 25% benchmark. Has cratered. Pause immediately.'
+    hookRate: '—', hookColor: 'amber',
+    holdRate: '—', holdColor: 'amber',
+    converting: 'No', convertColor: 'red',
+    status: 'weak',
+    read: 'Symptom-led hook is a strong angle in theory but this execution didn’t convert. The hook idea is sound — worth revisiting in a new format.'
   },
   {
     name: 'Inside Your Pads',
-    hook: '"This is what\'s actually inside your pad."',
+    hook: '“This is what’s actually inside your pad.”',
     angle: 'Ingredient reveal / visual proof',
     format: 'Faceless voiceover + close-up product',
     stage: 'tof',
-    ctr: '—', ctrColor: 'amber',
-    cpa: '—', cpaColor: 'amber',
-    spend: '$0', spendColor: 'amber',
-    status: 'test',
-    read: '17.1% hook rate but zero conversions. Landing page mismatch. Fix the BPC page before scaling.'
+    hookRate: '17.1%', hookColor: 'amber',
+    holdRate: '—', holdColor: 'amber',
+    converting: 'No', convertColor: 'red',
+    status: 'weak',
+    read: 'Average hook, no conversions. Generic framing of the ingredient angle. Doesn’t have the visceral visual of Come Make A Pad or the emotional pull of Family Story.'
   },
   {
     name: 'Bleach Inside Your Pad',
-    hook: '"Your pad contains bleach. Here\'s what that means."',
+    hook: '“Your pad contains bleach. Here’s what that means.”',
     angle: 'Confrontational claim / body safety',
     format: 'Faceless voiceover over product',
     stage: 'tof',
-    ctr: '—', ctrColor: 'red',
-    cpa: '—', cpaColor: 'amber',
-    spend: '$0', spendColor: 'amber',
-    status: 'pause',
-    read: '0% hook engagement. Not working. Pause.'
+    hookRate: '0%', hookColor: 'red',
+    holdRate: '—', holdColor: 'red',
+    converting: 'No', convertColor: 'red',
+    status: 'weak',
+    read: 'Zero hook engagement. The bleach angle is valid but this execution says it without showing it. Needs a visual to land.'
+  },
+  {
+    name: 'Bake A Pad With Us',
+    hook: 'Visual: mini oven cooking a conventional pad — synthetic ingredients revealed through the process.',
+    angle: 'Shock reveal / ingredient expose',
+    format: 'Faceless hands-only. Voiceover. Vertical 9:16.',
+    stage: 'tof',
+    hookRate: '—', hookColor: 'amber',
+    holdRate: '—', holdColor: 'amber',
+    converting: '—', convertColor: 'amber',
+    status: 'film',
+    read: 'Fresh replacement for Come Make A Pad. Mini oven format makes the ingredient reveal more visual and dramatic. Priority to film now.'
+  },
+  {
+    name: 'Bake A Tampon With Us',
+    hook: 'Visual: mini oven cooking a conventional tampon — same concept, tampon version.',
+    angle: 'Shock reveal / ingredient expose',
+    format: 'Faceless hands-only. Voiceover. Vertical 9:16.',
+    stage: 'tof',
+    hookRate: '—', hookColor: 'amber',
+    holdRate: '—', holdColor: 'amber',
+    converting: '—', convertColor: 'amber',
+    status: 'film',
+    read: 'Tampon version of Bake A Pad. Film after the pad version. Gives a direct read on whether pad or tampon angle performs better in this format.'
   }
 ];
 
@@ -3847,10 +4126,10 @@ function renderHookBank(){
 }
 
 const statusMap = {
-  pause: {cls:'tag-pause', label:'Pause'},
-  watch: {cls:'tag-watch', label:'Watch'},
-  scale: {cls:'tag-scale', label:'Scale'},
-  test:  {cls:'tag-test',  label:'Testing'}
+  working:  {cls:'tag-scale', label:'Working'},
+  weak:     {cls:'tag-pause', label:'Not Working'},
+  testing:  {cls:'tag-test',  label:'Testing'},
+  film:     {cls:'tag-watch', label:'Film Next'}
 };
 const stageMap = {tof:'TOF', mof:'MOF', bof:'BOF'};
 
@@ -3871,16 +4150,16 @@ function renderLab(){
       </div>
       <div class="lab-metrics">
         <div class="lab-metric">
-          <div class="lab-metric-label">CTR</div>
-          <div class="lab-metric-val ${ad.ctrColor}">${ad.ctr}</div>
+          <div class="lab-metric-label">Hook Rate</div>
+          <div class="lab-metric-val ${ad.hookColor}">${ad.hookRate}</div>
         </div>
         <div class="lab-metric">
-          <div class="lab-metric-label">CPA</div>
-          <div class="lab-metric-val ${ad.cpaColor}">${ad.cpa}</div>
+          <div class="lab-metric-label">Hold Rate</div>
+          <div class="lab-metric-val ${ad.holdColor}">${ad.holdRate}</div>
         </div>
         <div class="lab-metric">
-          <div class="lab-metric-label">Spend</div>
-          <div class="lab-metric-val ${ad.spendColor}">${ad.spend}</div>
+          <div class="lab-metric-label">Converting</div>
+          <div class="lab-metric-val ${ad.convertColor}">${ad.converting}</div>
         </div>
       </div>
       <div class="lab-read">
@@ -3888,7 +4167,7 @@ function renderLab(){
         <div class="lab-read-text">${ad.read}</div>
       </div>
       <div class="lab-status-bar">
-        <span style="font-size:11px;color:var(--subtle)">Last updated: 20 Apr</span>
+        <span style="font-size:11px;color:var(--subtle)">Updated: 11 May 2026</span>
         <span class="cr-tag ${statusMap[ad.status].cls}">${statusMap[ad.status].label}</span>
       </div>
     </div>
